@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SystemEntity {
+public class StarSystem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
