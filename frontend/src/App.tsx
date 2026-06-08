@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import './App.css'
 
+import SystemList from "./components/SystemList";
+
 function App() {
-  return (
-    <>
-      <h1>Autonomous Galactic Trade Network</h1>
-    </>
-  );
+    return (
+        <div>
+            <h1>Galactic Trade Simulator</h1>
+
+            <SystemList />
+        </div>
+    );
 }
 
 export default App;
