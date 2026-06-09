@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getSystems } from "../api/systemApi";
 import type { StarSystem } from "../types/system";
+import GalaxyMap from "./GalaxyMap";
 
 export default function SystemList() {
 
@@ -28,11 +29,7 @@ export default function SystemList() {
             <h2>Star Systems</h2>
 
             <ul>
-                {systems.map(system => (
-                    <li key={system.id}>
-                        {system.name} ({system.region})
-                    </li>
-                ))}
+                <GalaxyMap systems={systems} />
             </ul>
         </div>
     );

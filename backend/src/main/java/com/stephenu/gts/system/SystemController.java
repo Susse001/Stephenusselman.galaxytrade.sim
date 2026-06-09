@@ -1,5 +1,5 @@
 package com.stephenu.gts.system;
-import com.stephenu.gts.system.dto.SystemResponse;
+import com.stephenu.gts.system.dto.StarSystemResponse;
 
 import java.util.List;
 
@@ -17,12 +17,12 @@ public class SystemController {
     private final SystemService systemService;
 
     @GetMapping
-    public List<SystemResponse> getSystems() {
+    public List<StarSystemResponse> getSystems() {
         return systemService.getAllSystems();
     }
 
     @GetMapping("/{id}")
-    public SystemResponse getSystem(
+    public StarSystemResponse getSystem(
             @PathVariable Long id
     ) {
         return systemService.getSystem(id);

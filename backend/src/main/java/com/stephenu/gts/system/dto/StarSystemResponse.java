@@ -1,6 +1,6 @@
 package com.stephenu.gts.system.dto;
 
-public record SystemResponse (
+public record StarSystemResponse (
     Long id,
     String name,
     int xCoordinate,

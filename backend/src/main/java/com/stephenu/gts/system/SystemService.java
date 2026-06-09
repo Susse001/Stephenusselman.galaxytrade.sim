@@ -1,5 +1,5 @@
 package com.stephenu.gts.system;
-import com.stephenu.gts.system.dto.SystemResponse;
+import com.stephenu.gts.system.dto.StarSystemResponse;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -11,10 +11,10 @@ public class SystemService {
 
     private final SystemRepository systemRepository;
 
-    public List<SystemResponse> getAllSystems() {
+    public List<StarSystemResponse> getAllSystems() {
         return systemRepository.findAll()
                 .stream()
-                .map(system -> new SystemResponse(
+                .map(system -> new StarSystemResponse(
                         system.getId(),
                         system.getName(),
                         system.getXCoordinate(),
@@ -24,11 +24,11 @@ public class SystemService {
                 .toList();
     }
 
-    public SystemResponse getSystem(Long id) {
+    public StarSystemResponse getSystem(Long id) {
     var system = systemRepository.findById(id)
             .orElseThrow();
 
-    return new SystemResponse(
+    return new StarSystemResponse(
             system.getId(),
             system.getName(),
             system.getXCoordinate(),
