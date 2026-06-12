@@ -1,4 +1,4 @@
-package com.stephenu.gts.system;
+package com.stephenu.gts.starsystem;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

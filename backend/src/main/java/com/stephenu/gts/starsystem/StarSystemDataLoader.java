@@ -1,4 +1,4 @@
-package com.stephenu.gts.system;
+package com.stephenu.gts.starsystem;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class SystemDataLoader {
+public class StarSystemDataLoader {
 
-    private final SystemRepository systemRepository;
+    private final StarSystemRepository systemRepository;
 
     @PostConstruct
     public void loadData() {

@@ -1,8 +1,10 @@
-package com.stephenu.gts.system;
+package com.stephenu.gts.starsystem;
+
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SystemRepository 
-    extends JpaRepository<StarSystem, Long>  {
+public interface StarSystemRepository extends JpaRepository<StarSystem, Long>  {
 
+        Optional<StarSystem> findByName(String name);
 }

@@ -1,15 +1,16 @@
-package com.stephenu.gts.system;
-import com.stephenu.gts.system.dto.StarSystemResponse;
-
+package com.stephenu.gts.starsystem;
 import java.util.List;
 import org.springframework.stereotype.Service;
+
+import com.stephenu.gts.starsystem.dto.StarSystemResponse;
+
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class SystemService {
+public class StarSystemService {
 
-    private final SystemRepository systemRepository;
+    private final StarSystemRepository systemRepository;
 
     public List<StarSystemResponse> getAllSystems() {
         return systemRepository.findAll()

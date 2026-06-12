@@ -1,4 +1,4 @@
-package com.stephenu.gts.system.dto;
+package com.stephenu.gts.starsystem.dto;
 
 public record StarSystemResponse (
     Long id,
