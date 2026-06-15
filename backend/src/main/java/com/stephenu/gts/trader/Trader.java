@@ -1,5 +1,6 @@
 package com.stephenu.gts.trader;
 
+import com.stephenu.gts.commodity.CommodityType;
 import com.stephenu.gts.starsystem.StarSystem;
 
 import jakarta.persistence.Entity;
@@ -29,13 +30,31 @@ public class Trader {
     private Long id;
 
     private String name;
+    private Integer credits;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "current_system_id")
     private StarSystem currentSystem;
 
-    private Integer credits;
+    @ManyToOne
+    @JoinColumn(name = "target_system_id")
+    private StarSystem targetSystem;
+
+    @Enumerated(EnumType.STRING)
+    private CommodityType targetCommodity;
 
     @Enumerated(EnumType.STRING)
     private StrategyProfile strategyProfile;
+
+    public Trader(
+        String name,
+        StarSystem currentSystem,
+        Integer credits,
+        StrategyProfile strategyProfile
+    ) {
+        this.name = name;
+        this.currentSystem = currentSystem;
+        this.credits = credits;
+        this.strategyProfile = strategyProfile;
+    }
 }

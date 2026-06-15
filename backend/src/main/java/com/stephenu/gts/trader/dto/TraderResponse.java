@@ -1,5 +1,6 @@
 package com.stephenu.gts.trader.dto;
 
+import com.stephenu.gts.commodity.CommodityType;
 import com.stephenu.gts.trader.StrategyProfile;
 
 public record TraderResponse(
@@ -8,5 +9,8 @@ public record TraderResponse(
         Long currentSystemId,
         String currentSystemName,
         Integer credits,
-        StrategyProfile strategyProfile
+        StrategyProfile strategyProfile,
+        CommodityType targetCommodity,
+        Long targetSystemId,
+        String targetSystemName
 ) {}

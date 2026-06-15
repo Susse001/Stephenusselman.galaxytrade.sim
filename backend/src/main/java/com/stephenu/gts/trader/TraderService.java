@@ -28,13 +28,23 @@ public class TraderService {
     }
 
     private TraderResponse toResponse(Trader trader) {
+
         return new TraderResponse(
                 trader.getId(),
                 trader.getName(),
                 trader.getCurrentSystem().getId(),
                 trader.getCurrentSystem().getName(),
                 trader.getCredits(),
-                trader.getStrategyProfile()
+                trader.getStrategyProfile(),
+                trader.getTargetCommodity(),
+
+                trader.getTargetSystem() != null
+                    ? trader.getTargetSystem().getId()
+                    : null,
+
+                trader.getTargetSystem() != null
+                        ? trader.getTargetSystem().getName()
+                        : null
         );
     }
 }

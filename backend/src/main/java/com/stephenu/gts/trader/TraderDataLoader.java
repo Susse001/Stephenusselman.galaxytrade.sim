@@ -30,7 +30,6 @@ public class TraderDataLoader implements CommandLineRunner {
 
         traderRepository.save(
                 new Trader(
-                        null,
                         "Atlas Trading Company",
                         titanGate,
                         10000,
@@ -40,7 +39,6 @@ public class TraderDataLoader implements CommandLineRunner {
 
         traderRepository.save(
                 new Trader(
-                        null,
                         "Helix Freight",
                         novaPrime,
                         15000,
@@ -50,7 +48,6 @@ public class TraderDataLoader implements CommandLineRunner {
 
         traderRepository.save(
                 new Trader(
-                        null,
                         "Frontier Logistics",
                         titanGate,
                         8000,

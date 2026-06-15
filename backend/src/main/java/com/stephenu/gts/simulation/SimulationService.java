@@ -2,6 +2,7 @@ package com.stephenu.gts.simulation;
 
 import com.stephenu.gts.market.Market;
 import com.stephenu.gts.market.MarketRepository;
+import com.stephenu.gts.trader.Trader;
 import com.stephenu.gts.trader.TraderRepository;
 
 import jakarta.transaction.Transactional;
@@ -18,6 +19,7 @@ public class SimulationService {
     
     private final TraderRepository traderRepository;
     private final MarketRepository marketRepository;
+    private final TraderDecisionService traderDecisionService;
 
     private long currentTick = 0;
     private final Random random = new Random();
@@ -28,6 +30,7 @@ public class SimulationService {
         currentTick++;
 
         updateMarkets();
+        evaluateTraders();
 
         return currentTick;
     }
@@ -88,6 +91,38 @@ public class SimulationService {
         market.setPrice(
                 Math.max(10, price)
         );
+    }
+
+    private void evaluateTraders() {
+
+        List<Trader> traders =
+                traderRepository.findAll();
+
+        for (Trader trader : traders) {
+
+            TradeOpportunity opportunity =
+                    traderDecisionService.findBestTrade();
+
+            trader.setTargetCommodity(
+                    opportunity.commodity()
+            );
+
+            trader.setTargetSystem(
+                    opportunity.sellSystem()
+            );
+
+            System.out.println(
+                trader.getName()
+                        + " selected "
+                        + opportunity.commodity()
+                        + " -> "
+                        + opportunity.sellSystem().getName()
+                        + " profit="
+                        + opportunity.expectedProfit()
+            );
+        }
+
+        traderRepository.saveAll(traders);
     }
 
 }
