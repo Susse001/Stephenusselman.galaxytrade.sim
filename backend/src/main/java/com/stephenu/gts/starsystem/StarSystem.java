@@ -28,5 +28,5 @@ public class StarSystem {
 
     private int yCoordinate;
 
-    private String region;
+    private Region region;
 }
