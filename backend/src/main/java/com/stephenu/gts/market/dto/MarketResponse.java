@@ -6,6 +6,7 @@ public record MarketResponse(
         Long id,
         Long systemId,
         String systemName,
+        String region,
         CommodityType commodityType,
         Integer price,
         Integer supply,

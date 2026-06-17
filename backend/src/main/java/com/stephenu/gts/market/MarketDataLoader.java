@@ -1,30 +1,29 @@
 package com.stephenu.gts.market;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
 import com.stephenu.gts.commodity.Commodity;
 import com.stephenu.gts.commodity.CommodityRepository;
 import com.stephenu.gts.commodity.CommodityType;
+import com.stephenu.gts.starsystem.Region;
 import com.stephenu.gts.starsystem.StarSystem;
 import com.stephenu.gts.starsystem.StarSystemRepository;
 
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@Order(3)
+@RequiredArgsConstructor
 public class MarketDataLoader implements CommandLineRunner {
 
     private final MarketRepository marketRepository;
-    private final StarSystemRepository starSystemRepository;
+    private final StarSystemRepository systemRepository;
     private final CommodityRepository commodityRepository;
-
-    public MarketDataLoader(
-            MarketRepository marketRepository,
-            StarSystemRepository starSystemRepository,
-            CommodityRepository commodityRepository
-    ) {
-        this.marketRepository = marketRepository;
-        this.starSystemRepository = starSystemRepository;
-        this.commodityRepository = commodityRepository;
-    }
 
     @Override
     public void run(String... args) {
@@ -33,14 +32,7 @@ public class MarketDataLoader implements CommandLineRunner {
             return;
         }
 
-        StarSystem titanGate = starSystemRepository.findByName("Titan Gate")
-                .orElseThrow();
-
-        StarSystem novaPrime = starSystemRepository.findByName("Nova Prime")
-                .orElseThrow();
-
-        StarSystem heliosReach = starSystemRepository.findByName("Helios Reach")
-                .orElseThrow();
+        List<Market> markets = new ArrayList<>();
 
         Commodity food = commodityRepository.findByType(CommodityType.FOOD)
                 .orElseThrow();
@@ -51,20 +43,62 @@ public class MarketDataLoader implements CommandLineRunner {
         Commodity ore = commodityRepository.findByType(CommodityType.ORE)
                 .orElseThrow();
 
-        marketRepository.save(
-                new Market(titanGate, food, 100, 500, 300)
-        );
+        Commodity medicine = commodityRepository.findByType(CommodityType.MEDICINE)
+                .orElseThrow();
 
-        marketRepository.save(
-                new Market(titanGate, fuel, 120, 200, 350)
-        );
+        Commodity technology = commodityRepository.findByType(CommodityType.TECHNOLOGY)
+                .orElseThrow();
 
-        marketRepository.save(
-                new Market(novaPrime, food, 130, 100, 450)
-        );
+        Commodity luxuryGoods = commodityRepository.findByType(CommodityType.LUXURY_GOODS)
+                .orElseThrow();
 
-        marketRepository.save(
-                new Market(heliosReach, ore, 90, 700, 150)
+        for (StarSystem system : systemRepository.findAll()) {
+
+            switch (system.getRegion()) {
+
+                case CORE -> {
+                    markets.add(createExportMarket(system, luxuryGoods));
+                    markets.add(createImportMarket(system, ore));
+                }
+
+                case INNER_RIM -> {
+                    markets.add(createExportMarket(system, food));
+                    markets.add(createImportMarket(system, luxuryGoods));
+                }
+
+                case OUTER_RIM -> {
+                    markets.add(createExportMarket(system, ore));
+                    markets.add(createImportMarket(system, food));
+                }
+            }
+        }
+
+        marketRepository.saveAll(markets);
+    }
+
+    private Market createExportMarket(
+            StarSystem system,
+            Commodity commodity
+    ) {
+        return new Market(
+                system,
+                commodity,
+                (int) (commodity.getBasePrice() * 0.8),
+                1000,
+                200
+        );
+    }
+
+    private Market createImportMarket(
+            StarSystem system,
+            Commodity commodity
+    ) {
+        return new Market(
+                system,
+                commodity,
+                (int) (commodity.getBasePrice() * 1.2),
+                200,
+                1000
         );
     }
 }
