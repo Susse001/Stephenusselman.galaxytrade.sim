@@ -3,12 +3,18 @@ package com.stephenu.gts.trader;
 import com.stephenu.gts.starsystem.StarSystem;
 import com.stephenu.gts.starsystem.StarSystemRepository;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(4)
 @RequiredArgsConstructor
-public class TraderDataLoader implements CommandLineRunner {
+public class TraderDataLoader
+        implements CommandLineRunner {
 
     private final TraderRepository traderRepository;
     private final StarSystemRepository starSystemRepository;
@@ -20,39 +26,30 @@ public class TraderDataLoader implements CommandLineRunner {
             return;
         }
 
-        StarSystem titanGate =
-                starSystemRepository.findByName("Titan Gate")
-                        .orElseThrow();
+        List<StarSystem> systems =
+                starSystemRepository.findAll();
 
-        StarSystem novaPrime =
-                starSystemRepository.findByName("Nova Prime")
-                        .orElseThrow();
+        int traderNumber = 1;
 
-        traderRepository.save(
-                new Trader(
-                        "Atlas Trading Company",
-                        titanGate,
-                        10000,
-                        StrategyProfile.BALANCED
-                )
-        );
+        for (StarSystem system : systems) {
 
-        traderRepository.save(
-                new Trader(
-                        "Helix Freight",
-                        novaPrime,
-                        15000,
-                        StrategyProfile.AGGRESSIVE
-                )
-        );
+            traderRepository.save(
+                    new Trader(
+                            "Trader " + traderNumber++,
+                            system,
+                            10000,
+                            StrategyProfile.CONSERVATIVE
+                    )
+            );
 
-        traderRepository.save(
-                new Trader(
-                        "Frontier Logistics",
-                        titanGate,
-                        8000,
-                        StrategyProfile.CONSERVATIVE
-                )
-        );
+            traderRepository.save(
+                    new Trader(
+                            "Trader " + traderNumber++,
+                            system,
+                            10000,
+                            StrategyProfile.AGGRESSIVE
+                    )
+            );
+        }
     }
 }

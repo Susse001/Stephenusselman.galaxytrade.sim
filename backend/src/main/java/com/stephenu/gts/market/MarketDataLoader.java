@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import com.stephenu.gts.commodity.Commodity;
 import com.stephenu.gts.commodity.CommodityRepository;
 import com.stephenu.gts.commodity.CommodityType;
-import com.stephenu.gts.starsystem.Region;
 import com.stephenu.gts.starsystem.StarSystem;
 import com.stephenu.gts.starsystem.StarSystemRepository;
 

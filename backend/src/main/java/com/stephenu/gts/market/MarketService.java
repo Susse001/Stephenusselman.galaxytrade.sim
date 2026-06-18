@@ -34,7 +34,7 @@ public class MarketService {
                 market.getId(),
                 market.getStarSystem().getId(),
                 market.getStarSystem().getName(),
-                market.getStarSystem().getRegion().toString(),
+                market.getStarSystem().getRegion(),
                 market.getCommodity().getType(),
                 market.getPrice(),
                 market.getSupply(),
