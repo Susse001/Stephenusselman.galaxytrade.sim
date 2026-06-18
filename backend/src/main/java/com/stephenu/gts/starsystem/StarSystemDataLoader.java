@@ -53,11 +53,20 @@ public class StarSystemDataLoader implements CommandLineRunner {
 
             Region region;
 
-            if (x < 33) {
+            double distance =
+            Math.sqrt(
+                Math.pow(x - 50, 2)
+                +
+                Math.pow(y - 50, 2)
+            );
+
+            if (distance < 20) {
                 region = Region.CORE;
-            } else if (x < 67) {
+            }
+            else if (distance < 35) {
                 region = Region.INNER_RIM;
-            } else {
+            }
+            else {
                 region = Region.OUTER_RIM;
             }
 
