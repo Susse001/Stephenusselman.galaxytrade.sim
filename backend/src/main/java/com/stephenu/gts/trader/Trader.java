@@ -30,7 +30,8 @@ public class Trader {
     private Long id;
 
     private String name;
-    private Integer credits;
+
+    private Long credits;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "current_system_id")
@@ -46,15 +47,14 @@ public class Trader {
     @Enumerated(EnumType.STRING)
     private StrategyProfile strategyProfile;
 
-    public Trader(
-        String name,
-        StarSystem currentSystem,
-        Integer credits,
-        StrategyProfile strategyProfile
-    ) {
-        this.name = name;
-        this.currentSystem = currentSystem;
-        this.credits = credits;
-        this.strategyProfile = strategyProfile;
-    }
+    @Enumerated(EnumType.STRING)
+    private TraderStatus status;
+
+    private Integer cargoCapacity;
+
+    private Integer cargoAmount;
+
+    @Enumerated(EnumType.STRING)
+    private CommodityType cargoCommodity;
+
 }

@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.stephenu.gts.trader.dto.TraderResponse;
 
+import jakarta.persistence.EntityNotFoundException;
+
 import java.util.List;
 
 @Service
@@ -22,7 +24,10 @@ public class TraderService {
 
     public TraderResponse getTraderById(Long id) {
         Trader trader = traderRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(() ->
+                    new EntityNotFoundException(
+                            "Trader not found: " + id
+                    ));
 
         return toResponse(trader);
     }
@@ -36,15 +41,20 @@ public class TraderService {
                 trader.getCurrentSystem().getName(),
                 trader.getCredits(),
                 trader.getStrategyProfile(),
+                trader.getStatus(),
                 trader.getTargetCommodity(),
 
                 trader.getTargetSystem() != null
-                    ? trader.getTargetSystem().getId()
-                    : null,
+                        ? trader.getTargetSystem().getId()
+                        : null,
 
                 trader.getTargetSystem() != null
                         ? trader.getTargetSystem().getName()
-                        : null
+                        : null,
+
+                trader.getCargoCommodity(),
+                trader.getCargoAmount(),
+                trader.getCargoCapacity()
         );
     }
 }

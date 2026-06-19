@@ -33,23 +33,30 @@ public class TraderDataLoader
 
         for (StarSystem system : systems) {
 
-            traderRepository.save(
-                    new Trader(
-                            "Trader " + traderNumber++,
-                            system,
-                            10000,
-                            StrategyProfile.CONSERVATIVE
-                    )
-            );
+                Trader conservative = new Trader();
 
-            traderRepository.save(
-                    new Trader(
-                            "Trader " + traderNumber++,
-                            system,
-                            10000,
-                            StrategyProfile.AGGRESSIVE
-                    )
-            );
-        }
-    }
+                conservative.setName("Trader " + traderNumber++);
+                conservative.setCurrentSystem(system);
+                conservative.setCredits((long) 10000);
+                conservative.setStrategyProfile(
+                        StrategyProfile.CONSERVATIVE);
+                conservative.setStatus(TraderStatus.IDLE);
+                conservative.setCargoCapacity(100);
+                conservative.setCargoAmount(0);
+
+                traderRepository.save(conservative);
+
+                Trader aggressive = new Trader();
+
+                aggressive.setName("Trader " + traderNumber++);
+                aggressive.setCurrentSystem(system);
+                aggressive.setCredits((long) 10000);
+                aggressive.setStrategyProfile(
+                        StrategyProfile.AGGRESSIVE);
+                aggressive.setStatus(TraderStatus.IDLE);
+                aggressive.setCargoCapacity(100);
+                aggressive.setCargoAmount(0);
+
+                traderRepository.save(aggressive);
+                }
 }
