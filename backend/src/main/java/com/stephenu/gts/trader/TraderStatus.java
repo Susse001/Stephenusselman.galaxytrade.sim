@@ -1,8 +1,9 @@
 package com.stephenu.gts.trader;
 
 public enum TraderStatus {
-    IDLE,
-    TRAVELING,
+    TRAVELING_TO_BUY,
     BUYING,
-    SELLING
+    TRAVELING_TO_SELL,
+    SELLING,
+    IDLE
 }

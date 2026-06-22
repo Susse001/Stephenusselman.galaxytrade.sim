@@ -2,6 +2,7 @@ package com.stephenu.gts.simulation;
 
 import com.stephenu.gts.market.Market;
 import com.stephenu.gts.market.MarketRepository;
+import com.stephenu.gts.starsystem.StarSystem;
 import com.stephenu.gts.trader.Trader;
 import com.stephenu.gts.trader.TraderRepository;
 import com.stephenu.gts.trader.TraderStatus;
@@ -114,9 +115,11 @@ public class SimulationService {
 
             case IDLE -> assignTrade(trader);
 
-            case TRAVELING -> travel(trader);
+            case TRAVELING_TO_BUY -> travelToBuy(trader);
 
             case BUYING -> buy(trader);
+
+            case TRAVELING_TO_SELL -> travelToSell(trader);
 
             case SELLING -> sell(trader);
         }
@@ -125,26 +128,41 @@ public class SimulationService {
     private void assignTrade(Trader trader) {
 
         TradeOpportunity opportunity =
-                traderDecisionService.findBestTrade();
+            traderDecisionService.findBestTrade();
 
         if (opportunity == null) {
-                return;
+            return;
         }
 
         tradeOpportunityRepository.save(opportunity);
 
         trader.setCurrentTrade(opportunity);
-        trader.setStatus(TraderStatus.TRAVELING);
+
+        trader.setTravelTicksRemaining(
+                calculateTravelTicks(
+                        trader.getCurrentSystem(),
+                        opportunity.getBuySystem()
+                )
+        );
+
+        trader.setStatus(
+                TraderStatus.TRAVELING_TO_BUY
+        );
     }
 
-    private void travel(Trader trader) {
+    private void travelToBuy(Trader trader) {
 
-        TradeOpportunity trade =
-            trader.getCurrentTrade();
+        int remaining =
+            trader.getTravelTicksRemaining() - 1;
 
+        trader.setTravelTicksRemaining(remaining);
+
+        if (remaining > 0) {
+            return;
+        }
 
         trader.setCurrentSystem(
-                trade.getBuySystem()
+                trader.getCurrentTrade().getBuySystem()
         );
 
         trader.setStatus(
@@ -165,6 +183,33 @@ public class SimulationService {
                 trader.getCargoCapacity()
         );
 
+        trader.setTravelTicksRemaining(
+                calculateTravelTicks(
+                        trade.getBuySystem(),
+                        trade.getSellSystem()
+                )
+        );
+
+        trader.setStatus(
+                TraderStatus.TRAVELING_TO_SELL
+        );
+    }
+
+    private void travelToSell(Trader trader) {
+
+        int remaining =
+                trader.getTravelTicksRemaining() - 1;
+
+        trader.setTravelTicksRemaining(remaining);
+
+        if (remaining > 0) {
+            return;
+        }
+
+        trader.setCurrentSystem(
+                trader.getCurrentTrade().getSellSystem()
+        );
+
         trader.setStatus(
                 TraderStatus.SELLING
         );
@@ -173,23 +218,41 @@ public class SimulationService {
     private void sell(Trader trader) {
 
         TradeOpportunity trade =
-            trader.getCurrentTrade();
-
-        trader.setCurrentSystem(
-                trade.getSellSystem()
-        );
+                trader.getCurrentTrade();
 
         trader.setCredits(
                 trader.getCredits()
-                + trade.getExpectedProfit()
+                        + trade.getExpectedProfit()
         );
 
         trader.setCargoCommodity(null);
         trader.setCargoAmount(0);
+
+        tradeOpportunityRepository.delete(trade);
+
+        trader.setCurrentTrade(null);
 
         trader.setStatus(
                 TraderStatus.IDLE
         );
     }
 
+        private int calculateTravelTicks(
+            StarSystem from,
+            StarSystem to) {
+
+        double dx =
+                from.getXCoordinate() - to.getXCoordinate();
+
+        double dy =
+                from.getYCoordinate() - to.getYCoordinate();
+
+        double distance =
+                Math.sqrt(dx * dx + dy * dy);
+
+        return Math.max(
+                1,
+                (int) Math.ceil(distance / 10.0)
+        );
+    }
 }

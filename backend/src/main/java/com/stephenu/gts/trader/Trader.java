@@ -59,4 +59,6 @@ public class Trader {
     @Enumerated(EnumType.STRING)
     private CommodityType cargoCommodity;
 
+    private Integer travelTicksRemaining;
+
 }

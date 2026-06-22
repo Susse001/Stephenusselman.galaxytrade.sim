@@ -14,6 +14,7 @@ public record TraderResponse(
         StrategyProfile strategyProfile,
         TraderStatus status,
         TradeOpportunityResponse currentTrade,
+        Integer travelTicksRemaining,
         CommodityType cargoCommodity,
         Integer cargoAmount,
         Integer cargoCapacity
