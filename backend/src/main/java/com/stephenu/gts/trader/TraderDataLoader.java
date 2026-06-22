@@ -38,6 +38,7 @@ public class TraderDataLoader
                 conservative.setName("Trader " + traderNumber++);
                 conservative.setCurrentSystem(system);
                 conservative.setCredits((long) 10000);
+                conservative.setCurrentTrade(null);
                 conservative.setStrategyProfile(
                         StrategyProfile.CONSERVATIVE);
                 conservative.setStatus(TraderStatus.IDLE);
@@ -51,6 +52,7 @@ public class TraderDataLoader
                 aggressive.setName("Trader " + traderNumber++);
                 aggressive.setCurrentSystem(system);
                 aggressive.setCredits((long) 10000);
+                aggressive.setCurrentTrade(null);
                 aggressive.setStrategyProfile(
                         StrategyProfile.AGGRESSIVE);
                 aggressive.setStatus(TraderStatus.IDLE);
@@ -59,4 +61,5 @@ public class TraderDataLoader
 
                 traderRepository.save(aggressive);
                 }
+        }
 }

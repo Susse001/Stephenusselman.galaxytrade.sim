@@ -3,6 +3,8 @@ package com.stephenu.gts.trader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import com.stephenu.gts.simulation.TradeOpportunity;
+import com.stephenu.gts.simulation.dto.TradeOpportunityResponse;
 import com.stephenu.gts.trader.dto.TraderResponse;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -32,7 +34,24 @@ public class TraderService {
         return toResponse(trader);
     }
 
-    private TraderResponse toResponse(Trader trader) {
+    private TradeOpportunityResponse toTradeResponse(
+        TradeOpportunity trade) {
+        if (trade == null) {
+                return null;
+        }
+
+        return new TradeOpportunityResponse(
+                trade.getId(),
+                trade.getCommodity(),
+                trade.getBuySystem().getId(),
+                trade.getBuySystem().getName(),
+                trade.getSellSystem().getId(),
+                trade.getSellSystem().getName(),
+                trade.getExpectedProfit()
+        );
+        }
+
+        private TraderResponse toResponse(Trader trader) {
 
         return new TraderResponse(
                 trader.getId(),
@@ -42,19 +61,10 @@ public class TraderService {
                 trader.getCredits(),
                 trader.getStrategyProfile(),
                 trader.getStatus(),
-                trader.getTargetCommodity(),
-
-                trader.getTargetSystem() != null
-                        ? trader.getTargetSystem().getId()
-                        : null,
-
-                trader.getTargetSystem() != null
-                        ? trader.getTargetSystem().getName()
-                        : null,
-
+                toTradeResponse(trader.getCurrentTrade()),
                 trader.getCargoCommodity(),
                 trader.getCargoAmount(),
                 trader.getCargoCapacity()
         );
-    }
+        }
 }

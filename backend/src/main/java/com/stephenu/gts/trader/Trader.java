@@ -1,6 +1,7 @@
 package com.stephenu.gts.trader;
 
 import com.stephenu.gts.commodity.CommodityType;
+import com.stephenu.gts.simulation.TradeOpportunity;
 import com.stephenu.gts.starsystem.StarSystem;
 
 import jakarta.persistence.Entity;
@@ -11,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +32,6 @@ public class Trader {
     private Long id;
 
     private String name;
-
     private Long credits;
 
     @ManyToOne(optional = false)
@@ -41,8 +42,9 @@ public class Trader {
     @JoinColumn(name = "target_system_id")
     private StarSystem targetSystem;
 
-    @Enumerated(EnumType.STRING)
-    private CommodityType targetCommodity;
+    @OneToOne
+    @JoinColumn(name = "trade_opportunity_id")
+    private TradeOpportunity currentTrade;
 
     @Enumerated(EnumType.STRING)
     private StrategyProfile strategyProfile;

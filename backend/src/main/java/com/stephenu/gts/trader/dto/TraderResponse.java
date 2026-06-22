@@ -1,6 +1,7 @@
 package com.stephenu.gts.trader.dto;
 
 import com.stephenu.gts.commodity.CommodityType;
+import com.stephenu.gts.simulation.dto.TradeOpportunityResponse;
 import com.stephenu.gts.trader.StrategyProfile;
 import com.stephenu.gts.trader.TraderStatus;
 
@@ -12,9 +13,7 @@ public record TraderResponse(
         Long credits,
         StrategyProfile strategyProfile,
         TraderStatus status,
-        CommodityType targetCommodity,
-        Long targetSystemId,
-        String targetSystemName,
+        TradeOpportunityResponse currentTrade,
         CommodityType cargoCommodity,
         Integer cargoAmount,
         Integer cargoCapacity

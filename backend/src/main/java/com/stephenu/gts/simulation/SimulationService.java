@@ -4,6 +4,7 @@ import com.stephenu.gts.market.Market;
 import com.stephenu.gts.market.MarketRepository;
 import com.stephenu.gts.trader.Trader;
 import com.stephenu.gts.trader.TraderRepository;
+import com.stephenu.gts.trader.TraderStatus;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ public class SimulationService {
     
     private final TraderRepository traderRepository;
     private final MarketRepository marketRepository;
+    private final TradeOpportunityRepository tradeOpportunityRepository;
     private final TraderDecisionService traderDecisionService;
 
     private long currentTick = 0;
@@ -100,29 +102,94 @@ public class SimulationService {
 
         for (Trader trader : traders) {
 
-            TradeOpportunity opportunity =
-                    traderDecisionService.findBestTrade();
-
-            trader.setTargetCommodity(
-                    opportunity.commodity()
-            );
-
-            trader.setTargetSystem(
-                    opportunity.sellSystem()
-            );
-
-            System.out.println(
-                trader.getName()
-                        + " selected "
-                        + opportunity.commodity()
-                        + " -> "
-                        + opportunity.sellSystem().getName()
-                        + " profit="
-                        + opportunity.expectedProfit()
-            );
+                processTrader(trader);
         }
 
         traderRepository.saveAll(traders);
+    }
+
+    private void processTrader(Trader trader) {
+
+        switch (trader.getStatus()) {
+
+            case IDLE -> assignTrade(trader);
+
+            case TRAVELING -> travel(trader);
+
+            case BUYING -> buy(trader);
+
+            case SELLING -> sell(trader);
+        }
+    }
+
+    private void assignTrade(Trader trader) {
+
+        TradeOpportunity opportunity =
+                traderDecisionService.findBestTrade();
+
+        if (opportunity == null) {
+                return;
+        }
+
+        tradeOpportunityRepository.save(opportunity);
+
+        trader.setCurrentTrade(opportunity);
+        trader.setStatus(TraderStatus.TRAVELING);
+    }
+
+    private void travel(Trader trader) {
+
+        TradeOpportunity trade =
+            trader.getCurrentTrade();
+
+
+        trader.setCurrentSystem(
+                trade.getBuySystem()
+        );
+
+        trader.setStatus(
+                TraderStatus.BUYING
+        );
+    }
+
+    private void buy(Trader trader) {
+
+        TradeOpportunity trade =
+            trader.getCurrentTrade();
+
+        trader.setCargoCommodity(
+                trade.getCommodity()
+        );
+
+        trader.setCargoAmount(
+                trader.getCargoCapacity()
+        );
+
+        trader.setStatus(
+                TraderStatus.SELLING
+        );
+    }
+
+    private void sell(Trader trader) {
+
+        TradeOpportunity trade =
+            trader.getCurrentTrade();
+
+        trader.setCurrentSystem(
+                trade.getSellSystem()
+        );
+
+        trader.setCredits(
+                trader.getCredits()
+                + trade.getExpectedProfit()
+        );
+
+        trader.setCargoCommodity(null);
+        trader.setCargoAmount(0);
+
+        trader.setStatus(
+                TraderStatus.IDLE
+        );
     }
 
 }

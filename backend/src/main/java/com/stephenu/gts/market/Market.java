@@ -62,5 +62,4 @@ public class Market {
         this.supply = supply;
         this.demand = demand;
     }
-
 }

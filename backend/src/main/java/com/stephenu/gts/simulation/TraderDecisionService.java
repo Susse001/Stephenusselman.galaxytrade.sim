@@ -1,5 +1,6 @@
 package com.stephenu.gts.simulation;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -7,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.stephenu.gts.commodity.CommodityType;
 import com.stephenu.gts.market.Market;
 import com.stephenu.gts.market.MarketRepository;
-import com.stephenu.gts.trader.Trader;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,16 +27,12 @@ public class TraderDecisionService {
 
             Market lowestMarket = markets.stream()
                     .filter(m -> m.getCommodity().getType() == commodityType)
-                    .min((a, b) -> Integer.compare(
-                            a.getPrice(),
-                            b.getPrice()))
+                    .min(Comparator.comparingInt(Market::getPrice))
                     .orElse(null);
 
             Market highestMarket = markets.stream()
                     .filter(m -> m.getCommodity().getType() == commodityType)
-                    .max((a, b) -> Integer.compare(
-                            a.getPrice(),
-                            b.getPrice()))
+                    .max(Comparator.comparingInt(Market::getPrice))
                     .orElse(null);
 
             if (lowestMarket == null || highestMarket == null) {
@@ -52,14 +48,21 @@ public class TraderDecisionService {
             }
 
             if (bestOpportunity == null
-                    || profit > bestOpportunity.expectedProfit()) {
+                    || profit > bestOpportunity.getExpectedProfit()) {
 
-                bestOpportunity = new TradeOpportunity(
-                        commodityType,
-                        lowestMarket.getStarSystem(),
-                        highestMarket.getStarSystem(),
-                        profit
+                TradeOpportunity opportunity =
+                        new TradeOpportunity();
+
+                opportunity.setCommodity(commodityType);
+                opportunity.setBuySystem(
+                        lowestMarket.getStarSystem()
                 );
+                opportunity.setSellSystem(
+                        highestMarket.getStarSystem()
+                );
+                opportunity.setExpectedProfit(profit);
+
+                bestOpportunity = opportunity;
             }
         }
 
