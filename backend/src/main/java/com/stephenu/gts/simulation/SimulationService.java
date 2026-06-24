@@ -128,7 +128,7 @@ public class SimulationService {
     private void assignTrade(Trader trader) {
 
         TradeOpportunity opportunity =
-            traderDecisionService.findBestTrade();
+            traderDecisionService.findBestTrade(trader);
 
         if (opportunity == null) {
             return;
