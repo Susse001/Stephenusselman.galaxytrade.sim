@@ -40,5 +40,10 @@ public class TradeOpportunity {
     @JoinColumn(name = "sell_system_id")
     private StarSystem sellSystem;
 
-    private Integer expectedProfit;
+    private Integer expectedProfitPerUnit;
+
+    private Integer buyPrice;
+
+    private Integer sellPrice;
+
 }

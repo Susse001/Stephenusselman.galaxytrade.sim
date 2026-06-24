@@ -47,7 +47,7 @@ public class TraderService {
                 trade.getBuySystem().getName(),
                 trade.getSellSystem().getId(),
                 trade.getSellSystem().getName(),
-                trade.getExpectedProfit()
+                trade.getExpectedProfitPerUnit()
         );
         }
 

@@ -222,7 +222,7 @@ public class SimulationService {
 
         trader.setCredits(
                 trader.getCredits()
-                        + trade.getExpectedProfit()
+                        + trade.getExpectedProfitPerUnit() * trader.getCargoAmount()
         );
 
         trader.setCargoCommodity(null);

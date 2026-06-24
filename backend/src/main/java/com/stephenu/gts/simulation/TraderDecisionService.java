@@ -21,37 +21,28 @@ public class TraderDecisionService {
 
     public TradeOpportunity findBestTrade(Trader trader) {
 
-        List<Market> markets =
-            marketRepository.findAll();
+        List<Market> markets = marketRepository.findAll();
 
         TradeOpportunity bestOpportunity = null;
 
-        double bestScore =
-                Double.NEGATIVE_INFINITY;
+        double bestScore = Double.NEGATIVE_INFINITY;
 
-        for (CommodityType commodityType
-                : CommodityType.values()) {
+        for (CommodityType commodityType : CommodityType.values()) {
 
                 Market lowestMarket = markets.stream()
                         .filter(m ->
                                 m.getCommodity().getType()
                                         == commodityType)
-                        .min(
-                                Comparator.comparingInt(
-                                        Market::getPrice
-                                )
-                        )
+                        .min(Comparator.comparingInt(
+                                Market::getPrice))
                         .orElse(null);
 
                 Market highestMarket = markets.stream()
                         .filter(m ->
                                 m.getCommodity().getType()
                                         == commodityType)
-                        .max(
-                                Comparator.comparingInt(
-                                        Market::getPrice
-                                )
-                        )
+                        .max(Comparator.comparingInt(
+                                Market::getPrice))
                         .orElse(null);
 
                 if (lowestMarket == null
@@ -59,11 +50,11 @@ public class TraderDecisionService {
                 continue;
                 }
 
-                int profit =
+                int profitPerUnit =
                         highestMarket.getPrice()
                                 - lowestMarket.getPrice();
 
-                if (profit <= 0) {
+                if (profitPerUnit <= 0) {
                 continue;
                 }
 
@@ -82,8 +73,16 @@ public class TraderDecisionService {
                         highestMarket.getStarSystem()
                 );
 
-                opportunity.setExpectedProfit(
-                        profit
+                opportunity.setBuyPrice(
+                        lowestMarket.getPrice()
+                );
+
+                opportunity.setSellPrice(
+                        highestMarket.getPrice()
+                );
+
+                opportunity.setExpectedProfitPerUnit(
+                        profitPerUnit
                 );
 
                 double score =
@@ -100,7 +99,7 @@ public class TraderDecisionService {
         }
 
         return bestOpportunity;
-    }
+        }
 
     private double calculateScore(
         Trader trader,
@@ -117,23 +116,47 @@ public class TraderDecisionService {
                         trade.getSellSystem()
                 );
 
+        long totalProfit =
+                calculateTotalProfit(
+                        trader,
+                        trade
+                );
+
         return switch (
                 trader.getStrategyProfile()
         ) {
 
                 case AGGRESSIVE ->
-                        trade.getExpectedProfit();
+                        totalProfit;
 
                 case CONSERVATIVE ->
-                        (double) trade.getExpectedProfit()
+                        (double) totalProfit
                                 / travelTicks;
 
                 case BALANCED ->
-                        trade.getExpectedProfit()
+                        totalProfit
                                 / Math.sqrt(
                                         travelTicks
                                 );
         };
+    }
+
+    private long calculateTotalProfit(
+        Trader trader,
+        TradeOpportunity trade) {
+
+        long affordableUnits =
+                trader.getCredits()
+                        / trade.getBuyPrice();
+
+        long units =
+                Math.min(
+                        affordableUnits,
+                        trader.getCargoCapacity()
+                );
+
+        return units
+                * trade.getExpectedProfitPerUnit();
     }
 
     private int calculateTravelTicks(

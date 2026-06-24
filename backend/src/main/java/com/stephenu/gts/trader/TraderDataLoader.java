@@ -5,6 +5,7 @@ import com.stephenu.gts.starsystem.StarSystemRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
@@ -19,11 +20,13 @@ public class TraderDataLoader
     private final TraderRepository traderRepository;
     private final StarSystemRepository starSystemRepository;
 
+    private final Random random = new Random();
+
     @Override
     public void run(String... args) {
 
         if (traderRepository.count() > 0) {
-            return;
+                return;
         }
 
         List<StarSystem> systems =
@@ -33,33 +36,66 @@ public class TraderDataLoader
 
         for (StarSystem system : systems) {
 
-                Trader conservative = new Trader();
+                traderRepository.save(
+                        createTrader(
+                                "Trader " + traderNumber++,
+                                system,
+                                StrategyProfile.CONSERVATIVE
+                        )
+                );
 
-                conservative.setName("Trader " + traderNumber++);
-                conservative.setCurrentSystem(system);
-                conservative.setCredits((long) 10000);
-                conservative.setCurrentTrade(null);
-                conservative.setStrategyProfile(
-                        StrategyProfile.CONSERVATIVE);
-                conservative.setStatus(TraderStatus.IDLE);
-                conservative.setCargoCapacity(100);
-                conservative.setCargoAmount(0);
+                traderRepository.save(
+                        createTrader(
+                                "Trader " + traderNumber++,
+                                system,
+                                StrategyProfile.BALANCED
+                        )
+                );
 
-                traderRepository.save(conservative);
+                traderRepository.save(
+                        createTrader(
+                                "Trader " + traderNumber++,
+                                system,
+                                StrategyProfile.AGGRESSIVE
+                        )
+                );
+        }
+    }
 
-                Trader aggressive = new Trader();
+    private long generateStartingCredits() {
 
-                aggressive.setName("Trader " + traderNumber++);
-                aggressive.setCurrentSystem(system);
-                aggressive.setCredits((long) 10000);
-                aggressive.setCurrentTrade(null);
-                aggressive.setStrategyProfile(
-                        StrategyProfile.AGGRESSIVE);
-                aggressive.setStatus(TraderStatus.IDLE);
-                aggressive.setCargoCapacity(100);
-                aggressive.setCargoAmount(0);
+        long[] startingCredits = {
+                1_000,
+                5_000,
+                15_000,
+                30_000
+        };
 
-                traderRepository.save(aggressive);
-                }
+        return startingCredits[
+                random.nextInt(
+                        startingCredits.length
+                )
+        ];
+    }
+
+    private Trader createTrader(
+        String name,
+        StarSystem system,
+        StrategyProfile profile) {
+
+        Trader trader = new Trader();
+
+        trader.setName(name);
+        trader.setCurrentSystem(system);
+        trader.setCredits(
+                generateStartingCredits()
+        );
+        trader.setCurrentTrade(null);
+        trader.setStrategyProfile(profile);
+        trader.setStatus(TraderStatus.IDLE);
+        trader.setCargoCapacity(100);
+        trader.setCargoAmount(0);
+
+        return trader;
         }
 }
