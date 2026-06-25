@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getSystems } from "../api/systemApi";
-import type { StarSystem } from "../types/system";
+import type { StarSystem } from "../types/starSystem";
 import GalaxyMap from "./GalaxyMap";
 
 export default function SystemList() {

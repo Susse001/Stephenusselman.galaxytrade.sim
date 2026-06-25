@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import type { StarSystem } from "../types/system";
+import type { StarSystem } from "../types/starSystem";
+import SystemPanel from "./SystemPanel";
 import type { Market } from "../types/market";
 import type {Trader} from "../types/trader";
 import { getMarketsForSystem } from "../api/marketApi";
 import {getTraders} from "../api/traderApi";
+import TraderPanel from "./TraderPanel";
 
 interface GalaxyMapProps {
     systems: StarSystem[];
@@ -11,7 +13,7 @@ interface GalaxyMapProps {
 
 const regionColors: Record<string, string> = {
     CORE: "#60a5fa",
-    MID_RIM: "#34d399",
+    INNER_RIM: "#34d399",
     OUTER_RIM: "#f59e0b"
 };
 
@@ -31,16 +33,23 @@ export default function GalaxyMap({
     const [traders, setTraders] =
         useState<Trader[]>([]);
 
+    const [selectedTrader, setSelectedTrader] =
+        useState<Trader | null>(null);
+
     useEffect(() => {
 
-        getTraders()
-            .then(setTraders)
-            .catch(error =>
-                console.error(
-                    "Failed to load traders",
-                    error
-                )
-            );
+        const interval = setInterval(() => {
+
+            getTraders()
+                .then(setTraders)
+                .catch(error =>
+                    console.error(error)
+                );
+
+        }, 1000);
+
+        return () =>
+            clearInterval(interval);
 
     }, []);
 
@@ -72,80 +81,6 @@ export default function GalaxyMap({
             setLoadingMarkets(false);
 
         }
-    }
-
-    function renderMarketPanel() {
-
-        if (!selectedSystem) {
-            return null;
-        }
-
-        return (
-            <div
-                style={{
-                    marginTop: "1rem",
-                    padding: "1rem",
-                    backgroundColor: "#1f2937",
-                    color: "white",
-                    borderRadius: "8px",
-                    maxWidth: "400px"
-                }}
-            >
-                <h3>{selectedSystem.name}</h3>
-
-                <p>
-                    <strong>Region:</strong>{" "}
-                    {selectedSystem.region}
-                </p>
-
-                <p>
-                    <strong>Coordinates:</strong>{" "}
-                    (
-                    {selectedSystem.xCoordinate},
-                    {" "}
-                    {selectedSystem.yCoordinate}
-                    )
-                </p>
-
-                <hr />
-
-                <h4>Market Data</h4>
-
-                {loadingMarkets && (
-                    <p>Loading market data...</p>
-                )}
-
-                {!loadingMarkets &&
-                    markets.length === 0 && (
-                    <p>No market data available.</p>
-                )}
-
-                {markets.map(market => (
-                    <div
-                        key={market.id}
-                        style={{
-                            marginBottom: "1rem"
-                        }}
-                    >
-                        <strong>
-                            {market.commodityType}
-                        </strong>
-
-                        <div>
-                            Price: {market.price}
-                        </div>
-
-                        <div>
-                            Supply: {market.supply}
-                        </div>
-
-                        <div>
-                            Demand: {market.demand}
-                        </div>
-                    </div>
-                ))}
-            </div>
-        );
     }
 
     const minX = Math.min(
@@ -198,17 +133,25 @@ const tradersBySystem =
     );
 
 const traderOffsets = [
-    { x: -2, y: -1.5 },
-    { x: -2, y: 0 },
-    { x: -2, y: 1.5 },
+    // North
+    { x: 0, y: -2.5 },
+    { x: -1, y: -2.5 },
+    { x: 1, y: -2.5 },
 
-    { x: -3.5, y: -1.5},
-    { x: -3.5, y: -0},
-    { x: -3.5, y: 1.5},
+    // South
+    { x: 0, y: 2.5 },
+    { x: -1, y: 2.5 },
+    { x: 1, y: 2.5 },
 
-    { x: -5, y: -1.5},
-    { x: -5, y: -0},
-    { x: -5, y: 1.5},
+    // East
+    { x: 2.5, y: 0 },
+    { x: 2.5, y: -1 },
+    { x: 2.5, y: 1 },
+
+    // West
+    { x: -2.5, y: 0 },
+    { x: -2.5, y: -1 },
+    { x: -2.5, y: 1 }
 ];
 
     return (
@@ -297,29 +240,39 @@ const traderOffsets = [
                                 }
                                 r={0.5}
                                 fill="white"
+                                onClick={() =>
+                                    setSelectedTrader(trader)
+                                }
+                                style={{
+                                    cursor: "pointer"
+                                }}
                             />
                         );
                     }
                 )}
 
-                        <text
-                            x={
-                                system.xCoordinate + 3
-                            }
-                            y={
-                                system.yCoordinate + 1
-                            }
-                            fill="white"
-                            fontSize="2"
-                        >
-                            {system.name}
-                        </text>
                     </g>
                 ))}
 
             </svg>
 
-            {renderMarketPanel()}
+            <div
+                style={{
+                    display: "flex",
+                    gap: "1rem",
+                    marginTop: "1rem"
+                }}
+            >
+                <SystemPanel
+                    system={selectedSystem}
+                    markets={markets}
+                    loading={loadingMarkets}
+                />
+
+                <TraderPanel
+                    trader={selectedTrader}
+                />
+            </div>
         </>
     );
 }

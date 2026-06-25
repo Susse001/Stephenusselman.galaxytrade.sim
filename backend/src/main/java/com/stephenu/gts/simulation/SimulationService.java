@@ -252,7 +252,7 @@ public class SimulationService {
 
         return Math.max(
                 1,
-                (int) Math.ceil(distance / 10.0)
+                (int) Math.ceil(distance / 7.5)
         );
     }
 }

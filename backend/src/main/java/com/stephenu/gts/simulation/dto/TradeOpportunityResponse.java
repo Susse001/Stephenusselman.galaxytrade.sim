@@ -9,5 +9,5 @@ public record TradeOpportunityResponse(
         String buySystemName,
         Long sellSystemId,
         String sellSystemName,
-        Integer expectedProfit
+        Integer expectedProfitPerUnit
 ) {}

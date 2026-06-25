@@ -17,6 +17,9 @@ public class StarSystemDataLoader implements CommandLineRunner {
 
     private final StarSystemRepository systemRepository;
 
+    private static final int MAP_SIZE = 100;
+    private static final int MIN_DISTANCE = 5;
+
     private static final List<String> SYSTEM_NAMES = List.of(
             "Aquila",
             "Cygnus",
@@ -48,8 +51,21 @@ public class StarSystemDataLoader implements CommandLineRunner {
                     + "-"
                     + (i + 1);
 
-            int x = random.nextInt(100);
-            int y = random.nextInt(100);
+            int x;
+            int y;
+
+            do {
+
+                x = random.nextInt(MAP_SIZE);
+                y = random.nextInt(MAP_SIZE);
+
+            } while (
+                isTooClose(
+                    x,
+                    y,
+                    systems
+                )
+            );
 
             Region region;
 
@@ -60,10 +76,10 @@ public class StarSystemDataLoader implements CommandLineRunner {
                 Math.pow(y - 50, 2)
             );
 
-            if (distance < 20) {
+            if (distance < 25) {
                 region = Region.CORE;
             }
-            else if (distance < 35) {
+            else if (distance < 40) {
                 region = Region.INNER_RIM;
             }
             else {
@@ -82,5 +98,32 @@ public class StarSystemDataLoader implements CommandLineRunner {
         }
 
         systemRepository.saveAll(systems);
+    }
+
+    private boolean isTooClose(
+        int x,
+        int y,
+        List<StarSystem> systems) {
+
+
+        return systems.stream()
+                .anyMatch(system -> {
+
+                    double dx =
+                            x - system.getXCoordinate();
+
+                    double dy =
+                            y - system.getYCoordinate();
+
+                    double distance =
+                            Math.sqrt(
+                                    dx * dx
+                                    +
+                                    dy * dy
+                            );
+
+                    return distance
+                            < MIN_DISTANCE;
+                });
     }
 }
