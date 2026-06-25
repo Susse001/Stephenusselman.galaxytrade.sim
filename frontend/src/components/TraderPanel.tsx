@@ -109,6 +109,16 @@ export default function TraderPanel({
                                 .expectedProfitPerUnit
                         }
                     </p>
+
+                    <p>
+                        <strong>
+                            Travel Ticks Remaining:
+                        </strong>{" "}
+                        {
+                            trader
+                                .travelTicksRemaining
+                        }
+                    </p>
                 </>
             )}
         </div>

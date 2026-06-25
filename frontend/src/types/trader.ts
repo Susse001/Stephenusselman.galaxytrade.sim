@@ -7,6 +7,7 @@ export interface Trader {
     strategyProfile: string;
     status: string;
     travelTicksRemaining: number;
+    totalTravelTicks: number;
     cargoCommodity: string | null;
     cargoAmount: number;
     cargoCapacity: number;

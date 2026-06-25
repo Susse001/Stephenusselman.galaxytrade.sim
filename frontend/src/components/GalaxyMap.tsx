@@ -101,38 +101,7 @@ export default function GalaxyMap({
 
 const VIEWBOX_PADDING = 10;
 
-const tradersBySystem =
-    traders.reduce(
-        (
-            acc,
-            trader
-        ) => {
-
-            if (
-                !acc[
-                    trader.currentSystemId
-                ]
-            ) {
-
-                acc[
-                    trader.currentSystemId
-                ] = [];
-            }
-
-            acc[
-                trader.currentSystemId
-            ].push(trader);
-
-            return acc;
-
-        },
-        {} as Record<
-            number,
-            Trader[]
-        >
-    );
-
-const traderOffsets = [
+const traderDockedOffsets = [
     // North
     { x: 0, y: -2.5 },
     { x: -1, y: -2.5 },
@@ -153,6 +122,138 @@ const traderOffsets = [
     { x: -2.5, y: -1 },
     { x: -2.5, y: 1 }
 ];
+
+const traderTravelOffsets = [
+
+    { x: 0, y: 0 },
+
+    { x: 0.5, y: 0.5 },
+    { x: -0.5, y: -0.5 },
+
+    { x: 0.5, y: -0.5 },
+    { x: -0.5, y: 0.5 },
+
+    { x: 1, y: 0 },
+    { x: -1, y: 0 }
+];
+
+function getTraderPosition(
+    trader: Trader,
+    systems: StarSystem[]) {
+
+        const currentSystem =
+            systems.find(
+                s =>
+                    s.id ===
+                    trader.currentSystemId
+            );
+
+        if (!currentSystem) {
+            return null;
+        }
+
+        let startSystem: StarSystem | undefined;
+        let endSystem: StarSystem | undefined;
+
+        if (
+            trader.status ===
+            "TRAVELING_TO_BUY"
+        ) {
+            startSystem = currentSystem;
+
+            endSystem =
+                systems.find(
+                    s =>
+                        s.id ===
+                        trader.currentTrade?.buySystemId
+                );
+        }
+
+        if (
+            trader.status ===
+            "TRAVELING_TO_SELL"
+        ) {
+            startSystem =
+                systems.find(
+                    s =>
+                        s.id ===
+                        trader.currentTrade?.buySystemId
+                );
+
+            endSystem =
+                systems.find(
+                    s =>
+                        s.id ===
+                        trader.currentTrade?.sellSystemId
+                );
+        }
+
+        if (!startSystem ||
+            !endSystem ||
+            trader.travelTicksRemaining == null ||
+            trader.totalTravelTicks == null) {
+
+            return {
+                x: currentSystem.xCoordinate,
+                y: currentSystem.yCoordinate,
+                docked: true
+            };
+        }
+
+        const progress =
+            1 -
+            (
+                trader.travelTicksRemaining /
+                trader.totalTravelTicks
+            );
+        
+
+        const ticksTravelled =
+        trader.totalTravelTicks -
+        trader.travelTicksRemaining;
+
+        const isLeavingSystem =
+            ticksTravelled <= 1;
+
+        const isArrivingSystem =
+            trader.travelTicksRemaining <= 1;
+
+        if (isLeavingSystem) {
+            return {
+                x: startSystem.xCoordinate,
+                y: startSystem.yCoordinate,
+                docked: true
+            };
+        }
+
+        if (isArrivingSystem) {
+            return {
+                x: endSystem.xCoordinate,
+                y: endSystem.yCoordinate,
+                docked: true
+            };
+        }
+
+        return {
+            x:
+                startSystem.xCoordinate +
+                (
+                    endSystem.xCoordinate
+                    -
+                    startSystem.xCoordinate
+                ) * progress,
+
+            y:
+                startSystem.yCoordinate +
+                (
+                    endSystem.yCoordinate
+                    -
+                    startSystem.yCoordinate
+                ) * progress,
+            
+            docked: false
+        };
+}
 
     return (
         <>
@@ -210,49 +311,66 @@ const traderOffsets = [
                                 cursor: "pointer"
                             }}
                         />
-
-                        {(
-                tradersBySystem[
-                    system.id
-                    ] ?? []
-                ).map(
-                    (
-                        trader,
-                        index
-                    ) => {
-
-                        const offset =
-                            traderOffsets[
-                                index %
-                                traderOffsets.length
-                            ];
-
-                        return (
-                            <circle
-                                key={trader.id}
-                                cx={
-                                    system.xCoordinate
-                                    + offset.x
-                                }
-                                cy={
-                                    system.yCoordinate
-                                    + offset.y
-                                }
-                                r={0.5}
-                                fill="white"
-                                onClick={() =>
-                                    setSelectedTrader(trader)
-                                }
-                                style={{
-                                    cursor: "pointer"
-                                }}
-                            />
-                        );
-                    }
-                )}
-
                     </g>
                 ))}
+
+                {traders.map((trader, index) => {
+
+                    const position =
+                        getTraderPosition(
+                            trader,
+                            systems
+                        );
+
+                    if (!position) {
+                        return null;
+                    }
+
+                    let x = position.x;
+                    let y = position.y;
+
+                    if (
+                        position.docked == false
+                    ) {
+
+                        const offset =
+                            traderTravelOffsets[
+                                index %
+                                traderTravelOffsets.length
+                            ];
+
+                        x += offset.x;
+                        y += offset.y;
+                    }
+
+                    else {
+
+                        const offset =
+                            traderDockedOffsets[
+                                index %
+                                traderDockedOffsets.length
+                            ];
+
+                        x += offset.x;
+                        y += offset.y;
+                    }
+
+                    return (
+                        <circle
+                            key={trader.id}
+                            cx={x}
+                            cy={y}
+                            r={0.5}
+                            fill="white"
+                            onClick={() =>
+                                setSelectedTrader(trader)
+                            }
+                            style={{
+                                cursor: "pointer"
+                            }}
+                        />
+                    );
+                })}
 
             </svg>
 
