@@ -138,11 +138,18 @@ public class SimulationService {
 
         trader.setCurrentTrade(opportunity);
 
+        int travelTicks =
+        calculateTravelTicks(
+                trader.getCurrentSystem(),
+                opportunity.getBuySystem()
+        );
+
         trader.setTravelTicksRemaining(
-                calculateTravelTicks(
-                        trader.getCurrentSystem(),
-                        opportunity.getBuySystem()
-                )
+                travelTicks
+        );
+
+        trader.setTotalTravelTicks(
+                travelTicks
         );
 
         trader.setStatus(
@@ -183,11 +190,18 @@ public class SimulationService {
                 trader.getCargoCapacity()
         );
 
-        trader.setTravelTicksRemaining(
+        int travelTicks =
                 calculateTravelTicks(
                         trade.getBuySystem(),
                         trade.getSellSystem()
-                )
+                );
+
+        trader.setTravelTicksRemaining(
+                travelTicks
+        );
+
+        trader.setTotalTravelTicks(
+                travelTicks
         );
 
         trader.setStatus(
@@ -252,7 +266,7 @@ public class SimulationService {
 
         return Math.max(
                 1,
-                (int) Math.ceil(distance / 7.5)
+                (int) Math.ceil(distance / 7)
         );
     }
 }

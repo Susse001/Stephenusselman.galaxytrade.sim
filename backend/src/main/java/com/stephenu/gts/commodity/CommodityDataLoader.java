@@ -25,19 +25,19 @@ public class CommodityDataLoader implements CommandLineRunner {
         commodityRepository.saveAll(List.of(
         new Commodity(null, CommodityType.FOOD, 25),
         new Commodity(null, CommodityType.WATER, 15),
-        new Commodity(null, CommodityType.ORE, 40),
-        new Commodity(null, CommodityType.RARE_METALS, 120),
-        new Commodity(null, CommodityType.ORGANICS, 30),
+        new Commodity(null, CommodityType.ORE, 80),
+        new Commodity(null, CommodityType.RARE_METALS, 160),
+        new Commodity(null, CommodityType.ORGANICS, 60),
 
-        new Commodity(null, CommodityType.CHEMICAL_COMPOUNDS, 100),
-        new Commodity(null, CommodityType.REFINED_METALS, 140),
-        new Commodity(null, CommodityType.ADVANCED_COMPONENTS, 250),
+        new Commodity(null, CommodityType.CHEMICAL_COMPOUNDS, 180),
+        new Commodity(null, CommodityType.REFINED_METALS, 260),
+        new Commodity(null, CommodityType.ADVANCED_COMPONENTS, 375),
 
-        new Commodity(null, CommodityType.MEDICINE, 350),
-        new Commodity(null, CommodityType.INDUSTRIAL_PARTS, 300),
-        new Commodity(null, CommodityType.ELECTRONICS, 500),
+        new Commodity(null, CommodityType.MEDICINE, 500),
+        new Commodity(null, CommodityType.INDUSTRIAL_PARTS, 720),
+        new Commodity(null, CommodityType.ELECTRONICS, 945),
 
-        new Commodity(null, CommodityType.LUXURY_GOODS, 1000)
+        new Commodity(null, CommodityType.LUXURY_GOODS, 1500)
         ));
     }
 }

@@ -63,6 +63,7 @@ public class TraderService {
                 trader.getStatus(),
                 toTradeResponse(trader.getCurrentTrade()),
                 trader.getTravelTicksRemaining(),
+                trader.getTotalTravelTicks(),
                 trader.getCargoCommodity(),
                 trader.getCargoAmount(),
                 trader.getCargoCapacity()

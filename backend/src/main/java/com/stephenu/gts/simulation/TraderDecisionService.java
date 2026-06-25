@@ -123,22 +123,38 @@ public class TraderDecisionService {
                 );
 
         return switch (
-                trader.getStrategyProfile()
-        ) {
-
-                case AGGRESSIVE ->
-                        totalProfit;
+                trader.getStrategyProfile()) {
 
                 case CONSERVATIVE ->
-                        (double) totalProfit
-                                / travelTicks;
+                        totalProfit *
+                        (
+                                1.0 /
+                                Math.max(
+                                1.0,
+                                travelTicks / 5.0
+                                )
+                        );
 
                 case BALANCED ->
-                        totalProfit
-                                / Math.sqrt(
-                                        travelTicks
-                                );
-        };
+                        totalProfit *
+                        (
+                                1.0 /
+                                Math.max(
+                                1.0,
+                                travelTicks / 10.0
+                                )
+                        );
+
+                case AGGRESSIVE ->
+                        totalProfit *
+                        (
+                                1.0 /
+                                Math.max(
+                                1.0,
+                                travelTicks / 15.0
+                                )
+                        );
+                };
     }
 
     private long calculateTotalProfit(
@@ -177,7 +193,7 @@ public class TraderDecisionService {
         return Math.max(
                 1,
                 (int) Math.ceil(
-                        distance / 10.0
+                        distance / 7
                 )
         );
     }

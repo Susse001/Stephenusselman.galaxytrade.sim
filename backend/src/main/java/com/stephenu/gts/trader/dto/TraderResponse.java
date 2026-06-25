@@ -15,6 +15,7 @@ public record TraderResponse(
         TraderStatus status,
         TradeOpportunityResponse currentTrade,
         Integer travelTicksRemaining,
+        Integer totalTravelTicks,
         CommodityType cargoCommodity,
         Integer cargoAmount,
         Integer cargoCapacity

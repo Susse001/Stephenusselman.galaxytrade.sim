@@ -61,4 +61,6 @@ public class Trader {
 
     private Integer travelTicksRemaining;
 
+    private Integer totalTravelTicks;
+
 }

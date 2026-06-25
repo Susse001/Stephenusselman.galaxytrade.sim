@@ -32,43 +32,44 @@ public class TraderDataLoader
         List<StarSystem> systems =
                 starSystemRepository.findAll();
 
-        int traderNumber = 1;
+        StrategyProfile[] profiles = {
+        StrategyProfile.CONSERVATIVE,
+        StrategyProfile.BALANCED,
+        StrategyProfile.AGGRESSIVE
+        };
 
-        for (StarSystem system : systems) {
+        for (int i = 0; i < 60; i++) {
 
-                traderRepository.save(
-                        createTrader(
-                                "Trader " + traderNumber++,
-                                system,
-                                StrategyProfile.CONSERVATIVE
-                        )
+        StarSystem system =
+                systems.get(
+                        i % systems.size()
                 );
 
-                traderRepository.save(
-                        createTrader(
-                                "Trader " + traderNumber++,
-                                system,
-                                StrategyProfile.BALANCED
-                        )
-                );
+        StrategyProfile profile =
+                profiles[
+                        i % profiles.length
+                ];
 
-                traderRepository.save(
-                        createTrader(
-                                "Trader " + traderNumber++,
-                                system,
-                                StrategyProfile.AGGRESSIVE
-                        )
-                );
+        traderRepository.save(
+                createTrader(
+                        "Trader " + (i + 1),
+                        system,
+                        profile
+                )
+            );
         }
     }
 
     private long generateStartingCredits() {
 
         long[] startingCredits = {
-                1_000,
+                2_000,
                 5_000,
-                15_000,
-                30_000
+                10_000,
+                20_000,
+                35_000,
+                55_000,
+                80_000
         };
 
         return startingCredits[
