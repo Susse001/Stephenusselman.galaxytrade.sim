@@ -10,6 +10,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Represents a star system within the simulated galaxy.
+ *
+ * Each star system stores its location and region and serves as the
+ * foundation for local markets and trader movement.
+ */
 @Entity
 @Table(name = "systems")
 @Getter
@@ -28,5 +34,8 @@ public class StarSystem {
 
     private int yCoordinate;
 
+    /**
+     * Procedurally assigned galactic region.
+     */
     private Region region;
 }
