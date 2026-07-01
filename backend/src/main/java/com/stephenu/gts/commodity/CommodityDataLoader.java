@@ -8,6 +8,12 @@ import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Seeds the database with the default set of commodities.
+ *
+ * The loader executes during application startup and only populates the
+ * database when no commodities are present.
+ */
 @Component
 @RequiredArgsConstructor
 @Order(1)
@@ -15,6 +21,11 @@ public class CommodityDataLoader implements CommandLineRunner {
 
     private final CommodityRepository commodityRepository;
 
+    /**
+     * Populates the database with the default commodity definitions.
+     *
+     * @param args Command-line arguments supplied during application startup.
+     */
     @Override
     public void run(String... args) {
 

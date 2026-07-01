@@ -10,6 +10,9 @@ import com.stephenu.gts.commodity.dto.CommodityResponse;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Exposes REST endpoints for retrieving commodity data.
+ */
 @RestController
 @RequestMapping("/api/commodities")
 @RequiredArgsConstructor
@@ -17,6 +20,11 @@ public class CommodityController {
 
     private final CommodityService commodityService;
 
+    /**
+     * Returns all commodities.
+     *
+     * @return A list of all commodities.
+     */
     @GetMapping
     public List<CommodityResponse> getCommodities() {
         return commodityService.getAllCommodities();

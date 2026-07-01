@@ -14,6 +14,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Represents a tradeable commodity within the simulation.
+ *
+ * Each commodity defines a unique type and a base price used when
+ * generating market prices.
+ */
 @Entity
 @Table(name = "commodities")
 @Getter
@@ -27,6 +33,9 @@ public class Commodity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * The unique type represented by this commodity.
+     */
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = true)
     private CommodityType type;
