@@ -18,10 +18,10 @@ public class CommodityService {
     private final CommodityRepository commodityRepository;
 
     /**
-    * Returns all commodities.
-    *
-    * @return A list of all commodities.
-    */
+     * Returns all commodities.
+     *
+     * @return A list of all commodities.
+     */
     public List<CommodityResponse> getAllCommodities() {
 
         return commodityRepository.findAll()

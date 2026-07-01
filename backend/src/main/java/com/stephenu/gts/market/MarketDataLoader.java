@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
@@ -20,244 +23,291 @@ import com.stephenu.gts.starsystem.StarSystemRepository;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Seeds the database with procedurally generated market data.
+ *
+ * Each star system is assigned a set of export and import markets based
+ * on its galactic region. Initial prices, supply, and demand values are
+ * generated to create regional trade opportunities.
+ */
 @Component
 @Order(3)
 @RequiredArgsConstructor
 public class MarketDataLoader implements CommandLineRunner {
 
-    private final MarketRepository marketRepository;
-    private final StarSystemRepository systemRepository;
-    private final CommodityRepository commodityRepository;
+	private final MarketRepository marketRepository;
+	private final StarSystemRepository systemRepository;
+	private final CommodityRepository commodityRepository;
 
-    private static final List<CommodityType> TIER_1 = List.of(
-        CommodityType.FOOD,
-        CommodityType.WATER,
-        CommodityType.ORE,
-        CommodityType.RARE_METALS,
-        CommodityType.ORGANICS
-    );
+	private static final List<CommodityType> TIER_1 = List.of(
+		CommodityType.FOOD,
+		CommodityType.WATER,
+		CommodityType.ORE,
+		CommodityType.RARE_METALS,
+		CommodityType.ORGANICS
+	);
 
-    private static final List<CommodityType> TIER_2 = List.of(
-            CommodityType.CHEMICAL_COMPOUNDS,
-            CommodityType.REFINED_METALS,
-            CommodityType.ADVANCED_COMPONENTS
-    );
+	private static final List<CommodityType> TIER_2 = List.of(
+			CommodityType.CHEMICAL_COMPOUNDS,
+			CommodityType.REFINED_METALS,
+			CommodityType.ADVANCED_COMPONENTS
+	);
 
-    private static final List<CommodityType> TIER_3 = List.of(
-            CommodityType.MEDICINE,
-            CommodityType.INDUSTRIAL_PARTS,
-            CommodityType.ELECTRONICS
-    );
+	private static final List<CommodityType> TIER_3 = List.of(
+			CommodityType.MEDICINE,
+			CommodityType.INDUSTRIAL_PARTS,
+			CommodityType.ELECTRONICS
+	);
 
-    private final Random random = new Random();
-
-    @Override
-    public void run(String... args) {
-
-        if (marketRepository.count() > 0) {
-            return;
-        }
-
-        List<Market> markets = new ArrayList<>();
-
-        List<Commodity> allCommodities =
-                commodityRepository.findAll();
+	private final Random random = new Random();
 
 
-        for (StarSystem system : systemRepository.findAll()) {
+	/**
+	 * Populates the database with initial market data.
+	 *
+	 * @param args Command-line arguments supplied during application startup.
+	 */
+	@Override
+	public void run(String... args) {
+
+		if (marketRepository.count() > 0) {
+			return;
+		}
+
+		List<Commodity> allCommodities =
+				commodityRepository.findAll();
+
+		Map<CommodityType, Commodity> commodityMap =
+			allCommodities
+					.stream()
+					.collect(Collectors.toMap(
+								Commodity::getType,
+								Function.identity()
+					));
 
 
-             List<Commodity> exportPool =
-            buildExportPool(
-                    system.getRegion()
-            );
+		List<Market> markets = new ArrayList<>();
 
-            Set<Commodity> exports =
-                    drawCommodities(
-                            exportPool,
-                            3
-                    );
+		for (StarSystem system : systemRepository.findAll()) {
 
-            Set<Commodity> imports =
-                    generateImports(
-                            exports,
-                            allCommodities
-            );
 
-            exports.forEach(c ->
-                    markets.add(
-                            createExportMarket(
-                                    system,
-                                    c
-                            )
-                    )
-            );
+			Set<Commodity> exports =
+					generateExports(
+						system,
+						commodityMap
+					);
 
-            imports.forEach(c ->
-                    markets.add(
-                            createImportMarket(
-                                    system,
-                                    c
-                            )
-                    )
-            );
-        }
+			Set<Commodity> imports =
+					generateImports(
+						exports,
+						allCommodities
+					);
 
-        marketRepository.saveAll(markets);
-    }
+			createMarkets(system, imports, exports, markets);
+		}
 
-    private List<Commodity> buildExportPool(
-        Region region) {
+		marketRepository.saveAll(markets);
+	}
 
-        List<Commodity> pool = new ArrayList<>();
+	private void createMarkets(
+		StarSystem system, 
+		Set<Commodity> imports, 
+		Set<Commodity> exports, 
+		List<Market> markets) {
 
-        switch (region) {
+			exports.forEach(c ->
+					markets.add(
+							createExportMarket(
+									system,
+									c
+							)
+					)
+			);
 
-            case CORE -> {
-                addCopies(pool, TIER_1, 2);
-                addCopies(pool, TIER_2, 4);
-                addCopies(pool, TIER_3, 6);
+			imports.forEach(c ->
+					markets.add(
+							createImportMarket(
+									system,
+									c
+							)
+					)
+			);
 
-                addCommodity(
-                        pool,
-                        CommodityType.LUXURY_GOODS,
-                        2
-                );
-            }
+		}
 
-            case INNER_RIM -> {
-                addCopies(pool, TIER_1, 4);
-                addCopies(pool, TIER_2, 4);
-                addCopies(pool, TIER_3, 2);
+	/**
+	 * Builds a weighted commodity pool for the specified region.
+	 *
+	 * Commodity weighting influences which commodities are selected as
+	 * regional exports while still allowing some randomness.
+	 */
+	private List<Commodity> buildExportPool(
+		Region region,
+	    Map<CommodityType, Commodity> commodityMap) {
 
-                addCommodity(
-                        pool,
-                        CommodityType.LUXURY_GOODS,
-                        1
-                );
-            }
+		List<Commodity> pool = new ArrayList<>();
 
-            case OUTER_RIM -> {
-                addCopies(pool, TIER_1, 6);
-                addCopies(pool, TIER_2, 3);
-                addCopies(pool, TIER_3, 1);
+		switch (region) {
 
-                addCommodity(
-                        pool,
-                        CommodityType.LUXURY_GOODS,
-                        1
-                );
-            }
-        }
+			case CORE -> {
+				addCopies(pool, TIER_1, 2, commodityMap);
+				addCopies(pool, TIER_2, 4, commodityMap);
+				addCopies(pool, TIER_3, 6, commodityMap);
+				addCopies(
+						pool,
+						List.of(CommodityType.LUXURY_GOODS),
+						2,
+						commodityMap
+				);
+			}
+			case INNER_RIM -> {
+				addCopies(pool, TIER_1, 4, commodityMap);
+				addCopies(pool, TIER_2, 4, commodityMap);
+				addCopies(pool, TIER_3, 2, commodityMap);
+				addCopies(
+						pool,
+						List.of(CommodityType.LUXURY_GOODS),
+						1,
+						commodityMap
+				);
+			}
+			case OUTER_RIM -> {
+				addCopies(pool, TIER_1, 6, commodityMap);
+				addCopies(pool, TIER_2, 3, commodityMap);
+				addCopies(pool, TIER_3, 1, commodityMap);
+				addCopies(
+						pool,
+						List.of(CommodityType.LUXURY_GOODS),
+						1,
+						commodityMap
+				);
+			}
+		}
 
-        Collections.shuffle(pool);
+		Collections.shuffle(pool);
 
-        return pool;
-    }
+		return pool;
+	}
 
-    private Set<Commodity> generateImports(
-        Set<Commodity> exports,
-        List<Commodity> allCommodities) {
+	/**
+	 * Selects the commodities exported by a star system.
+	 *
+	 * Export commodities are chosen from a weighted pool based on the
+	 * system's galactic region.
+	 */
+	private Set<Commodity> generateExports(
+		StarSystem system,
+	    Map<CommodityType, Commodity> commodityMap) 
+	    {
 
-        List<Commodity> candidates =
-            new ArrayList<>(
-                    allCommodities.stream()
-                            .filter(c ->
-                                    !exports.contains(c))
-                            .toList()
-            );
+		List<Commodity> exportPool =
+        buildExportPool(system.getRegion(), commodityMap);
 
-        Collections.shuffle(candidates);
+		return drawCommodities(exportPool, 3);
+	}
 
-        return new HashSet<>(
-                candidates.subList(0, 3)
-        );
-    }
+	/**
+	 * Selects the commodities imported by a star system.
+	 *
+	 * Imports are randomly chosen from commodities that were not selected
+	 * as exports.
+	 */
+	private Set<Commodity> generateImports(
+		Set<Commodity> exports,
+		List<Commodity> allCommodities) {
 
-    private Market createExportMarket(
-        StarSystem system,
-        Commodity commodity) {
+		List<Commodity> candidates =
+			new ArrayList<>(
+					allCommodities.stream()
+							.filter(c ->
+								!exports.contains(c))
+							.toList()
+			);
 
-        double modifier =
-                0.70 + random.nextDouble() * 0.20;
+		Collections.shuffle(candidates);
 
-        return new Market(
-                system,
-                commodity,
-                (int)(commodity.getBasePrice() * modifier),
-                1000,
-                200
-        );
-    }
+		return new HashSet<>(
+				candidates.subList(0, 3)
+		);
+	}
 
-    private Market createImportMarket(
-        StarSystem system,
-        Commodity commodity) {
+	/**
+	 * Creates an export market for the specified commodity.
+	 */
+	private Market createExportMarket(
+		StarSystem system,
+		Commodity commodity) {
 
-        double modifier =
-                1.10 + random.nextDouble() * 0.30;
+		double modifier =
+				0.70 + random.nextDouble() * 0.20;
 
-        return new Market(
-                system,
-                commodity,
-                (int)(commodity.getBasePrice() * modifier),
-                200,
-                1000
-        );
-    }
+		return new Market(
+				system,
+				commodity,
+				(int)(commodity.getBasePrice() * modifier),
+				1000,
+				200
+		);
+	}
 
-    private void addCopies(
-        List<Commodity> pool,
-        List<CommodityType> types,
-        int copies) {
+	/**
+	 * Creates an import market for the specified commodity.
+	 */
+	private Market createImportMarket(
+		StarSystem system,
+		Commodity commodity) {
 
-        for (CommodityType type : types) {
+		double modifier =
+				1.10 + random.nextDouble() * 0.30;
 
-            Commodity commodity =
-                    commodityRepository
-                            .findByType(type)
-                            .orElseThrow();
+		return new Market(
+				system,
+				commodity,
+				(int)(commodity.getBasePrice() * modifier),
+				200,
+				1000
+		);
+	}
 
-            for (int i = 0; i < copies; i++) {
-                pool.add(commodity);
-            }
-        }
-    }
+	private void addCopies(
+		List<Commodity> pool,
+		List<CommodityType> types,
+		int copies,
+	    Map<CommodityType, Commodity> commodityMap) {
 
-    private void addCommodity(
-        List<Commodity> pool,
-        CommodityType type,
-        int copies) {
+		for (CommodityType type : types) {
 
-        Commodity commodity =
-                commodityRepository
-                        .findByType(type)
-                        .orElseThrow();
+			for (int i = 0; i < copies; i++) {
+				pool.add(commodityMap.get(type));
+			}
+		}
+	}
 
-        for (int i = 0; i < copies; i++) {
-            pool.add(commodity);
-        }
-    }
+	/**
+	 * Draws a unique set of commodities from a weighted pool.
+	 *
+	 * The pool is reshuffled as needed to preserve weighting while ensuring
+	 * the requested number of unique commodities is returned.
+	 */
+	private Set<Commodity> drawCommodities(
+		List<Commodity> pool,
+		int count) {
 
-    private Set<Commodity> drawCommodities(
-        List<Commodity> pool,
-        int count) {
+		Set<Commodity> result =
+				new HashSet<>();
 
-        Set<Commodity> result =
-                new HashSet<>();
+		int index = 0;
 
-        int index = 0;
+		while (result.size() < count) {
 
-        while (result.size() < count) {
+			if (index >= pool.size()) {
+				Collections.shuffle(pool);
+				index = 0;
+			}
 
-            if (index >= pool.size()) {
-                Collections.shuffle(pool);
-                index = 0;
-            }
+			result.add(pool.get(index++));
+		}
 
-            result.add(pool.get(index++));
-        }
-
-        return result;
-    }
+		return result;
+	}
 }

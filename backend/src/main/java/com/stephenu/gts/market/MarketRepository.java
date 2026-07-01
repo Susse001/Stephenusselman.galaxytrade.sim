@@ -8,6 +8,9 @@ import com.stephenu.gts.commodity.CommodityType;
 
 import java.util.List;
 
+/**
+ * Provides database access for markets.
+ */
 public interface MarketRepository extends JpaRepository<Market, Long> {
 
     List<Market> findByStarSystemId(Long starSystemId);

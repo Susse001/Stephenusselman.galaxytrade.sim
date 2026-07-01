@@ -15,6 +15,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+/**
+ * Represents the market data for a commodity within a specific star system.
+ *
+ * Each market stores the current trading conditions for a single
+ * commodity at a single star system.
+ */
 @Entity
 @Getter
 @Setter
@@ -35,10 +42,16 @@ public class Market {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * The star system that owns this market.
+     */
     @ManyToOne(optional = false)
     @JoinColumn(name = "star_system_id")
     private StarSystem starSystem;
 
+    /**
+     * The commodity traded by this market.
+     */
     @ManyToOne(optional = false)
     @JoinColumn(name = "commodity_id")
     private Commodity commodity;
