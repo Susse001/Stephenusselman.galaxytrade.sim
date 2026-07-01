@@ -19,6 +19,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Represents an autonomous trader participating in the simulation.
+ *
+ * Traders maintain their current location, cargo, credits, travel state,
+ * and trading strategy as they move goods between star systems.
+ */
 @Entity
 @Table(name = "traders")
 @Getter
@@ -34,14 +40,17 @@ public class Trader {
     private String name;
     private Long credits;
 
+    /**
+     * The trader's current location.
+     */
     @ManyToOne(optional = false)
     @JoinColumn(name = "current_system_id")
     private StarSystem currentSystem;
 
-    @ManyToOne
-    @JoinColumn(name = "target_system_id")
-    private StarSystem targetSystem;
 
+    /**
+     * The trade opportunity currently assigned to the trader.
+     */
     @OneToOne
     @JoinColumn(name = "trade_opportunity_id")
     private TradeOpportunity currentTrade;
@@ -49,6 +58,9 @@ public class Trader {
     @Enumerated(EnumType.STRING)
     private StrategyProfile strategyProfile;
 
+    /**
+     * The trader's current simulation state.
+     */
     @Enumerated(EnumType.STRING)
     private TraderStatus status;
 
@@ -56,6 +68,9 @@ public class Trader {
 
     private Integer cargoAmount;
 
+    /**
+     * The commodity currently stored in the trader's cargo hold.
+     */
     @Enumerated(EnumType.STRING)
     private CommodityType cargoCommodity;
 

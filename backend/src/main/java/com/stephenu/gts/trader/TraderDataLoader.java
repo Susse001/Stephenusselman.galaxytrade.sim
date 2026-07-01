@@ -4,6 +4,7 @@ import com.stephenu.gts.starsystem.StarSystem;
 import com.stephenu.gts.starsystem.StarSystemRepository;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -11,6 +12,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+/**
+ * Seeds the database with the initial set of traders.
+ *
+ * Traders are distributed across star systems and assigned randomized
+ * starting credits and strategy profiles.
+ */
 @Component
 @Order(4)
 @RequiredArgsConstructor
@@ -22,6 +29,11 @@ public class TraderDataLoader
 
     private final Random random = new Random();
 
+    /**
+	 * Populates the database with initial trader data.
+	 *
+	 * @param args Command-line arguments supplied during application startup.
+	 */
     @Override
     public void run(String... args) {
 
@@ -38,6 +50,8 @@ public class TraderDataLoader
         StrategyProfile.AGGRESSIVE
         };
 
+		List<Trader> traders = new ArrayList<>();
+
         for (int i = 0; i < 60; i++) {
 
         StarSystem system =
@@ -50,7 +64,7 @@ public class TraderDataLoader
                         i % profiles.length
                 ];
 
-        traderRepository.save(
+        traders.add(
                 createTrader(
                         "Trader " + (i + 1),
                         system,
@@ -58,6 +72,7 @@ public class TraderDataLoader
                 )
             );
         }
+		traderRepository.saveAll(traders);
     }
 
     private long generateStartingCredits() {
@@ -84,19 +99,20 @@ public class TraderDataLoader
         StarSystem system,
         StrategyProfile profile) {
 
-        Trader trader = new Trader();
+                Trader trader = new Trader();
 
-        trader.setName(name);
-        trader.setCurrentSystem(system);
-        trader.setCredits(
-                generateStartingCredits()
-        );
-        trader.setCurrentTrade(null);
-        trader.setStrategyProfile(profile);
-        trader.setStatus(TraderStatus.IDLE);
-        trader.setCargoCapacity(100);
-        trader.setCargoAmount(0);
+                trader.setName(name);
+                trader.setCurrentSystem(system);
+                trader.setCredits(
+                        generateStartingCredits()
+                );
+                trader.setCurrentTrade(null);
+                trader.setStrategyProfile(profile);
+                trader.setStatus(TraderStatus.IDLE);
+                trader.setCargoCapacity(100);
+                trader.setCargoAmount(0);
+				trader.setCargoCommodity(null);
 
-        return trader;
+                return trader;
         }
 }

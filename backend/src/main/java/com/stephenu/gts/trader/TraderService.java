@@ -5,25 +5,41 @@ import org.springframework.stereotype.Service;
 
 import com.stephenu.gts.simulation.TradeOpportunity;
 import com.stephenu.gts.simulation.dto.TradeOpportunityResponse;
+import com.stephenu.gts.starsystem.StarSystem;
 import com.stephenu.gts.trader.dto.TraderResponse;
 
 import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 
+/**
+ * Provides services for retrieving trader data.
+ */
 @Service
 @RequiredArgsConstructor
 public class TraderService {
 
     private final TraderRepository traderRepository;
 
+    /**
+	 * Returns all traders.
+	 *
+	 * @return A list of all traders.
+	 */
     public List<TraderResponse> getAllTraders() {
         return traderRepository.findAll()
                 .stream()
-                .map(this::toResponse)
+                .map(this::mapToResponse)
                 .toList();
     }
 
+	/**
+	 * Returns the trader with the specified ID.
+	 *
+	 * @param id The identifier of the requested trader.
+	 * @return The requested trader.
+	 * @throws EntityNotFoundException If no trader exists with the specified ID.
+	 */
     public TraderResponse getTraderById(Long id) {
         Trader trader = traderRepository.findById(id)
                 .orElseThrow(() ->
@@ -31,10 +47,10 @@ public class TraderService {
                             "Trader not found: " + id
                     ));
 
-        return toResponse(trader);
+        return mapToResponse(trader);
     }
 
-    private TradeOpportunityResponse toTradeResponse(
+    private TradeOpportunityResponse mapToTradeResponse(
         TradeOpportunity trade) {
         if (trade == null) {
                 return null;
@@ -51,17 +67,18 @@ public class TraderService {
         );
         }
 
-        private TraderResponse toResponse(Trader trader) {
+        private TraderResponse mapToResponse(Trader trader) {
+			StarSystem system = trader.getCurrentSystem();
 
         return new TraderResponse(
                 trader.getId(),
                 trader.getName(),
-                trader.getCurrentSystem().getId(),
-                trader.getCurrentSystem().getName(),
+                system.getId(),
+                system.getName(),
                 trader.getCredits(),
                 trader.getStrategyProfile(),
                 trader.getStatus(),
-                toTradeResponse(trader.getCurrentTrade()),
+                mapToTradeResponse(trader.getCurrentTrade()),
                 trader.getTravelTicksRemaining(),
                 trader.getTotalTravelTicks(),
                 trader.getCargoCommodity(),
