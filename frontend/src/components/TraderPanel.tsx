@@ -4,6 +4,9 @@ interface TraderPanelProps {
     trader: Trader | null;
 }
 
+/**
+ * Displays detailed information for the currently selected trader.
+ */
 export default function TraderPanel({
     trader
 }: TraderPanelProps) {
@@ -11,6 +14,8 @@ export default function TraderPanel({
     if (!trader) {
         return null;
     }
+
+    const trade = trader.currentTrade;
 
     return (
         <div
@@ -58,7 +63,7 @@ export default function TraderPanel({
                 {trader.cargoCapacity}
             </p>
 
-            {trader.currentTrade && (
+            {trade && (
                 <>
                     <hr />
 
@@ -71,9 +76,7 @@ export default function TraderPanel({
                             Commodity:
                         </strong>{" "}
                         {
-                            trader
-                                .currentTrade
-                                .commodity
+                            trade.commodity
                         }
                     </p>
 
@@ -82,9 +85,7 @@ export default function TraderPanel({
                             Buy:
                         </strong>{" "}
                         {
-                            trader
-                                .currentTrade
-                                .buySystemName
+                            trade.buySystemName
                         }
                     </p>
 
@@ -93,9 +94,7 @@ export default function TraderPanel({
                             Sell:
                         </strong>{" "}
                         {
-                            trader
-                                .currentTrade
-                                .sellSystemName
+                            trade.sellSystemName
                         }
                     </p>
 
@@ -104,9 +103,7 @@ export default function TraderPanel({
                             Profit/Unit:
                         </strong>{" "}
                         {
-                            trader
-                                .currentTrade
-                                .expectedProfitPerUnit
+                            trade.expectedProfitPerUnit
                         }
                     </p>
 
@@ -115,8 +112,7 @@ export default function TraderPanel({
                             Travel Ticks Remaining:
                         </strong>{" "}
                         {
-                            trader
-                                .travelTicksRemaining
+                            trader.travelTicksRemaining
                         }
                     </p>
                 </>

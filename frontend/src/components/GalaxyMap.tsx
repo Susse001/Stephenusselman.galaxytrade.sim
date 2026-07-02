@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
+
 import type { StarSystem } from "../types/starSystem";
 import SystemPanel from "./SystemPanel";
+import GalaxySystems from "./GalaxySystems";
+
 import type { Market } from "../types/market";
-import type {Trader} from "../types/trader";
 import { getMarketsForSystem } from "../api/marketApi";
+
+import type {Trader} from "../types/trader";
 import {getTraders} from "../api/traderApi";
 import TraderPanel from "./TraderPanel";
 import TradeRouteOverlay from "./TradeRouteOverlay";
+import GalaxyTraders from "./GalaxyTraders";
 
 interface GalaxyMapProps {
     systems: StarSystem[];
 }
-
-const regionColors: Record<string, string> = {
-    CORE: "#60a5fa",
-    INNER_RIM: "#34d399",
-    OUTER_RIM: "#f59e0b"
-};
 
 export default function GalaxyMap({
     systems
@@ -62,19 +61,15 @@ export default function GalaxyMap({
         setLoadingMarkets(true);
 
         try {
-
-            const marketData =
-                await getMarketsForSystem(system.id);
-
-            setMarkets(marketData);
+            setMarkets(await getMarketsForSystem(system.id)
+        );
 
         } catch (error) {
-
             console.error(
                 "Failed to load market data",
                 error
             );
-
+            
             setMarkets([]);
 
         } finally {
@@ -101,160 +96,6 @@ export default function GalaxyMap({
     );
 
     const VIEWBOX_PADDING = 10;
-
-    const traderDockedOffsets = [
-        // North
-        { x: 0, y: -2.5 },
-        { x: -1, y: -2.5 },
-        { x: 1, y: -2.5 },
-
-        // South
-        { x: 0, y: 2.5 },
-        { x: -1, y: 2.5 },
-        { x: 1, y: 2.5 },
-
-        // East
-        { x: 2.5, y: 0 },
-        { x: 2.5, y: -1 },
-        { x: 2.5, y: 1 },
-
-        // West
-        { x: -2.5, y: 0 },
-        { x: -2.5, y: -1 },
-        { x: -2.5, y: 1 }
-    ];
-
-    const traderTravelOffsets = [
-
-        { x: 0, y: 0 },
-
-        { x: 0.5, y: 0.5 },
-        { x: -0.5, y: -0.5 },
-
-        { x: 0.5, y: -0.5 },
-        { x: -0.5, y: 0.5 },
-
-        { x: 1, y: 0 },
-        { x: -1, y: 0 }
-    ];
-
-    function getTraderPosition(
-        trader: Trader,
-        systems: StarSystem[]) {
-
-            const currentSystem =
-                systems.find(
-                    s =>
-                        s.id ===
-                        trader.currentSystemId
-                );
-
-            if (!currentSystem) {
-                return null;
-            }
-
-            let startSystem: StarSystem | undefined;
-            let endSystem: StarSystem | undefined;
-
-            if (
-                trader.status ===
-                "TRAVELING_TO_BUY"
-            ) {
-                startSystem = currentSystem;
-
-                endSystem =
-                    systems.find(
-                        s =>
-                            s.id ===
-                            trader.currentTrade?.buySystemId
-                    );
-            }
-
-            if (
-                trader.status ===
-                "TRAVELING_TO_SELL"
-            ) {
-                startSystem =
-                    systems.find(
-                        s =>
-                            s.id ===
-                            trader.currentTrade?.buySystemId
-                    );
-
-                endSystem =
-                    systems.find(
-                        s =>
-                            s.id ===
-                            trader.currentTrade?.sellSystemId
-                    );
-            }
-
-            if (!startSystem ||
-                !endSystem ||
-                trader.travelTicksRemaining == null ||
-                trader.totalTravelTicks == null) {
-
-                return {
-                    x: currentSystem.xCoordinate,
-                    y: currentSystem.yCoordinate,
-                    docked: true
-                };
-            }
-
-            const progress =
-                1 -
-                (
-                    trader.travelTicksRemaining /
-                    trader.totalTravelTicks
-                );
-            
-
-            const ticksTravelled =
-            trader.totalTravelTicks -
-            trader.travelTicksRemaining;
-
-            const isLeavingSystem =
-                ticksTravelled < 1;
-
-            const isArrivingSystem =
-                trader.travelTicksRemaining < 1;
-
-            if (isLeavingSystem) {
-                return {
-                    x: startSystem.xCoordinate,
-                    y: startSystem.yCoordinate,
-                    docked: true
-                };
-            }
-
-            if (isArrivingSystem) {
-                return {
-                    x: endSystem.xCoordinate,
-                    y: endSystem.yCoordinate,
-                    docked: true
-                };
-            }
-
-            return {
-                x:
-                    startSystem.xCoordinate +
-                    (
-                        endSystem.xCoordinate
-                        -
-                        startSystem.xCoordinate
-                    ) * progress,
-
-                y:
-                    startSystem.yCoordinate +
-                    (
-                        endSystem.yCoordinate
-                        -
-                        startSystem.yCoordinate
-                    ) * progress,
-                
-                docked: false
-            };
-    }
 
     return (
         <>
@@ -300,109 +141,18 @@ export default function GalaxyMap({
                 systems={systems}
                 />
 
-                {systems.map(system => (
-                    <g key={system.id}>
+                <GalaxySystems
+                    systems={systems}
+                    selectedSystem={selectedSystem}
+                    onSystemClick={handleSystemClick}
+                />
 
-                        {selectedSystem?.id === system.id && (
-                            <circle
-                                cx={system.xCoordinate}
-                                cy={system.yCoordinate}
-                                r={2}
-                                fill="none"
-                                stroke="white"
-                                strokeWidth={0.2}
-                            />
-                        )}
-                        <circle
-                            cx={system.xCoordinate}
-                            cy={system.yCoordinate}
-                            r={1}
-                            fill={
-                                regionColors[
-                                    system.region
-                                ] ?? "#9ca3af"
-                            }
-                            onClick={() =>
-                                handleSystemClick(system)
-                            }
-                            style={{
-                                cursor: "pointer"
-                            }}
-                        />
-                    </g>
-                ))}
-
-                {traders.map((trader, index) => {
-
-                    const position =
-                        getTraderPosition(
-                            trader,
-                            systems
-                        );
-
-                    if (!position) {
-                        return null;
-                    }
-
-                    let x = position.x;
-                    let y = position.y;
-
-                    if (
-                        position.docked == false
-                    ) {
-
-                        const offset =
-                            traderTravelOffsets[
-                                index %
-                                traderTravelOffsets.length
-                            ];
-
-                        x += offset.x;
-                        y += offset.y;
-                    }
-
-                    else {
-
-                        const offset =
-                            traderDockedOffsets[
-                                index %
-                                traderDockedOffsets.length
-                            ];
-
-                        x += offset.x;
-                        y += offset.y;
-                    }
-
-                    return (
-                        <g key={trader.id}>
-
-                            {selectedTrader?.id === trader.id && (
-
-                                <circle
-                                    cx={x}
-                                    cy={y}
-                                    r={1.1}
-                                    fill="none"
-                                    stroke="white"
-                                    strokeWidth={0.2}
-                                />
-
-                            )}
-                            <circle
-                                cx={x}
-                                cy={y}
-                                r={0.5}
-                                fill="white"
-                                onClick={() =>
-                                    setSelectedTrader(trader)
-                                }
-                                style={{
-                                    cursor: "pointer"
-                                }}
-                            />
-                        </g>
-                    );
-                })}
+                <GalaxyTraders
+                    traders={traders}
+                    systems={systems}
+                    selectedTrader={selectedTrader}
+                    onTraderClick={setSelectedTrader}
+                />
 
             </svg>
 

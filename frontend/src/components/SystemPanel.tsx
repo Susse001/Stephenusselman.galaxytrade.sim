@@ -7,6 +7,9 @@ interface SystemPanelProps {
     loading: boolean;
 }
 
+/**
+ * Displays detailed information for the currently selected star system.
+ */
 export default function SystemPanel({
     system,
     markets,

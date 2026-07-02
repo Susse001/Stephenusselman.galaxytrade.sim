@@ -6,6 +6,12 @@ interface TradeRouteOverlayProps {
     systems: StarSystem[];
 }
 
+/**
+ * Renders the currently selected trader's trade route.
+ *
+ * The route highlights the assigned buy and sell systems and displays
+ * the path connecting them.
+ */
 export default function TradeRouteOverlay({
     trader,
     systems

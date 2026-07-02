@@ -3,6 +3,9 @@ import { getSystems } from "../api/systemApi";
 import type { StarSystem } from "../types/starSystem";
 import GalaxyMap from "./GalaxyMap";
 
+/**
+ * Loads star system data and renders the galaxy map.
+ */
 export default function SystemList() {
 
     const [systems, setSystems] = useState<StarSystem[]>([]);
