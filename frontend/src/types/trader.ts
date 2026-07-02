@@ -1,3 +1,6 @@
+/**
+ * Represents the current state of an autonomous trader.
+ */
 export interface Trader {
     id: number;
     name: string;
@@ -15,6 +18,9 @@ export interface Trader {
     currentTrade: TradeOpportunity | null;
 }
 
+/**
+ * Represents the current state of an autonomous trader.
+ */
 export interface TradeOpportunity {
     id: number;
     commodity: string;
