@@ -17,6 +17,9 @@ interface GalaxyMapProps {
     systems: StarSystem[];
 }
 
+/**
+ * Renders the galaxy map.
+ */
 export default function GalaxyMap({
     systems
 }: GalaxyMapProps) {
@@ -69,7 +72,7 @@ export default function GalaxyMap({
                 "Failed to load market data",
                 error
             );
-            
+
             setMarkets([]);
 
         } finally {
