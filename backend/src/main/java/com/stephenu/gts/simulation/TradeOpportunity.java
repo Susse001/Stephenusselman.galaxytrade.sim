@@ -17,6 +17,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Represents a profitable trade route identified by the simulation.
+ *
+ * A trade opportunity links a source market, destination market, and
+ * commodity, allowing traders to execute a complete buy-and-sell route
+ * without performing market analysis themselves.
+ */
 @Entity
 @Table(name = "trade_opportunities")
 @Getter
@@ -29,17 +36,29 @@ public class TradeOpportunity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * The commodity traded along this route.
+     */
     @Enumerated(EnumType.STRING)
     private CommodityType commodity;
 
+    /**
+     * The star system where the commodity should be purchased.
+     */
     @ManyToOne(optional = false)
     @JoinColumn(name = "buy_system_id")
     private StarSystem buySystem;
 
+    /**
+     * The star system where the commodity should be sold.
+     */
     @ManyToOne(optional = false)
     @JoinColumn(name = "sell_system_id")
     private StarSystem sellSystem;
 
+    /**
+     * The estimated profit earned per unit transported.
+     */
     private Integer expectedProfitPerUnit;
 
     private Integer buyPrice;

@@ -8,17 +8,34 @@ import org.springframework.stereotype.Service;
 import com.stephenu.gts.commodity.CommodityType;
 import com.stephenu.gts.market.Market;
 import com.stephenu.gts.market.MarketRepository;
-import com.stephenu.gts.starsystem.StarSystem;
 import com.stephenu.gts.trader.Trader;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Evaluates available trade opportunities for traders.
+ *
+ * Candidate routes are scored according to each trader's strategy
+ * profile, available credits, cargo capacity, and travel time.
+ */
 @Service
 @RequiredArgsConstructor
 public class TraderDecisionService {
 
     private final MarketRepository marketRepository;
+    private final TravelService travelService;
 
+    /**
+	 * Selects the highest-scoring trade opportunity for a trader.
+	 *
+	 * Every commodity is evaluated by comparing the lowest available buy
+	 * price with the highest available sell price before applying the
+	 * trader's scoring strategy.
+	 *
+	 * @param trader The trader requesting a trade.
+	 * @return The highest-scoring trade opportunity, or {@code null} if none
+	 *         are profitable.
+	 */
     public TradeOpportunity findBestTrade(Trader trader) {
 
         List<Market> markets = marketRepository.findAll();
@@ -59,31 +76,15 @@ public class TraderDecisionService {
                 }
 
                 TradeOpportunity opportunity =
-                        new TradeOpportunity();
-
-                opportunity.setCommodity(
-                        commodityType
-                );
-
-                opportunity.setBuySystem(
-                        lowestMarket.getStarSystem()
-                );
-
-                opportunity.setSellSystem(
-                        highestMarket.getStarSystem()
-                );
-
-                opportunity.setBuyPrice(
-                        lowestMarket.getPrice()
-                );
-
-                opportunity.setSellPrice(
-                        highestMarket.getPrice()
-                );
-
-                opportunity.setExpectedProfitPerUnit(
-                        profitPerUnit
-                );
+					new TradeOpportunity(
+							null,
+							commodityType,
+							lowestMarket.getStarSystem(),
+							highestMarket.getStarSystem(),
+							profitPerUnit,
+							lowestMarket.getPrice(),
+							highestMarket.getPrice()
+					);
 
                 double score =
                         calculateScore(
@@ -92,7 +93,6 @@ public class TraderDecisionService {
                         );
 
                 if (score > bestScore) {
-
                 bestScore = score;
                 bestOpportunity = opportunity;
                 }
@@ -101,17 +101,27 @@ public class TraderDecisionService {
         return bestOpportunity;
         }
 
+	/**
+	 * Calculates the desirability of a trade opportunity.
+	 *
+	 * The final score combines estimated profit and travel time using the
+	 * trader's strategy profile.
+	 *
+	 * @param trader The trader evaluating the opportunity.
+	 * @param trade The trade opportunity being evaluated.
+	 * @return The calculated trade score.
+	 */
     private double calculateScore(
         Trader trader,
         TradeOpportunity trade) {
 
         int travelTicks =
-                calculateTravelTicks(
+                travelService.calculateTravelTicks(
                         trader.getCurrentSystem(),
                         trade.getBuySystem()
                 )
                 +
-                calculateTravelTicks(
+                travelService.calculateTravelTicks(
                         trade.getBuySystem(),
                         trade.getSellSystem()
                 );
@@ -157,6 +167,15 @@ public class TraderDecisionService {
                 };
     }
 
+	/**
+	 * Estimates the maximum profit a trader can earn from a trade.
+	 *
+	 * The calculation considers both available credits and cargo capacity.
+	 *
+	 * @param trader The trader executing the trade.
+	 * @param trade The trade opportunity.
+	 * @return The estimated total profit.
+	 */
     private long calculateTotalProfit(
         Trader trader,
         TradeOpportunity trade) {
@@ -171,30 +190,7 @@ public class TraderDecisionService {
                         trader.getCargoCapacity()
                 );
 
-        return units
-                * trade.getExpectedProfitPerUnit();
+        return units * trade.getExpectedProfitPerUnit();
     }
 
-    private int calculateTravelTicks(
-        StarSystem from,
-        StarSystem to) {
-
-        double dx =
-                from.getXCoordinate() - to.getXCoordinate();
-
-        double dy =
-                from.getYCoordinate() - to.getYCoordinate();
-
-        double distance =
-                Math.sqrt(
-                        dx * dx + dy * dy
-                );
-
-        return Math.max(
-                1,
-                (int) Math.ceil(
-                        distance / 7
-                )
-        );
-    }
 }

@@ -2,7 +2,6 @@ package com.stephenu.gts.simulation;
 
 import com.stephenu.gts.market.Market;
 import com.stephenu.gts.market.MarketRepository;
-import com.stephenu.gts.starsystem.StarSystem;
 import com.stephenu.gts.trader.Trader;
 import com.stephenu.gts.trader.TraderRepository;
 import com.stephenu.gts.trader.TraderStatus;
@@ -15,6 +14,13 @@ import java.util.Random;
 
 import org.springframework.stereotype.Service;
 
+/**
+ * Coordinates each simulation tick.
+ *
+ * Every tick updates market conditions before advancing each trader
+ * through its current state. Market prices, supply, demand, and trader
+ * actions are processed once per simulation cycle.
+ */
 @Service
 @RequiredArgsConstructor
 public class SimulationService {
@@ -23,10 +29,19 @@ public class SimulationService {
     private final MarketRepository marketRepository;
     private final TradeOpportunityRepository tradeOpportunityRepository;
     private final TraderDecisionService traderDecisionService;
+	private final TravelService travelService;
 
     private long currentTick = 0;
     private final Random random = new Random();
 
+    /**
+	 * Advances the simulation by one tick.
+	 *
+	 * Each tick updates market conditions before processing trader behavior
+	 * to ensure all trading decisions are based on the latest market data.
+	 *
+	 * @return The current simulation tick.
+	 */
     @Transactional
     public long runTick() {
 
@@ -42,27 +57,31 @@ public class SimulationService {
         return currentTick;
     }
 
+	/**
+	 * Updates every market in the simulation.
+	 */
     private void updateMarkets() {
 
     List<Market> markets = marketRepository.findAll();
 
         for (Market market : markets) {
-
             updateSupplyAndDemand(market);
-
             updatePrice(market);
         }
 
         marketRepository.saveAll(markets);
     }
 
+	/**
+	 * Applies random supply and demand fluctuations to a market.
+	 *
+	 * @param market The market to update.
+	 */
     private void updateSupplyAndDemand(Market market) {
 
-        int supplyChange =
-                random.nextInt(41) - 20;
+        int supplyChange = random.nextInt(41) - 20;
 
-        int demandChange =
-                random.nextInt(41) - 20;
+        int demandChange = random.nextInt(41) - 20;
 
         market.setSupply(
                 Math.max(
@@ -79,6 +98,14 @@ public class SimulationService {
         );
     }
 
+	/**
+	 * Recalculates a market's price.
+	 *
+	 * Prices increase when demand exceeds supply and decrease when supply
+	 * exceeds demand. A minimum price is enforced.
+	 *
+	 * @param market The market to update.
+	 */
     private void updatePrice(Market market) {
 
         int price = market.getPrice();
@@ -91,24 +118,31 @@ public class SimulationService {
             price -= 5;
         }
 
-        market.setPrice(
-                Math.max(10, price)
-        );
+        market.setPrice(Math.max(10, price));
     }
 
+	/**
+	 * Advances every trader by one simulation step.
+	 */
     private void evaluateTraders() {
 
-        List<Trader> traders =
-                traderRepository.findAll();
+        List<Trader> traders = traderRepository.findAll();
 
         for (Trader trader : traders) {
-
-                processTrader(trader);
+            processTrader(trader);
         }
 
         traderRepository.saveAll(traders);
     }
 
+	/**
+	 * Advances a trader according to its current simulation state.
+	 *
+	 * Each trader follows a simple state machine that governs trade
+	 * selection, travel, buying, and selling.
+	 *
+	 * @param trader The trader to process.
+	 */
     private void processTrader(Trader trader) {
 
         switch (trader.getStatus()) {
@@ -125,6 +159,11 @@ public class SimulationService {
         }
     }
 
+	/**
+	 * Assigns the most profitable trade opportunity to an idle trader.
+	 *
+	 * @param trader The trader to update.
+	 */
     private void assignTrade(Trader trader) {
 
         TradeOpportunity opportunity =
@@ -139,24 +178,24 @@ public class SimulationService {
         trader.setCurrentTrade(opportunity);
 
         int travelTicks =
-        calculateTravelTicks(
+        travelService.calculateTravelTicks(
                 trader.getCurrentSystem(),
                 opportunity.getBuySystem()
         );
 
-        trader.setTravelTicksRemaining(
-                travelTicks
-        );
-
-        trader.setTotalTravelTicks(
-                travelTicks
-        );
+        trader.setTravelTicksRemaining(travelTicks);
+		trader.setTotalTravelTicks(travelTicks);
 
         trader.setStatus(
                 TraderStatus.TRAVELING_TO_BUY
         );
     }
 
+	/**
+	 * Advances a trader toward its purchase location.
+	 *
+	 * @param trader The trader to update.
+	 */
     private void travelToBuy(Trader trader) {
 
         int remaining =
@@ -165,74 +204,63 @@ public class SimulationService {
         trader.setTravelTicksRemaining(remaining);
 
         if (remaining > 0) {
-            return;
-        }
+			return;
+		}
 
-        trader.setCurrentSystem(
-                trader.getCurrentTrade().getBuySystem()
-        );
+        trader.setCurrentSystem(trader.getCurrentTrade().getBuySystem());
 
-        trader.setStatus(
-                TraderStatus.BUYING
-        );
+        trader.setStatus(TraderStatus.BUYING);
     }
 
+	/**
+	 * Purchases cargo and begins travel to the destination market.
+	 *
+	 * @param trader The trader to update.
+	 */
     private void buy(Trader trader) {
 
-        TradeOpportunity trade =
-            trader.getCurrentTrade();
+        TradeOpportunity trade = trader.getCurrentTrade();
 
-        trader.setCargoCommodity(
-                trade.getCommodity()
-        );
-
-        trader.setCargoAmount(
-                trader.getCargoCapacity()
-        );
+        trader.setCargoCommodity(trade.getCommodity());
+        trader.setCargoAmount(trader.getCargoCapacity());
 
         int travelTicks =
-                calculateTravelTicks(
+                travelService.calculateTravelTicks(
                         trade.getBuySystem(),
                         trade.getSellSystem()
                 );
 
-        trader.setTravelTicksRemaining(
-                travelTicks
-        );
+        trader.setTravelTicksRemaining(travelTicks);
+		trader.setTotalTravelTicks(travelTicks);
 
-        trader.setTotalTravelTicks(
-                travelTicks
-        );
-
-        trader.setStatus(
-                TraderStatus.TRAVELING_TO_SELL
-        );
+        trader.setStatus(TraderStatus.TRAVELING_TO_SELL);
     }
 
+	/**
+	 * Advances a trader toward its sell location.
+	 *
+	 * @param trader The trader to update.
+	 */
     private void travelToSell(Trader trader) {
 
-        int remaining =
-                trader.getTravelTicksRemaining() - 1;
-
+        int remaining = trader.getTravelTicksRemaining() - 1;
         trader.setTravelTicksRemaining(remaining);
 
-        if (remaining > 0) {
-            return;
-        }
+        if (remaining > 0) {return;}
 
-        trader.setCurrentSystem(
-                trader.getCurrentTrade().getSellSystem()
-        );
+        trader.setCurrentSystem(trader.getCurrentTrade().getSellSystem());
 
-        trader.setStatus(
-                TraderStatus.SELLING
-        );
+        trader.setStatus(TraderStatus.SELLING);
     }
 
+	/**
+	 * Completes the current trade and returns the trader to the idle state.
+	 *
+	 * @param trader The trader to update.
+	 */
     private void sell(Trader trader) {
 
-        TradeOpportunity trade =
-                trader.getCurrentTrade();
+        TradeOpportunity trade = trader.getCurrentTrade();
 
         trader.setCredits(
                 trader.getCredits()
@@ -251,22 +279,4 @@ public class SimulationService {
         );
     }
 
-        private int calculateTravelTicks(
-            StarSystem from,
-            StarSystem to) {
-
-        double dx =
-                from.getXCoordinate() - to.getXCoordinate();
-
-        double dy =
-                from.getYCoordinate() - to.getYCoordinate();
-
-        double distance =
-                Math.sqrt(dx * dx + dy * dy);
-
-        return Math.max(
-                1,
-                (int) Math.ceil(distance / 7)
-        );
-    }
 }
