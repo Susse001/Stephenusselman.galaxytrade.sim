@@ -1,15 +1,19 @@
-import axios from "axios";
 import type { Market } from "../types/market";
+import { api } from "./api";
 
-const API_URL =
-    "http://localhost:8080/api/markets";
-
+/**
+ * Retrieves the market data for a star system.
+ *
+ * @param systemId The identifier of the requested star system.
+ * @returns The markets available within the specified system.
+ */
 export async function getMarketsForSystem(
     systemId: number
-) {
+): Promise<Market[]> {
+
     const response =
-        await axios.get<Market[]>(
-            `${API_URL}/system/${systemId}`
+        await api.get<Market[]>(
+            `/markets/system/${systemId}`
         );
 
     return response.data;

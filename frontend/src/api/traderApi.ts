@@ -1,15 +1,15 @@
-import axios from "axios";
 import type { Trader } from "../types/trader";
+import { api } from "./api";
 
-const API_URL =
-    "http://localhost:8080/api/traders";
-
-export async function getTraders() {
+/**
+ * Retrieves every trader in the simulation.
+ *
+ * @returns All simulated traders.
+ */
+export async function getTraders(): Promise<Trader[]> {
 
     const response =
-        await axios.get<Trader[]>(
-            API_URL
-        );
+        await api.get<Trader[]>("/traders");
 
     return response.data;
 }
