@@ -111,11 +111,11 @@ frontend/
 
 components/
 - GalaxyMap
---  GalaxySystems
--- GalaxyTraders
--- TraderPanel
--- SystemPanel
--- TradeRouteOverlay
+  - GalaxySystems
+  - GalaxyTraders
+  - TraderPanel
+  - SystemPanel
+  - TradeRouteOverlay
 
 ## Current Simulation Flow
 
