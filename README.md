@@ -39,14 +39,17 @@ The project is intended as a portfolio application demonstrating backend archite
 
 Each feature is organized into its own package using a layered architecture.
 
-```text
 backend/
-├── commodity/
-├── market/
-├── simulation/
-├── starsystem/
-└── trader/
-```
+|
++-- commodity/
+|
++-- market/
+|
++-- simulation/
+|
++-- starsystem/
+|
+`-- trader/
 
 ### Star System
 
