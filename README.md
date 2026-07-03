@@ -18,9 +18,9 @@ The project is intended as a portfolio application demonstrating backend archite
 - Trade route overlays
 - REST API between frontend and backend
 
-## Technology Stack
+### Technology Stack
 
-### Backend
+## Backend
 
 - Java 21
 - Spring Boot
@@ -28,7 +28,7 @@ The project is intended as a portfolio application demonstrating backend archite
 - Hibernate
 - H2 Database
 
-### Frontend
+## Frontend
 
 - React
 - TypeScript
@@ -45,7 +45,7 @@ backend/
 ├── starsystem/
 └── trader/
 
-## Star System
+### Star System
 
 Responsible for procedural galaxy generation.
 
@@ -56,7 +56,7 @@ Contains:
 - system generation
 - REST endpoints
 
-## Commodity
+### Commodity
 
 Defines all commodities available within the economy.
 
@@ -66,7 +66,7 @@ Contains:
 - base pricing
 - commodity data loader
 
-## Market
+### Market
 
 Represents the local economy for every star system.
 
@@ -78,7 +78,7 @@ Responsible for:
 - imports
 - exports
 
-## Trader
+### Trader
 
 Represents autonomous trading agents.
 
@@ -89,7 +89,7 @@ Responsible for:
 - credits
 - decision making
 
-## Simulation
+### Simulation
 
 Coordinates the entire simulation.
 
@@ -101,43 +101,26 @@ Responsible for:
 - travel
 - trade opportunities
 
-### Frontend (React)
+## Frontend (React)
 
 frontend/
-├── api/
-├── components/
-├── types/
-└── utils/
+- api/
+- components/
+- types/
+- utils/
 
 components/
-├──GalaxyMap
-    ├── GalaxySystems
-    ├── GalaxyTraders
-    ├── TraderPanel
-    ├── SystemPanel
-    └── TradeRouteOverlay
+- GalaxyMap
+--  GalaxySystems
+-- GalaxyTraders
+-- TraderPanel
+-- SystemPanel
+-- TradeRouteOverlay
 
 ## Current Simulation Flow
 
-Tick
-↓
-Update Markets
-↓
-Generate Price Changes
-↓
-Evaluate Traders
-↓
-Assign Trades
-↓
-Travel
-↓
-Buy
-↓
-Travel
-↓
-Sell
-↓
-Repeat
+Tick → Update Markets → Generate Price Changes → Evaluate Traders → 
+Assign Trades → Travel → Buy → Travel → Sell → Repeat
 
 ## Current Limitations
 
