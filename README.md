@@ -38,12 +38,6 @@ The project is intended as a portfolio application demonstrating backend archite
 ## Backend Architecture
 
 Each feature is organized into its own package using a layered architecture.
-backend/
-├── commodity/
-├── market/
-├── simulation/
-├── starsystem/
-└── trader/
 
 ### Star System
 
@@ -103,19 +97,8 @@ Responsible for:
 
 ## Frontend (React)
 
-frontend/
-- api/
-- components/
-- types/
-- utils/
-
-components/
-- GalaxyMap
---  GalaxySystems
--- GalaxyTraders
--- TraderPanel
--- SystemPanel
--- TradeRouteOverlay
+The GalaxyMap component is supported by additional mapping components for systems and traders, as well
+as system and trader panels to give access to database information.
 
 ## Current Simulation Flow
 
