@@ -17,14 +17,14 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d gts"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d gts-postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
 
   backend:
     build:
-      context: ./backend
+      image: 943900884758.dkr.ecr.us-east-1.amazonaws.com/gts-backend:latest
 
     container_name: gts-backend
     restart: unless-stopped
@@ -42,12 +42,11 @@ services:
     expose:
       - "8080"
 
-  nginx:
+  frontend:
     build:
-      context: .
-      dockerfile: nginx/Dockerfile
+      image: 943900884758.dkr.ecr.us-east-1.amazonaws.com/galaxy-trade/frontend
 
-    container_name: gts-nginx
+    container_name: gts-frontend
     restart: unless-stopped
 
     depends_on:
