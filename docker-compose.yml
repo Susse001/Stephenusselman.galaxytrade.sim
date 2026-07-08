@@ -23,7 +23,7 @@ services:
       retries: 5
 
   backend:
-    image: 943900884758.dkr.ecr.us-east-1.amazonaws.com/gts-backend:latest
+    image: 943900884758.dkr.ecr.us-east-1.amazonaws.com/galaxy-trade/backend:latest
 
     container_name: gts-backend
     restart: unless-stopped
@@ -42,7 +42,7 @@ services:
       - "8080"
 
   frontend:
-    image: 943900884758.dkr.ecr.us-east-1.amazonaws.com/galaxy-trade/frontend
+    image: 943900884758.dkr.ecr.us-east-1.amazonaws.com/galaxy-trade/frontend:latest
 
     container_name: gts-frontend
     restart: unless-stopped
