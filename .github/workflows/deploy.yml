@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: Build and Push Docker Images
 
 on:
   push:
@@ -10,8 +10,17 @@ permissions:
   contents: read
 
 jobs:
-  verify-aws:
+  build-and-push:
     runs-on: ubuntu-latest
+
+    env:
+      AWS_REGION: us-east-1
+
+
+      AWS_ACCOUNT_ID: 943900884758
+
+      BACKEND_REPOSITORY: galaxy-trade/backend
+      FRONTEND_REPOSITORY: galaxy-trade/frontend
 
     steps:
       - name: Checkout Repository
@@ -21,7 +30,60 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          aws-region: us-east-1
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Verify AWS Identity
         run: aws sts get-caller-identity
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      ####################################################
+      # Backend
+      ####################################################
+
+      - name: Build Backend Image
+        run: |
+          docker build \
+            -t gts-backend:latest \
+            ./backend
+
+      - name: Tag Backend Image
+        run: |
+          docker tag gts-backend:latest \
+          $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$BACKEND_REPOSITORY:latest
+
+          docker tag gts-backend:latest \
+          $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$BACKEND_REPOSITORY:${{ github.sha }}
+
+      - name: Push Backend Image
+        run: |
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$BACKEND_REPOSITORY:latest
+
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$BACKEND_REPOSITORY:${{ github.sha }}
+
+      ####################################################
+      # Frontend
+      ####################################################
+
+      - name: Build Frontend Image
+        run: |
+          docker build \
+            -f nginx/Dockerfile \
+            -t gts-frontend:latest \
+            .
+
+      - name: Tag Frontend Image
+        run: |
+          docker tag gts-frontend:latest \
+          $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$FRONTEND_REPOSITORY:latest
+
+          docker tag gts-frontend:latest \
+          $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$FRONTEND_REPOSITORY:${{ github.sha }}
+
+      - name: Push Frontend Image
+        run: |
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$FRONTEND_REPOSITORY:latest
+
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$FRONTEND_REPOSITORY:${{ github.sha }}
