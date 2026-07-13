@@ -17,7 +17,7 @@ jobs:
       AWS_REGION: us-east-1
 
 
-      AWS_ACCOUNT_ID: 943900884758
+      AWS_ACCOUNT_ID: 823615568675
 
       BACKEND_REPOSITORY: galaxy-trade/backend
       FRONTEND_REPOSITORY: galaxy-trade/frontend
@@ -89,7 +89,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
 
           script: |
-            cd ~/Stephenusselman.galaxytrade.sim
+            cd ~/apps/Stephenusselman.galaxytrade.sim
 
             aws ecr get-login-password --region ${{ env.AWS_REGION }} \
             | docker login \
