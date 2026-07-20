@@ -8,19 +8,29 @@ public enum CommodityType {
     //Tier 1
     FOOD("Food"),
     WATER("Water"),
-    ORE("Ore"),
+    BIOMATERIALS("Biomaterials"),
+    COMMON_METALS("Common Metals"),
     RARE_METALS("Rare Metals"),
-    ORGANICS("Organics"),
+    INDUSTRIAL_MINERALS("Industrial Minerals"),
+    HYDROCARBONS("Hydrocarbons"),
+    INDUSTRIAL_CHEMICALS("Industrial Chemicals"),
+    RARE_ELEMENTS("Rare Elements"),
 
     //Tier 2
-    CHEMICAL_COMPOUNDS("Chemical Compounds"),
     REFINED_METALS("Refined Metals"),
-    ADVANCED_COMPONENTS("Advanced Components"),
+    PETROCHEMICALS("Petrochemicals"),
+    ADVANCED_MATERIALS("Advanced Materials"),
+    MANUFACTURED_PARTS("Manufactured Parts"),
+    ELECTRONIC_COMPONENTS("Electronic Components"),
+    PHARMACEUTICALS("Pharmaceuticals"),
+    FUEL("Fuel"),
 
     //Tier 3
     ELECTRONICS("Electronics"),
-    MEDICINE("Medicine"),
-    INDUSTRIAL_PARTS("Industrial Parts"),
+    MEDICAL_SUPPLIES("Medical Supplies"),
+    INDUSTRIAL_MACHINERY("Industrial Machinery"),
+    CAPITAL_GOODS("Capital Goods"),
+    CONSUMER_GOODS("Consumer Goods"),
 
     //Unique
     LUXURY_GOODS("Luxury Goods");

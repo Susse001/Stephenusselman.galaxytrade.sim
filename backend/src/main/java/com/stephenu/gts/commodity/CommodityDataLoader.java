@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 
+//This seeder is nonfunctional pending the economy rework
+
+
 /**
  * Seeds the database with the default set of commodities.
  *

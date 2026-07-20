@@ -56,23 +56,36 @@ public class Market {
     @JoinColumn(name = "commodity_id")
     private Commodity commodity;
 
+    /**
+     * Current trading price.
+     *
+     * Recalculated every simulation tick from inventory.
+     */
     private Integer price;
 
-    private Integer supply;
+    /**
+     * Current amount physically stored in this market.
+     */
+    private Integer inventory;
 
-    private Integer demand;
+    /**
+     * Desired inventory level for this commodity.
+     *
+     * Used to calculate scarcity and price.
+     */
+    private Integer targetInventory;
 
     public Market(
             StarSystem starSystem,
             Commodity commodity,
             Integer price,
-            Integer supply,
-            Integer demand
+            Integer inventory,
+            Integer targetInventory
     ) {
         this.starSystem = starSystem;
         this.commodity = commodity;
         this.price = price;
-        this.supply = supply;
-        this.demand = demand;
+        this.inventory = inventory;
+        this.targetInventory = targetInventory;
     }
 }

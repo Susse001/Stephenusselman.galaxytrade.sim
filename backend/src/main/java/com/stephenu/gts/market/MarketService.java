@@ -55,8 +55,8 @@ public class MarketService {
                 system.getRegion(),
                 commodity.getType(),
                 market.getPrice(),
-                market.getSupply(),
-                market.getDemand()
+                market.getInventory(),
+                market.getTargetInventory()
         );
     }
 }
