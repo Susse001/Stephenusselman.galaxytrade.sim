@@ -1,7 +1,13 @@
 package com.stephenu.gts.planet;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.stephenu.gts.starsystem.StarSystem;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -39,6 +45,17 @@ public class Planet {
     private String name;
 
     /**
+     * The position of the planet in system in reference to the center
+     */
+    private Integer orbitalOrder;
+
+    /**
+     * 
+     */
+    @Enumerated(EnumType.STRING)
+    private OrbitZone orbitZone;
+
+    /**
      * Dominant planetary environment.
      */
     @Enumerated(EnumType.STRING)
@@ -61,4 +78,29 @@ public class Planet {
      */
     @Enumerated(EnumType.STRING)
     private InfrastructureLevel infrastructure;
+
+    /**
+     * Unique planetary features.
+     */
+    @ElementCollection(targetClass = PlanetFeature.class)
+    @CollectionTable(
+        name = "planet_features",
+        joinColumns = @JoinColumn(name = "planet_id")
+    )
+    @Column(name = "feature")
+    @Enumerated(EnumType.STRING)
+    private Set<PlanetFeature> features = new HashSet<>();
+
+    /**
+     * 
+     * @param planet A planet you want to check for a planetary feature.
+     * @param feature The planetary feature you want to check for
+     * @return A boolean indicating if the given planet contains the feature.
+     */
+    private boolean hasFeature(
+        Planet planet,
+        PlanetFeature feature) 
+    {
+        return planet.getFeatures().contains(feature);
+    }
 }

@@ -41,6 +41,9 @@ public class Commodity {
     private CommodityType type;
 
     @Column(nullable = false)
-    private double basePrice;
+    private int basePrice;
+
+    @Column(nullable = false)
+    private int tier;
 
 }

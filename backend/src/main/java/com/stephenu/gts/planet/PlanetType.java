@@ -14,7 +14,8 @@ public enum PlanetType {
     ALPINE("Alpine"),
     FROZEN("Frozen"),
     BARREN("Barren"),
-    ARTIFICIAL("Artificial Habitat");
+    VOLCANIC("Volcanic"),
+    CRYOVOLCANIC("Cryovolcanic");
 
     private final String displayName;
 
