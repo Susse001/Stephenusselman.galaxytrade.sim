@@ -1,10 +1,13 @@
 package com.stephenu.gts.planet;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.stephenu.gts.starsystem.StarSystem;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -16,6 +19,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -80,6 +84,16 @@ public class Planet {
     private InfrastructureLevel infrastructure;
 
     /**
+     * Natural resource deposits available on the planet.
+     */
+    @OneToMany(
+        mappedBy = "planet",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<PlanetResource> resources = new ArrayList<>();
+
+    /**
      * Unique planetary features.
      */
     @ElementCollection(targetClass = PlanetFeature.class)
@@ -93,14 +107,12 @@ public class Planet {
 
     /**
      * 
-     * @param planet A planet you want to check for a planetary feature.
      * @param feature The planetary feature you want to check for
      * @return A boolean indicating if the given planet contains the feature.
      */
-    private boolean hasFeature(
-        Planet planet,
+    public boolean hasFeature(
         PlanetFeature feature) 
     {
-        return planet.getFeatures().contains(feature);
+        return this.getFeatures().contains(feature);
     }
 }

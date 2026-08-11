@@ -1,16 +1,14 @@
 package com.stephenu.gts.planet;
 
-public enum ResourceLevel {
+public enum OrbitZone {
 
-    NONE("None"),
-    SCARCE("SCARCE"),
-    AVERAGE("Average"),
-    RICH("Rich"),
-    ABUNDANT("Abundant");
+    INNER("Inner Orbit"),
+    MIDDLE("Middle Orbit"),
+    OUTER("Outer Orbit");
 
     private final String displayName;
 
-    ResourceLevel(String displayName) {
+    OrbitZone(String displayName) {
         this.displayName = displayName;
     }
 

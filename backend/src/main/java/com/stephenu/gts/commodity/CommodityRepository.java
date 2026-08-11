@@ -1,6 +1,6 @@
 package com.stephenu.gts.commodity;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface CommodityRepository extends JpaRepository<Commodity, Long> {
 
-        Optional<Commodity> findByType(CommodityType type);
+        List<Commodity> findByType(CommodityType type);
+        List<Commodity> findByTier(int tier);
 }
