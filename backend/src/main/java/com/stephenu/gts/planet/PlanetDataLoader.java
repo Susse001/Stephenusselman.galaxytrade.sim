@@ -106,7 +106,7 @@ public class PlanetDataLoader implements CommandLineRunner {
                 generatePopulation(planet.getPlanetType(), planet.getDevelopment(),planet.getFeatures())
         );
 
-        planetResourceGenerator.generateResources(planet);
+        planetResourceGenerator.generateAndAttachResources(planet);
 
         planet.setInfrastructure(
                 generateInfrastructure(planet)

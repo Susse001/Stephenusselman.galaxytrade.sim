@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface CommodityRepository extends JpaRepository<Commodity, Long> {
 
-        List<Commodity> findByType(CommodityType type);
+        Commodity findByType(CommodityType type);
         List<Commodity> findByTier(int tier);
 }

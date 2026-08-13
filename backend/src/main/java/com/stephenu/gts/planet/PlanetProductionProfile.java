@@ -2,6 +2,7 @@ package com.stephenu.gts.planet;
 
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.stephenu.gts.commodity.CommodityType;
 
@@ -69,6 +70,14 @@ public class PlanetProductionProfile {
         Map<CommodityType, Double> extraction =
                 new EnumMap<>(CommodityType.class);
 
+        Map<CommodityType, ResourceLevel> resourceLevels =
+            planet.getResources()
+                    .stream()
+                    .collect(Collectors.toMap(
+                            resource -> resource.getCommodity().getType(),
+                            PlanetResource::getAbundance
+                    ));
+
         double populationMultiplier =
                 EXTRACTION_POPULATION_MULTIPLIERS
                         .get(planet.getPopulation());
@@ -88,7 +97,13 @@ public class PlanetProductionProfile {
             double baseline = entry.getValue();
 
             ResourceLevel resourceLevel =
-                    planet.getResources().get(commodity);
+                resourceLevels.get(commodity);
+
+            if (resourceLevel == null) {
+                throw new IllegalStateException(
+                        "Planet is missing resource level for: " + commodity
+                );
+            }
 
             double resourceMultiplier =
                     RESOURCE_MULTIPLIERS.get(resourceLevel);

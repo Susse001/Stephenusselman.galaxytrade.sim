@@ -8,6 +8,8 @@ import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
+import com.stephenu.gts.commodity.Commodity;
+import com.stephenu.gts.commodity.CommodityRepository;
 import com.stephenu.gts.commodity.CommodityType;
 
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,26 @@ import lombok.RequiredArgsConstructor;
 public class PlanetResourceGenerator {
 
     private final Random random = new Random();
+    private CommodityRepository commodityRepository;
+
+    public void generateAndAttachResources(Planet planet) {
+
+    Map<CommodityType, ResourceLevel> resources =
+            generateResources(planet);
+
+    resources.forEach((commodityType, resourceLevel) -> {
+
+        Commodity commodity = commodityRepository.findByType(commodityType);
+
+        planet.getResources().add(
+                new PlanetResource(
+                        planet,
+                        commodity,
+                        resourceLevel
+                )
+        );
+    });
+}
 
     public Map<CommodityType, ResourceLevel> generateResources(
             Planet planet) {
