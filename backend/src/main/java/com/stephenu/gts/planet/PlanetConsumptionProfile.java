@@ -5,7 +5,23 @@ import java.util.Map;
 
 import com.stephenu.gts.commodity.CommodityType;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class PlanetConsumptionProfile {
+
+    private Map<CommodityType, Double> consumption =
+            new EnumMap<>(CommodityType.class);
+
+    public PlanetConsumptionProfile(
+            Map<CommodityType, Double> consumption) {
+
+        this.consumption = consumption;
+    }
 
     public Map<CommodityType, Double> generateConsumption(
             Planet planet) {
@@ -48,10 +64,10 @@ public class PlanetConsumptionProfile {
         consumption.put(CommodityType.PHARMACEUTICALS, 10.0);
         consumption.put(CommodityType.FUEL, 15.0);
 
-        consumption.put(CommodityType.CONSUMER_GOODS, 40.0);
-        consumption.put(CommodityType.MEDICAL_SUPPLIES, 14.0);
+        consumption.put(CommodityType.CONSUMER_GOODS, 30.0);
+        consumption.put(CommodityType.MEDICAL_SUPPLIES, 12.0);
         consumption.put(CommodityType.INDUSTRIAL_MACHINERY, 10.0);
-        consumption.put(CommodityType.ELECTRONICS, 15.0);
+        consumption.put(CommodityType.ELECTRONICS, 12.0);
         consumption.put(CommodityType.CAPITAL_GOODS, 5.0);
         consumption.put(CommodityType.LUXURY_GOODS, 3.0);
 

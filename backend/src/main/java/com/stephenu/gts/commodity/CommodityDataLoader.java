@@ -71,6 +71,7 @@ public class CommodityDataLoader implements CommandLineRunner {
         * ===== Unique =====
         */
         new Commodity(null, CommodityType.LUXURY_GOODS, 1000, 4)
-    ));
-        }
+        ));
+
+    }
 }

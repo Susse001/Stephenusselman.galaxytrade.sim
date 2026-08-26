@@ -101,6 +101,12 @@ public class Planet {
     private PlanetProductionProfile productionProfile;
 
     /**
+     * Calculated consumption requirements of this planet.
+     */
+    @Transient
+    private PlanetConsumptionProfile consumptionProfile;
+
+    /**
      * Unique planetary features.
      */
     @ElementCollection(targetClass = PlanetFeature.class)

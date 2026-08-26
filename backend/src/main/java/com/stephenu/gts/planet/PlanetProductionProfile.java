@@ -154,21 +154,21 @@ public class PlanetProductionProfile {
          Map.ofEntries(
 
                 // Tier 2
-                Map.entry(CommodityType.REFINED_METALS, 20.0),
-                Map.entry(CommodityType.PETROCHEMICALS, 16.0),
-                Map.entry(CommodityType.ADVANCED_MATERIALS, 10.0),
-                Map.entry(CommodityType.MANUFACTURED_PARTS, 18.0),
-                Map.entry(CommodityType.ELECTRONIC_COMPONENTS, 10.0),
-                Map.entry(CommodityType.PHARMACEUTICALS, 10.0),
-                Map.entry(CommodityType.FUEL, 15.0),
+                Map.entry(CommodityType.REFINED_METALS, 42.0),
+                Map.entry(CommodityType.PETROCHEMICALS, 35.0),
+                Map.entry(CommodityType.ADVANCED_MATERIALS, 30.0),
+                Map.entry(CommodityType.MANUFACTURED_PARTS, 38.0),
+                Map.entry(CommodityType.ELECTRONIC_COMPONENTS, 32.0),
+                Map.entry(CommodityType.PHARMACEUTICALS, 35.0),
+                Map.entry(CommodityType.FUEL, 30.0),
 
                 // Tier 3
-                Map.entry(CommodityType.CONSUMER_GOODS, 12.0),
-                Map.entry(CommodityType.MEDICAL_SUPPLIES, 6.0),
-                Map.entry(CommodityType.INDUSTRIAL_MACHINERY, 7.0),
-                Map.entry(CommodityType.ELECTRONICS, 6.0),
-                Map.entry(CommodityType.CAPITAL_GOODS, 4.0),
-                Map.entry(CommodityType.LUXURY_GOODS, 3.0)
+                Map.entry(CommodityType.CONSUMER_GOODS, 32.0),
+                Map.entry(CommodityType.MEDICAL_SUPPLIES, 15.0),
+                Map.entry(CommodityType.INDUSTRIAL_MACHINERY, 14.0),
+                Map.entry(CommodityType.ELECTRONICS, 14.0),
+                Map.entry(CommodityType.CAPITAL_GOODS, 7.0),
+                Map.entry(CommodityType.LUXURY_GOODS, 4.0)
         );
 
     private static final Map<PopulationLevel, Double> MANUFACTURING_POPULATION_MULTIPLIERS =

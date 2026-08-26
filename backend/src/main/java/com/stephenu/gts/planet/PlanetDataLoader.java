@@ -24,6 +24,7 @@ public class PlanetDataLoader implements CommandLineRunner {
     private final PlanetRepository planetRepository;
     private final StarSystemRepository starSystemRepository;
     PlanetResourceGenerator planetResourceGenerator = new PlanetResourceGenerator();
+    PlanetConsumptionProfile planetConsumptionProfile = new PlanetConsumptionProfile();
     PlanetProductionProfile planetProductionProfile = new PlanetProductionProfile();
 
     private final Random random = new Random();
@@ -74,7 +75,7 @@ public class PlanetDataLoader implements CommandLineRunner {
     {
         Planet planet = new Planet();
 
-        planet.setStarSystem(system);
+        system.addPlanet(planet);
         planet.setOrbitalOrder(orbitalOrder);
         planet.setOrbitZone(
                 generateOrbitZone(
@@ -113,8 +114,14 @@ public class PlanetDataLoader implements CommandLineRunner {
                 generateInfrastructure(planet)
         );
 
+        planet.setConsumptionProfile(
+        new PlanetConsumptionProfile(
+                planetConsumptionProfile.generateConsumption(planet)
+        )
+)       ;
+
         planet.setProductionProfile(
-        planetProductionProfile.generateProfile(planet)
+            planetProductionProfile.generateProfile(planet)
         );
 
         return planet;
