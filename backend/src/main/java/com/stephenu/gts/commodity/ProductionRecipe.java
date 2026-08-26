@@ -1,6 +1,6 @@
 package com.stephenu.gts.commodity;
 
-import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 
 import lombok.Getter;
@@ -14,12 +14,15 @@ public class ProductionRecipe {
 
     private double outputAmount;
 
-    private Map<CommodityType, Double> inputs =
-            new EnumMap<>(CommodityType.class);
+    private Map<Commodity, Double> inputs =
+            new HashMap<>();
+
+    private Map<Commodity, Double> tier1GoodTotals =
+            new HashMap<>();
 
     public ProductionRecipe(
             double outputAmount,
-            Map<CommodityType, Double> inputs) {
+            Map<Commodity, Double> inputs) {
 
         this.outputAmount = outputAmount;
         this.inputs = inputs;
