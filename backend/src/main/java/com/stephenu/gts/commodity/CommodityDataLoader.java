@@ -1,6 +1,5 @@
 package com.stephenu.gts.commodity;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -85,7 +84,9 @@ public class CommodityDataLoader implements CommandLineRunner {
                         ));
 
         createProductionRecipes(commodityMap);
-        calculateTier1GoodTotals(commodityMap);
+        for (Commodity commodity : commodities) {
+            commodity.calculateTier1GoodTotals();
+        }
     }
 
     /**
@@ -246,70 +247,5 @@ public class CommodityDataLoader implements CommandLineRunner {
                                 )
                         )
                 );
-    }
-
-    /**
-     * Calculates and stores the total Tier 1 requirements for each recipe.
-     *
-     * @param commodities Map of commodity types to their database entities.
-     */
-    private void calculateTier1GoodTotals(
-            Map<CommodityType, Commodity> commodities) {
-
-        for (Commodity commodity : commodities.values()) {
-
-            ProductionRecipe recipe =
-                    commodity.getProductionRecipe();
-
-            if (recipe == null) {
-                continue;
-            }
-
-            Map<Commodity, Double> totals =
-                    calculateTier1Requirements(commodity);
-
-            recipe.setTier1GoodTotals(totals);
-        }
-    }
-
-    /**
-     * Recursively resolves a commodity's production inputs into Tier 1 goods.
-     *
-     * @param commodity Commodity whose Tier 1 requirements are being calculated.
-     * @return Map containing the total Tier 1 input required.
-     */
-    private Map<Commodity, Double> calculateTier1Requirements(
-            Commodity commodity) {
-
-        Map<Commodity, Double> totals =
-                new HashMap<>();
-
-        ProductionRecipe recipe =
-                commodity.getProductionRecipe();
-
-        if (recipe == null) {
-            totals.put(commodity, 1.0);
-            return totals;
-        }
-
-        for (Map.Entry<Commodity, Double> entry :
-                recipe.getInputs().entrySet()) {
-
-            Commodity input = entry.getKey();
-            double quantity = entry.getValue();
-
-            Map<Commodity, Double> inputTotals =
-                    calculateTier1Requirements(input);
-
-            inputTotals.forEach((tier1Commodity, amount) ->
-                    totals.merge(
-                            tier1Commodity,
-                            amount * quantity,
-                            Double::sum
-                    )
-            );
-        }
-
-        return totals;
     }
 }
