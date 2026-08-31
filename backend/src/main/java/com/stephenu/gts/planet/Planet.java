@@ -411,7 +411,7 @@ public class Planet {
      * @param <T> Type of value being selected.
      * @return Selected value.
      */
-    private <T> T chooseWeighted(
+    public static <T> T chooseWeighted(
             List<T> choices,
             Random random) {
 
@@ -428,7 +428,7 @@ public class Planet {
      * @param orbitZone Planet's orbital zone.
      * @return Weighted planet type pool.
      */
-    private List<PlanetType> generatePlanetTypePool(
+    public List<PlanetType> generatePlanetTypePool(
             Region region,
             OrbitZone orbitZone) {
 
@@ -475,7 +475,7 @@ public class Planet {
      * @param orbitZone Planet's orbital zone.
      * @return Weighted feature pool.
      */
-    private List<PlanetFeature> generateFeaturePool(
+    public List<PlanetFeature> generateFeaturePool(
             Set<PlanetFeature> features,
             PlanetType type,
             OrbitZone orbitZone) {
@@ -899,7 +899,7 @@ public class Planet {
      * @param features Planetary features.
      * @return Weighted development pool.
      */
-    private List<DevelopmentLevel> generateDevelopmentPool(
+    public List<DevelopmentLevel> generateDevelopmentPool(
             PlanetType type,
             Region region,
             Set<PlanetFeature> features) {
@@ -1132,7 +1132,7 @@ public class Planet {
      * @param features Planetary features.
      * @return Weighted population pool.
      */
-    private List<PopulationLevel> generatePopulationPool(
+    public List<PopulationLevel> generatePopulationPool(
             PlanetType type,
             DevelopmentLevel development,
             Set<PlanetFeature> features) {
@@ -1283,7 +1283,7 @@ public class Planet {
      *
      * @return Weighted infrastructure pool.
      */
-    private List<InfrastructureLevel> generateInfrastructurePool() {
+    public List<InfrastructureLevel> generateInfrastructurePool() {
 
         List<InfrastructureLevel> pool =
                 new ArrayList<>(
@@ -1392,34 +1392,11 @@ public class Planet {
         return pool;
     }
 
-    public static int generatePlanetCount(Random random) {
-
-        return PLANET_COUNTS.get(
-                random.nextInt(PLANET_COUNTS.size())
-        );
-    }
-
     /*
      * ========================================================================
      * ===== Weighted Generation Pools
      * ========================================================================
      */
-
-
-    /*
-     * ===== Planet Counts =====
-     */
-
-    private static final List<Integer> PLANET_COUNTS =
-            List.of(
-                    1,
-                    2, 2,
-                    3, 3, 3, 3,
-                    4, 4, 4, 4, 4,
-                    5, 5,
-                    6, 6,
-                    7
-            );
 
 
     /*

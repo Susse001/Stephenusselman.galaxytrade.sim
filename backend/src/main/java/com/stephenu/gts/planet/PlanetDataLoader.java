@@ -44,8 +44,7 @@ public class PlanetDataLoader implements CommandLineRunner {
 
     private List<Planet> generatePlanets(StarSystem system) {
 
-        int planetCount =
-                Planet.generatePlanetCount(random);
+        int planetCount = chooseWeighted(PLANET_COUNTS);
 
         List<Planet> planets =
                 new ArrayList<>();
