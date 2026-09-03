@@ -18,67 +18,94 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PlanetResourceGenerator {
 
-    private final Random random = new Random();
     private final CommodityRepository commodityRepository;
 
-    public void generateAndAttachResources(Planet planet) {
+    public void generateAndAttachResources(
+            Planet planet,
+            Random random) {
 
-    Map<CommodityType, ResourceLevel> resources =
-            generateResources(planet);
+        Map<CommodityType, ResourceLevel> resources =
+                generateResources(planet, random);
 
-    resources.forEach((commodityType, resourceLevel) -> {
+        resources.forEach((commodityType, resourceLevel) -> {
 
-        Commodity commodity = commodityRepository.findByType(commodityType);
+            Commodity commodity =
+                    commodityRepository.findByType(commodityType);
 
-        planet.getResources().add(
-                new PlanetResource(
-                        planet,
-                        commodity,
-                        resourceLevel
-                )
-        );
-    });
-}
+            planet.getResources().add(
+                    new PlanetResource(
+                            planet,
+                            commodity,
+                            resourceLevel
+                    )
+            );
+        });
+    }
 
     public Map<CommodityType, ResourceLevel> generateResources(
-            Planet planet) {
+            Planet planet,
+            Random random) {
 
         return switch (planet.getPlanetType()) {
 
             case PlanetType.CONTINENTAL ->
-                    generateContinentalResources(planet);
+                    generateContinentalResources(
+                            planet,
+                            random
+                    );
 
             case PlanetType.OCEANIC ->
-                    generateOceanicResources(planet);
+                    generateOceanicResources(
+                            planet,
+                            random
+                    );
 
             case PlanetType.ALPINE ->
-                    generateAlpineResources(planet);
+                    generateAlpineResources(
+                            planet,
+                            random
+                    );
 
             case PlanetType.ARID ->
-                    generateAridResources(planet);
+                    generateAridResources(
+                            planet,
+                            random
+                    );
 
             case PlanetType.BARREN ->
-                    generateBarrenResources(planet);
+                    generateBarrenResources(
+                            planet,
+                            random
+                    );
 
             case PlanetType.VOLCANIC ->
-                    generateVolcanicResources(planet);
+                    generateVolcanicResources(
+                            planet,
+                            random
+                    );
 
             case PlanetType.FROZEN ->
-                    generateFrozenResources(planet);
+                    generateFrozenResources(
+                            planet,
+                            random
+                    );
 
             case PlanetType.CRYOVOLCANIC ->
-                    generateCryovolcanicResources(planet);
+                    generateCryovolcanicResources(
+                            planet,
+                            random
+                    );
         };
     }
 
-    private ResourceLevel choose(List<ResourceLevel> pool) {
-        return chooseWeighted(pool);
-    }
+    private <T> T chooseWeighted(
+            List<T> choices,
+            Random random) {
 
-    private <T> T chooseWeighted(List<T> choices) {
-    return choices.get(random.nextInt(choices.size()));
+        return choices.get(
+                random.nextInt(choices.size())
+        );
     }
-
 
     private void increase(
             Map<CommodityType, ResourceLevel> resources,
@@ -236,7 +263,6 @@ public class PlanetResourceGenerator {
         if (features.contains(PlanetFeature.POWERFUL_WEATHER_SYSTEMS)) {
 
             increase(resources, CommodityType.WATER);
-
             decrease(resources, CommodityType.FOOD);
         }
 
@@ -273,28 +299,55 @@ public class PlanetResourceGenerator {
         switch (population) {
 
             case TENS_OF_MILLIONS -> {
-                
             }
 
             case HUNDREDS_OF_MILLIONS -> {
 
-                decrease(resources, CommodityType.HYDROCARBONS);
+                decrease(
+                        resources,
+                        CommodityType.HYDROCARBONS
+                );
             }
 
             case BILLIONS -> {
 
-                decrease(resources, CommodityType.HYDROCARBONS);
-                decrease(resources, CommodityType.RARE_METALS);
+                decrease(
+                        resources,
+                        CommodityType.HYDROCARBONS
+                );
+
+                decrease(
+                        resources,
+                        CommodityType.RARE_METALS
+                );
             }
 
             case TENS_OF_BILLIONS -> {
 
-                decrease(resources, CommodityType.HYDROCARBONS);
-                decrease(resources, CommodityType.HYDROCARBONS);
+                decrease(
+                        resources,
+                        CommodityType.HYDROCARBONS
+                );
 
-                decrease(resources, CommodityType.COMMON_METALS);
-                decrease(resources, CommodityType.RARE_METALS);
-                decrease(resources, CommodityType.RARE_ELEMENTS);
+                decrease(
+                        resources,
+                        CommodityType.HYDROCARBONS
+                );
+
+                decrease(
+                        resources,
+                        CommodityType.COMMON_METALS
+                );
+
+                decrease(
+                        resources,
+                        CommodityType.RARE_METALS
+                );
+
+                decrease(
+                        resources,
+                        CommodityType.RARE_ELEMENTS
+                );
             }
         }
 
@@ -302,10 +355,10 @@ public class PlanetResourceGenerator {
     }
 
     /*
-    * ==========================================================
-    * CONTINENTAL
-    * ==========================================================
-    */
+     * ==========================================================
+     * CONTINENTAL
+     * ==========================================================
+     */
 
     /**
      * Generates the resource levels for a Continental planet.
@@ -315,52 +368,94 @@ public class PlanetResourceGenerator {
      * specializing in any particular one.
      */
     private Map<CommodityType, ResourceLevel> generateContinentalResources(
-                Planet planet) {
-
-        Set<PlanetFeature> features = planet.getFeatures();
+            Planet planet,
+            Random random) {
 
         Map<CommodityType, ResourceLevel> resources =
                 new EnumMap<>(CommodityType.class);
 
         resources.put(
                 CommodityType.FOOD,
-                choose(generateContinentalFoodPool(planet)));
+                chooseWeighted(
+                        generateContinentalFoodPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.WATER,
-                choose(generateContinentalWaterPool(planet)));
+                chooseWeighted(
+                        generateContinentalWaterPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.BIOMATERIALS,
-                choose(generateContinentalBiomaterialsPool(planet)));
+                chooseWeighted(
+                        generateContinentalBiomaterialsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.COMMON_METALS,
-                choose(generateContinentalCommonMetalsPool(planet)));
+                chooseWeighted(
+                        generateContinentalCommonMetalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_METALS,
-                choose(generateContinentalRareMetalsPool(planet)));
+                chooseWeighted(
+                        generateContinentalRareMetalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_MINERALS,
-                choose(generateContinentalIndustrialMineralsPool(planet)));
+                chooseWeighted(
+                        generateContinentalIndustrialMineralsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.HYDROCARBONS,
-                choose(generateContinentalHydrocarbonsPool(planet)));
+                chooseWeighted(
+                        generateContinentalHydrocarbonsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_CHEMICALS,
-                choose(generateContinentalIndustrialChemicalsPool(planet)));
+                chooseWeighted(
+                        generateContinentalIndustrialChemicalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_ELEMENTS,
-                choose(generateContinentalRareElementsPool(planet)));
+                chooseWeighted(
+                        generateContinentalRareElementsPool(planet),
+                        random
+                )
+        );
 
-        resources = applyPlanetFeatures(resources, features);
-        resources = applyPopulationLevel(resources, planet.getPopulation());
-        
+        resources = applyPlanetFeatures(
+                resources,
+                planet.getFeatures()
+        );
+
+        resources = applyPopulationLevel(
+                resources,
+                planet.getPopulation()
+        );
+
         return resources;
     }
 
@@ -464,76 +559,115 @@ public class PlanetResourceGenerator {
     }
 
     /*
-    * ==========================================================
-    * Oceanic
-    * ==========================================================
-    */
-
-    /**
-     * Generates the resource levels for an Oceanic planet.
-     *
-     * Oceanic worlds excel at biological production and water
-     * resources while generally possessing fewer accessible
-     * mineral deposits than Continental worlds.
+     * ==========================================================
+     * OCEANIC
+     * ==========================================================
      */
+
     private Map<CommodityType, ResourceLevel> generateOceanicResources(
-            Planet planet) {
-
-        Set<PlanetFeature> features = planet.getFeatures();
+            Planet planet,
+            Random random) {
 
         Map<CommodityType, ResourceLevel> resources =
                 new EnumMap<>(CommodityType.class);
 
         resources.put(
                 CommodityType.FOOD,
-                choose(generateOceanicFoodPool(planet)));
+                chooseWeighted(
+                        generateOceanicFoodPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.WATER,
-                choose(generateOceanicWaterPool(planet)));
+                chooseWeighted(
+                        generateOceanicWaterPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.BIOMATERIALS,
-                choose(generateOceanicBiomaterialsPool(planet)));
+                chooseWeighted(
+                        generateOceanicBiomaterialsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.COMMON_METALS,
-                choose(generateOceanicCommonMetalsPool(planet)));
+                chooseWeighted(
+                        generateOceanicCommonMetalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_METALS,
-                choose(generateOceanicRareMetalsPool(planet)));
+                chooseWeighted(
+                        generateOceanicRareMetalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_MINERALS,
-                choose(generateOceanicIndustrialMineralsPool(planet)));
+                chooseWeighted(
+                        generateOceanicIndustrialMineralsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.HYDROCARBONS,
-                choose(generateOceanicHydrocarbonsPool(planet)));
+                chooseWeighted(
+                        generateOceanicHydrocarbonsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_CHEMICALS,
-                choose(generateOceanicIndustrialChemicalsPool(planet)));
+                chooseWeighted(
+                        generateOceanicIndustrialChemicalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_ELEMENTS,
-                choose(generateOceanicRareElementsPool(planet)));
+                chooseWeighted(
+                        generateOceanicRareElementsPool(planet),
+                        random
+                )
+        );
 
-        resources = applyPlanetFeatures(resources, features);
-        resources = applyPopulationLevel(resources, planet.getPopulation());
+        resources = applyPlanetFeatures(
+                resources,
+                planet.getFeatures()
+        );
+
+        resources = applyPopulationLevel(
+                resources,
+                planet.getPopulation()
+        );
 
         return resources;
     }
 
-    private List<ResourceLevel> generateOceanicFoodPool(Planet planet) {
+    private List<ResourceLevel> generateOceanicFoodPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.RICH
         );
     }
 
-    private List<ResourceLevel> generateOceanicWaterPool(Planet planet) {
+    private List<ResourceLevel> generateOceanicWaterPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.RICH,
@@ -542,7 +676,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateOceanicBiomaterialsPool(Planet planet) {
+    private List<ResourceLevel> generateOceanicBiomaterialsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.RICH,
@@ -550,7 +686,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateOceanicCommonMetalsPool(Planet planet) {
+    private List<ResourceLevel> generateOceanicCommonMetalsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.AVERAGE,
@@ -559,14 +697,18 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateOceanicRareMetalsPool(Planet planet) {
+    private List<ResourceLevel> generateOceanicRareMetalsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.AVERAGE
         );
     }
 
-    private List<ResourceLevel> generateOceanicIndustrialMineralsPool(Planet planet) {
+    private List<ResourceLevel> generateOceanicIndustrialMineralsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.AVERAGE,
@@ -575,7 +717,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateOceanicHydrocarbonsPool(Planet planet) {
+    private List<ResourceLevel> generateOceanicHydrocarbonsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.AVERAGE,
@@ -584,7 +728,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateOceanicIndustrialChemicalsPool(Planet planet) {
+    private List<ResourceLevel> generateOceanicIndustrialChemicalsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.AVERAGE,
@@ -592,7 +738,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateOceanicRareElementsPool(Planet planet) {
+    private List<ResourceLevel> generateOceanicRareElementsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.SCARCE,
@@ -601,68 +749,106 @@ public class PlanetResourceGenerator {
     }
 
     /*
-    * ==========================================================
-    * Arid
-    * ==========================================================
-    */
-
-    /**
-     * Generates the resource levels for an Arid planet.
-     *
-     * Arid worlds trade biological productivity for mineral
-     * wealth and are frequently developed as extraction colonies.
+     * ==========================================================
+     * ARID
+     * ==========================================================
      */
+
     private Map<CommodityType, ResourceLevel> generateAridResources(
-            Planet planet) {
-
-        Set<PlanetFeature> features = planet.getFeatures();
+            Planet planet,
+            Random random) {
 
         Map<CommodityType, ResourceLevel> resources =
                 new EnumMap<>(CommodityType.class);
 
         resources.put(
                 CommodityType.FOOD,
-                choose(generateAridFoodPool(planet)));
+                chooseWeighted(
+                        generateAridFoodPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.WATER,
-                choose(generateAridWaterPool(planet)));
+                chooseWeighted(
+                        generateAridWaterPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.BIOMATERIALS,
-                choose(generateAridBiomaterialsPool(planet)));
+                chooseWeighted(
+                        generateAridBiomaterialsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.COMMON_METALS,
-                choose(generateAridCommonMetalsPool(planet)));
+                chooseWeighted(
+                        generateAridCommonMetalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_METALS,
-                choose(generateAridRareMetalsPool(planet)));
+                chooseWeighted(
+                        generateAridRareMetalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_MINERALS,
-                choose(generateAridIndustrialMineralsPool(planet)));
+                chooseWeighted(
+                        generateAridIndustrialMineralsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.HYDROCARBONS,
-                choose(generateAridHydrocarbonsPool(planet)));
+                chooseWeighted(
+                        generateAridHydrocarbonsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_CHEMICALS,
-                choose(generateAridIndustrialChemicalsPool(planet)));
+                chooseWeighted(
+                        generateAridIndustrialChemicalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_ELEMENTS,
-                choose(generateAridRareElementsPool(planet)));
+                chooseWeighted(
+                        generateAridRareElementsPool(planet),
+                        random
+                )
+        );
 
-        resources = applyPlanetFeatures(resources, features);
-        resources = applyPopulationLevel(resources, planet.getPopulation());
+        resources = applyPlanetFeatures(
+                resources,
+                planet.getFeatures()
+        );
+
+        resources = applyPopulationLevel(
+                resources,
+                planet.getPopulation()
+        );
 
         return resources;
     }
 
-    private List<ResourceLevel> generateAridFoodPool(Planet planet) {
+    private List<ResourceLevel> generateAridFoodPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.AVERAGE,
@@ -671,15 +857,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAridWaterPool(Planet planet) {
-        return List.of(
-                ResourceLevel.SCARCE,
-                ResourceLevel.AVERAGE,
-                ResourceLevel.AVERAGE
-        );
-    }
+    private List<ResourceLevel> generateAridWaterPool(
+            Planet planet) {
 
-    private List<ResourceLevel> generateAridBiomaterialsPool(Planet planet) {
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.AVERAGE,
@@ -687,7 +867,19 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAridCommonMetalsPool(Planet planet) {
+    private List<ResourceLevel> generateAridBiomaterialsPool(
+            Planet planet) {
+
+        return List.of(
+                ResourceLevel.SCARCE,
+                ResourceLevel.AVERAGE,
+                ResourceLevel.AVERAGE
+        );
+    }
+
+    private List<ResourceLevel> generateAridCommonMetalsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.RICH,
@@ -695,7 +887,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAridRareMetalsPool(Planet planet) {
+    private List<ResourceLevel> generateAridRareMetalsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.AVERAGE,
@@ -703,7 +897,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAridIndustrialMineralsPool(Planet planet) {
+    private List<ResourceLevel> generateAridIndustrialMineralsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.AVERAGE,
@@ -711,7 +907,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAridHydrocarbonsPool(Planet planet) {
+    private List<ResourceLevel> generateAridHydrocarbonsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.RICH,
@@ -719,7 +917,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAridIndustrialChemicalsPool(Planet planet) {
+    private List<ResourceLevel> generateAridIndustrialChemicalsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.AVERAGE,
@@ -727,7 +927,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAridRareElementsPool(Planet planet) {
+    private List<ResourceLevel> generateAridRareElementsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.AVERAGE,
@@ -736,69 +938,106 @@ public class PlanetResourceGenerator {
     }
 
     /*
-    * ==========================================================
-    * Alpine
-    * ==========================================================
-    */
-
-    /**
-     * Generates the resource levels for an Alpine planet.
-     *
-     * Alpine worlds are rugged but habitable, combining
-     * moderate biological productivity with above-average
-     * mineral wealth.
+     * ==========================================================
+     * ALPINE
+     * ==========================================================
      */
+
     private Map<CommodityType, ResourceLevel> generateAlpineResources(
-            Planet planet) {
-
-        Set<PlanetFeature> features = planet.getFeatures();
+            Planet planet,
+            Random random) {
 
         Map<CommodityType, ResourceLevel> resources =
                 new EnumMap<>(CommodityType.class);
 
         resources.put(
                 CommodityType.FOOD,
-                choose(generateAlpineFoodPool(planet)));
+                chooseWeighted(
+                        generateAlpineFoodPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.WATER,
-                choose(generateAlpineWaterPool(planet)));
+                chooseWeighted(
+                        generateAlpineWaterPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.BIOMATERIALS,
-                choose(generateAlpineBiomaterialsPool(planet)));
+                chooseWeighted(
+                        generateAlpineBiomaterialsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.COMMON_METALS,
-                choose(generateAlpineCommonMetalsPool(planet)));
+                chooseWeighted(
+                        generateAlpineCommonMetalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_METALS,
-                choose(generateAlpineRareMetalsPool(planet)));
+                chooseWeighted(
+                        generateAlpineRareMetalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_MINERALS,
-                choose(generateAlpineIndustrialMineralsPool(planet)));
+                chooseWeighted(
+                        generateAlpineIndustrialMineralsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.HYDROCARBONS,
-                choose(generateAlpineHydrocarbonsPool(planet)));
+                chooseWeighted(
+                        generateAlpineHydrocarbonsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_CHEMICALS,
-                choose(generateAlpineIndustrialChemicalsPool(planet)));
+                chooseWeighted(
+                        generateAlpineIndustrialChemicalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_ELEMENTS,
-                choose(generateAlpineRareElementsPool(planet)));
+                chooseWeighted(
+                        generateAlpineRareElementsPool(planet),
+                        random
+                )
+        );
 
-        resources = applyPlanetFeatures(resources, features);
-        resources = applyPopulationLevel(resources, planet.getPopulation());
+        resources = applyPlanetFeatures(
+                resources,
+                planet.getFeatures()
+        );
+
+        resources = applyPopulationLevel(
+                resources,
+                planet.getPopulation()
+        );
 
         return resources;
     }
 
-    private List<ResourceLevel> generateAlpineFoodPool(Planet planet) {
+    private List<ResourceLevel> generateAlpineFoodPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.AVERAGE,
@@ -807,7 +1046,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAlpineWaterPool(Planet planet) {
+    private List<ResourceLevel> generateAlpineWaterPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.AVERAGE,
@@ -815,7 +1056,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAlpineBiomaterialsPool(Planet planet) {
+    private List<ResourceLevel> generateAlpineBiomaterialsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.AVERAGE,
@@ -823,7 +1066,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAlpineCommonMetalsPool(Planet planet) {
+    private List<ResourceLevel> generateAlpineCommonMetalsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.RICH,
@@ -831,7 +1076,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAlpineRareMetalsPool(Planet planet) {
+    private List<ResourceLevel> generateAlpineRareMetalsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.AVERAGE,
@@ -839,7 +1086,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAlpineIndustrialMineralsPool(Planet planet) {
+    private List<ResourceLevel> generateAlpineIndustrialMineralsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.RICH,
@@ -847,7 +1096,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAlpineHydrocarbonsPool(Planet planet) {
+    private List<ResourceLevel> generateAlpineHydrocarbonsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.AVERAGE,
@@ -855,7 +1106,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAlpineIndustrialChemicalsPool(Planet planet) {
+    private List<ResourceLevel> generateAlpineIndustrialChemicalsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.AVERAGE,
@@ -863,7 +1116,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateAlpineRareElementsPool(Planet planet) {
+    private List<ResourceLevel> generateAlpineRareElementsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.AVERAGE,
@@ -872,76 +1127,115 @@ public class PlanetResourceGenerator {
     }
 
     /*
-    * ==========================================================
-    * Frozen
-    * ==========================================================
-    */
-
-    /**
-     * Generates the resource levels for a Frozen planet.
-     *
-     * Frozen worlds possess enormous freshwater reserves and
-     * respectable mineral wealth, but limited biological
-     * productivity due to their harsh climates.
+     * ==========================================================
+     * FROZEN
+     * ==========================================================
      */
+
     private Map<CommodityType, ResourceLevel> generateFrozenResources(
-            Planet planet) {
-
-        Set<PlanetFeature> features = planet.getFeatures();
+            Planet planet,
+            Random random) {
 
         Map<CommodityType, ResourceLevel> resources =
                 new EnumMap<>(CommodityType.class);
 
         resources.put(
                 CommodityType.FOOD,
-                choose(generateFrozenFoodPool(planet)));
+                chooseWeighted(
+                        generateFrozenFoodPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.WATER,
-                choose(generateFrozenWaterPool(planet)));
+                chooseWeighted(
+                        generateFrozenWaterPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.BIOMATERIALS,
-                choose(generateFrozenBiomaterialsPool(planet)));
+                chooseWeighted(
+                        generateFrozenBiomaterialsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.COMMON_METALS,
-                choose(generateFrozenCommonMetalsPool(planet)));
+                chooseWeighted(
+                        generateFrozenCommonMetalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_METALS,
-                choose(generateFrozenRareMetalsPool(planet)));
+                chooseWeighted(
+                        generateFrozenRareMetalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_MINERALS,
-                choose(generateFrozenIndustrialMineralsPool(planet)));
+                chooseWeighted(
+                        generateFrozenIndustrialMineralsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.HYDROCARBONS,
-                choose(generateFrozenHydrocarbonsPool(planet)));
+                chooseWeighted(
+                        generateFrozenHydrocarbonsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_CHEMICALS,
-                choose(generateFrozenIndustrialChemicalsPool(planet)));
+                chooseWeighted(
+                        generateFrozenIndustrialChemicalsPool(planet),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_ELEMENTS,
-                choose(generateFrozenRareElementsPool(planet)));
+                chooseWeighted(
+                        generateFrozenRareElementsPool(planet),
+                        random
+                )
+        );
 
-        resources = applyPlanetFeatures(resources, features);
-        resources = applyPopulationLevel(resources, planet.getPopulation());
+        resources = applyPlanetFeatures(
+                resources,
+                planet.getFeatures()
+        );
+
+        resources = applyPopulationLevel(
+                resources,
+                planet.getPopulation()
+        );
 
         return resources;
     }
 
-    private List<ResourceLevel> generateFrozenFoodPool(Planet planet) {
+    private List<ResourceLevel> generateFrozenFoodPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.AVERAGE
         );
     }
 
-    private List<ResourceLevel> generateFrozenWaterPool(Planet planet) {
+    private List<ResourceLevel> generateFrozenWaterPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.RICH,
@@ -949,14 +1243,18 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateFrozenBiomaterialsPool(Planet planet) {
+    private List<ResourceLevel> generateFrozenBiomaterialsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.AVERAGE
         );
     }
 
-    private List<ResourceLevel> generateFrozenCommonMetalsPool(Planet planet) {
+    private List<ResourceLevel> generateFrozenCommonMetalsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.AVERAGE,
@@ -964,7 +1262,9 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateFrozenRareMetalsPool(Planet planet) {
+    private List<ResourceLevel> generateFrozenRareMetalsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.AVERAGE,
@@ -972,14 +1272,18 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateFrozenIndustrialMineralsPool(Planet planet) {
+    private List<ResourceLevel> generateFrozenIndustrialMineralsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.RICH
         );
     }
 
-    private List<ResourceLevel> generateFrozenHydrocarbonsPool(Planet planet) {
+    private List<ResourceLevel> generateFrozenHydrocarbonsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.SCARCE,
                 ResourceLevel.AVERAGE,
@@ -987,14 +1291,18 @@ public class PlanetResourceGenerator {
         );
     }
 
-    private List<ResourceLevel> generateFrozenIndustrialChemicalsPool(Planet planet) {
+    private List<ResourceLevel> generateFrozenIndustrialChemicalsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.RICH
         );
     }
 
-    private List<ResourceLevel> generateFrozenRareElementsPool(Planet planet) {
+    private List<ResourceLevel> generateFrozenRareElementsPool(
+            Planet planet) {
+
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.AVERAGE,
@@ -1003,63 +1311,99 @@ public class PlanetResourceGenerator {
     }
 
     /*
-    * ==========================================================
-    * Barren
-    * ==========================================================
-    */
-
-    /**
-     * Generates the resource levels for a Barren planet.
-     *
-     * Barren worlds are poor in biological resources but are
-     * often among the galaxy's richest sources of mineral wealth.
+     * ==========================================================
+     * BARREN
+     * ==========================================================
      */
-    private Map<CommodityType, ResourceLevel> generateBarrenResources(
-            Planet planet) {
 
-        Set<PlanetFeature> features = planet.getFeatures();
+    private Map<CommodityType, ResourceLevel> generateBarrenResources(
+            Planet planet,
+            Random random) {
 
         Map<CommodityType, ResourceLevel> resources =
                 new EnumMap<>(CommodityType.class);
 
         resources.put(
                 CommodityType.FOOD,
-                choose(generateBarrenFoodPool()));
+                chooseWeighted(
+                        generateBarrenFoodPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.WATER,
-                choose(generateBarrenWaterPool()));
+                chooseWeighted(
+                        generateBarrenWaterPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.BIOMATERIALS,
-                choose(generateBarrenBiomaterialsPool()));
+                chooseWeighted(
+                        generateBarrenBiomaterialsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.COMMON_METALS,
-                choose(generateBarrenCommonMetalsPool()));
+                chooseWeighted(
+                        generateBarrenCommonMetalsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_METALS,
-                choose(generateBarrenRareMetalsPool()));
+                chooseWeighted(
+                        generateBarrenRareMetalsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_MINERALS,
-                choose(generateBarrenIndustrialMineralsPool()));
+                chooseWeighted(
+                        generateBarrenIndustrialMineralsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.HYDROCARBONS,
-                choose(generateBarrenHydrocarbonsPool()));
+                chooseWeighted(
+                        generateBarrenHydrocarbonsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_CHEMICALS,
-                choose(generateBarrenIndustrialChemicalsPool()));
+                chooseWeighted(
+                        generateBarrenIndustrialChemicalsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_ELEMENTS,
-                choose(generateBarrenRareElementsPool()));
+                chooseWeighted(
+                        generateBarrenRareElementsPool(),
+                        random
+                )
+        );
 
-        resources = applyPlanetFeatures(resources, features);
-        resources = applyPopulationLevel(resources, planet.getPopulation());
+        resources = applyPlanetFeatures(
+                resources,
+                planet.getFeatures()
+        );
+
+        resources = applyPopulationLevel(
+                resources,
+                planet.getPopulation()
+        );
 
         return resources;
     }
@@ -1134,64 +1478,99 @@ public class PlanetResourceGenerator {
     }
 
     /*
-    * ==========================================================
-    * Volcanic
-    * ==========================================================
-    */
-
-    /**
-     * Generates the resource levels for a Volcanic planet.
-     *
-     * Volcanic worlds are extremely mineral rich but biologically poor.
-     * They excel at metals, minerals, and geothermal resources while
-     * producing very little food or water.
+     * ==========================================================
+     * VOLCANIC
+     * ==========================================================
      */
-    private Map<CommodityType, ResourceLevel> generateVolcanicResources(
-            Planet planet) {
 
-        Set<PlanetFeature> features = planet.getFeatures();
+    private Map<CommodityType, ResourceLevel> generateVolcanicResources(
+            Planet planet,
+            Random random) {
 
         Map<CommodityType, ResourceLevel> resources =
                 new EnumMap<>(CommodityType.class);
 
         resources.put(
                 CommodityType.FOOD,
-                choose(generateVolcanicFoodPool()));
+                chooseWeighted(
+                        generateVolcanicFoodPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.WATER,
-                choose(generateVolcanicWaterPool()));
+                chooseWeighted(
+                        generateVolcanicWaterPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.BIOMATERIALS,
-                choose(generateVolcanicBiomaterialsPool()));
+                chooseWeighted(
+                        generateVolcanicBiomaterialsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.COMMON_METALS,
-                choose(generateVolcanicCommonMetalsPool()));
+                chooseWeighted(
+                        generateVolcanicCommonMetalsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_METALS,
-                choose(generateVolcanicRareMetalsPool()));
+                chooseWeighted(
+                        generateVolcanicRareMetalsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_MINERALS,
-                choose(generateVolcanicIndustrialMineralsPool()));
+                chooseWeighted(
+                        generateVolcanicIndustrialMineralsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.HYDROCARBONS,
-                choose(generateVolcanicHydrocarbonsPool()));
+                chooseWeighted(
+                        generateVolcanicHydrocarbonsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_CHEMICALS,
-                choose(generateVolcanicIndustrialChemicalsPool()));
+                chooseWeighted(
+                        generateVolcanicIndustrialChemicalsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_ELEMENTS,
-                choose(generateVolcanicRareElementsPool()));
+                chooseWeighted(
+                        generateVolcanicRareElementsPool(),
+                        random
+                )
+        );
 
-        resources = applyPlanetFeatures(resources, features);
-        resources = applyPopulationLevel(resources, planet.getPopulation());
+        resources = applyPlanetFeatures(
+                resources,
+                planet.getFeatures()
+        );
+
+        resources = applyPopulationLevel(
+                resources,
+                planet.getPopulation()
+        );
 
         return resources;
     }
@@ -1261,65 +1640,100 @@ public class PlanetResourceGenerator {
         );
     }
 
-     /*
-    * ==========================================================
-    * Cryovolcanic
-    * ==========================================================
-    */
-
-    /**
-     * Generates the resource levels for a Cryovolcanic planet.
-     *
-     * Cryovolcanic worlds are geologically active frozen planets.
-     * They are poor agricultural worlds but rich in volatiles,
-     * industrial chemicals, and exotic elements.
+    /*
+     * ==========================================================
+     * CRYOVOLCANIC
+     * ==========================================================
      */
-    private Map<CommodityType, ResourceLevel> generateCryovolcanicResources(
-            Planet planet) {
 
-        Set<PlanetFeature> features = planet.getFeatures();
+    private Map<CommodityType, ResourceLevel> generateCryovolcanicResources(
+            Planet planet,
+            Random random) {
 
         Map<CommodityType, ResourceLevel> resources =
                 new EnumMap<>(CommodityType.class);
 
         resources.put(
                 CommodityType.FOOD,
-                choose(generateCryovolcanicFoodPool()));
+                chooseWeighted(
+                        generateCryovolcanicFoodPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.WATER,
-                choose(generateCryovolcanicWaterPool()));
+                chooseWeighted(
+                        generateCryovolcanicWaterPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.BIOMATERIALS,
-                choose(generateCryovolcanicBiomaterialsPool()));
+                chooseWeighted(
+                        generateCryovolcanicBiomaterialsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.COMMON_METALS,
-                choose(generateCryovolcanicCommonMetalsPool()));
+                chooseWeighted(
+                        generateCryovolcanicCommonMetalsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_METALS,
-                choose(generateCryovolcanicRareMetalsPool()));
+                chooseWeighted(
+                        generateCryovolcanicRareMetalsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_MINERALS,
-                choose(generateCryovolcanicIndustrialMineralsPool()));
+                chooseWeighted(
+                        generateCryovolcanicIndustrialMineralsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.HYDROCARBONS,
-                choose(generateCryovolcanicHydrocarbonsPool()));
+                chooseWeighted(
+                        generateCryovolcanicHydrocarbonsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.INDUSTRIAL_CHEMICALS,
-                choose(generateCryovolcanicIndustrialChemicalsPool()));
+                chooseWeighted(
+                        generateCryovolcanicIndustrialChemicalsPool(),
+                        random
+                )
+        );
 
         resources.put(
                 CommodityType.RARE_ELEMENTS,
-                choose(generateCryovolcanicRareElementsPool()));
+                chooseWeighted(
+                        generateCryovolcanicRareElementsPool(),
+                        random
+                )
+        );
 
-        resources = applyPlanetFeatures(resources, features);
-        resources = applyPopulationLevel(resources, planet.getPopulation());
+        resources = applyPlanetFeatures(
+                resources,
+                planet.getFeatures()
+        );
+
+        resources = applyPopulationLevel(
+                resources,
+                planet.getPopulation()
+        );
 
         return resources;
     }
@@ -1390,5 +1804,4 @@ public class PlanetResourceGenerator {
                 ResourceLevel.RICH
         );
     }
-
 }

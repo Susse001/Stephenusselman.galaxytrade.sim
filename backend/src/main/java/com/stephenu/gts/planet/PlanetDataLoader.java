@@ -70,7 +70,10 @@ public class PlanetDataLoader implements CommandLineRunner {
                     random
             );
 
-            planetResourceGenerator.generateAndAttachResources(planet);
+            planetResourceGenerator.generateAndAttachResources(
+                planet,
+                random
+            );
 
             planet.setConsumptionProfile(
                 planetConsumptionProfile.generateConsumption(planet)
