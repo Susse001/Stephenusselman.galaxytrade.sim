@@ -20,9 +20,9 @@ public class PlanetDataLoader implements CommandLineRunner {
 
     private final PlanetRepository planetRepository;
     private final StarSystemRepository starSystemRepository;
-    PlanetResourceGenerator planetResourceGenerator = new PlanetResourceGenerator();
-    PlanetConsumptionProfile planetConsumptionProfile = new PlanetConsumptionProfile();
-    PlanetProductionProfile planetProductionProfile = new PlanetProductionProfile();
+    private final PlanetResourceGenerator planetResourceGenerator;
+    private final PlanetConsumptionProfile planetConsumptionProfile;
+    private final PlanetProductionProfile planetProductionProfile;
 
     private final Random random = new Random();
 
@@ -44,7 +44,17 @@ public class PlanetDataLoader implements CommandLineRunner {
 
     private List<Planet> generatePlanets(StarSystem system) {
 
-        int planetCount = chooseWeighted(PLANET_COUNTS);
+        final List<Integer> PLANET_COUNTS = List.of(
+        1,
+        2, 2,
+        3, 3, 3, 3,
+        4, 4, 4, 4, 4,
+        5, 5,
+        6, 6,
+        7
+    );
+
+    int planetCount = Planet.chooseWeighted(PLANET_COUNTS, random);
 
         List<Planet> planets =
                 new ArrayList<>();
@@ -58,6 +68,16 @@ public class PlanetDataLoader implements CommandLineRunner {
                     i,
                     planetCount,
                     random
+            );
+
+            planetResourceGenerator.generateAndAttachResources(planet);
+
+            planet.setConsumptionProfile(
+                planetConsumptionProfile.generateConsumption(planet)
+            );
+
+            planet.setProductionProfile(
+                planetProductionProfile.generateProfile(planet)
             );
 
             system.addPlanet(planet);

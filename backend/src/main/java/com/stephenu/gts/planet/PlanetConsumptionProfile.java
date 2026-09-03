@@ -3,12 +3,15 @@ package com.stephenu.gts.planet;
 import java.util.EnumMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import com.stephenu.gts.commodity.CommodityType;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Component
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,7 +26,7 @@ public class PlanetConsumptionProfile {
         this.consumption = consumption;
     }
 
-    public Map<CommodityType, Double> generateConsumption(
+    public PlanetConsumptionProfile generateConsumption(
             Planet planet) {
 
         Map<CommodityType, Double> consumption =
@@ -37,7 +40,7 @@ public class PlanetConsumptionProfile {
                 consumption,
                 planet.getDevelopment());
 
-        return consumption;
+        return new PlanetConsumptionProfile(consumption);
     }
 
     private Map<CommodityType, Double> createBaselineConsumption() {

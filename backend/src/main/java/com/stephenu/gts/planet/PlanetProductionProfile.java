@@ -4,12 +4,15 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
+
 import com.stephenu.gts.commodity.CommodityType;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Component
 @Getter
 @Setter
 @NoArgsConstructor

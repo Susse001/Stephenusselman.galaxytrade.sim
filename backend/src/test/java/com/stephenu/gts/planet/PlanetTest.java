@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,8 @@ import com.stephenu.gts.starsystem.Region;
 import com.stephenu.gts.starsystem.StarSystem;
 
 class PlanetTest {
+
+    private final Random random = new Random();
 
     @Test
     void coreInnerPlanetTypePoolIsCorrect() {
@@ -431,7 +434,8 @@ class PlanetTest {
         planet.generate(
                 system,
                 2,
-                3
+                3,
+                random
         );
 
         assertNotNull(planet.getStarSystem());
@@ -476,7 +480,8 @@ class PlanetTest {
         planet.generate(
                 system,
                 2,
-                3
+                3, 
+                random
         );
 
         assertTrue(
@@ -497,7 +502,8 @@ class PlanetTest {
         planet.generate(
                 system,
                 2,
-                3
+                3,
+                random
         );
 
         assertEquals(
@@ -524,7 +530,8 @@ class PlanetTest {
         planet.generate(
                 system,
                 4,
-                6
+                6,
+                random
         );
 
         assertEquals(

@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class PlanetResourceGenerator {
 
     private final Random random = new Random();
-    private CommodityRepository commodityRepository;
+    private final CommodityRepository commodityRepository;
 
     public void generateAndAttachResources(Planet planet) {
 
@@ -125,6 +125,9 @@ public class PlanetResourceGenerator {
             Map<CommodityType, ResourceLevel> resources,
             Set<PlanetFeature> features) {
 
+        if (features == null) {
+            return resources;
+        }
 
         if (features.contains(PlanetFeature.ASTEROID_BELT)) {
 
@@ -262,6 +265,10 @@ public class PlanetResourceGenerator {
     private Map<CommodityType, ResourceLevel> applyPopulationLevel(
             Map<CommodityType, ResourceLevel> resources,
             PopulationLevel population) {
+
+        if (population == null) {
+            return resources;
+        }
 
         switch (population) {
 

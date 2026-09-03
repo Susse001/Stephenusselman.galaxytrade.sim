@@ -193,29 +193,11 @@ public class Planet {
                         random
                 );
 
-        this.resources.clear();
+        this.infrastructure = 
+                generateInfrastructure(
+                    random)
+                ;
 
-        PlanetResourceGenerator resourceGenerator =
-                new PlanetResourceGenerator();
-
-        resourceGenerator.generateAndAttachResources(this);
-
-        this.infrastructure =
-                generateInfrastructure(random);
-
-        PlanetConsumptionProfile consumptionGenerator =
-                new PlanetConsumptionProfile();
-
-        this.consumptionProfile =
-                new PlanetConsumptionProfile(
-                        consumptionGenerator.generateConsumption(this)
-                );
-
-        PlanetProductionProfile productionGenerator =
-                new PlanetProductionProfile();
-
-        this.productionProfile =
-                productionGenerator.generateProfile(this);
     }
 
     /**
