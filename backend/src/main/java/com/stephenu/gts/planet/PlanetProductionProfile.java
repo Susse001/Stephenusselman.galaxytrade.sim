@@ -320,4 +320,8 @@ public class PlanetProductionProfile {
     public Map<CommodityType, Double> getBaseManufacturing() {
         return BASE_MANUFACTURING;
     }
+
+    public Map<CommodityType, Double> getBaseExtraction() {
+        return BASE_EXTRACTION;
+    }
 }
