@@ -43,7 +43,7 @@ public class PlanetConsumptionProfile {
         return new PlanetConsumptionProfile(consumption);
     }
 
-    private Map<CommodityType, Double> createBaselineConsumption() {
+    public Map<CommodityType, Double> createBaselineConsumption() {
 
         Map<CommodityType, Double> consumption =
                 new EnumMap<>(CommodityType.class);
@@ -81,6 +81,10 @@ public class PlanetConsumptionProfile {
         Map<CommodityType, Double> consumption,
         PopulationLevel population) {
 
+        if (population == null) {
+            return consumption;
+        }
+
         double multiplier = switch (population) {
 
             case TENS_OF_MILLIONS -> 0.10;
@@ -97,6 +101,10 @@ public class PlanetConsumptionProfile {
     private Map<CommodityType, Double> applyDevelopmentLevel(
         Map<CommodityType, Double> consumption,
         DevelopmentLevel development) {
+
+        if (development == null) {
+            return consumption;
+        }
 
         switch (development) {
 
