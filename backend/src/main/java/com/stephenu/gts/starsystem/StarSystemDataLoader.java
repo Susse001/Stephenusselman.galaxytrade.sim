@@ -32,15 +32,104 @@ public class StarSystemDataLoader implements CommandLineRunner {
 
     private static final List<String> SYSTEM_NAMES = List.of(
             "Aquila",
+            "Altair",
+            "Andromeda",
+            "Antares",
+            "Arcturus",
+            "Aries",
+            "Auriga",
+            "Bellatrix",
+            "Canopus",
+            "Capella",
+            "Cassiopeia",
+            "Centauri",
+            "Cepheus",
+            "Cetus",
             "Cygnus",
+            "Deneb",
             "Draco",
+            "Eridanus",
+            "Fornax",
+            "Gemini",
+            "Hydra",
+            "Indus",
+            "Leo",
+            "Libra",
+            "Lyra",
+            "Mira",
+            "Musca",
+            "Norma",
             "Orion",
             "Pegasus",
-            "Lyra",
-            "Vega",
-            "Altair",
+            "Perseus",
+            "Phoenix",
+            "Pictor",
+            "Pavo",
+            "Rigel",
+            "Sculptor",
+            "Serpens",
             "Sirius",
-            "Deneb"
+            "Taurus",
+            "Triangulum",
+            "Tucana",
+            "Ursa",
+            "Vela",
+            "Vega",
+            "Volans",
+            "Aldebaran",
+            "Alcyone",
+            "Alnitak",
+            "Alnilam",
+            "Alphard",
+            "Alphecca",
+            "Alpheratz",
+            "Ankaa",
+            "Ascella",
+            "Atik",
+            "Baten",
+            "Borealis",
+            "Castor",
+            "Cebalrai",
+            "Cursa",
+            "Diphda",
+            "Dubhe",
+            "Electra",
+            "Eltanin",
+            "Enif",
+            "Fomalhaut",
+            "Gienah",
+            "Hamal",
+            "Izar",
+            "Kaus",
+            "Kochab",
+            "Maia",
+            "Markab",
+            "Menkar",
+            "Merak",
+            "Mintaka",
+            "Mirach",
+            "Mizar",
+            "Nashira",
+            "Navi",
+            "Nunki",
+            "Pollux",
+            "Procyon",
+            "Rasalhague",
+            "Regulus",
+            "Sabik",
+            "Saiph",
+            "Scheat",
+            "Shaula",
+            "Spica",
+            "Suhail",
+            "Tarazed",
+            "Thuban",
+            "Unukalhai",
+            "Vindemiatrix",
+            "Wasat",
+            "Wezen",
+            "Zaniah",
+            "Zaurak"
     );
 
     /**
@@ -85,15 +174,18 @@ public class StarSystemDataLoader implements CommandLineRunner {
 
             Region region = determineRegion(x, y);
 
-            systems.add(
-                    new StarSystem(
-                            null,
-                            name,
-                            x,
-                            y,
-                            region
-                    )
-            );
+            StarSystem system =
+                new StarSystem(
+                        null,
+                        name,
+                        x,
+                        y,
+                        region
+                );
+
+        system.generatePlanetCount(random);
+
+        systems.add(system);
         }
 
         systemRepository.saveAll(systems);

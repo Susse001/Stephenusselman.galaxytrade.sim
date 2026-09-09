@@ -44,17 +44,8 @@ public class PlanetDataLoader implements CommandLineRunner {
 
     private List<Planet> generatePlanets(StarSystem system) {
 
-        final List<Integer> PLANET_COUNTS = List.of(
-        1,
-        2, 2,
-        3, 3, 3, 3,
-        4, 4, 4, 4, 4,
-        5, 5,
-        6, 6,
-        7
-    );
-
-    int planetCount = Planet.chooseWeighted(PLANET_COUNTS, random);
+        int planetCount = 
+                system.getPlanetCount();
 
         List<Planet> planets =
                 new ArrayList<>();
@@ -70,17 +61,20 @@ public class PlanetDataLoader implements CommandLineRunner {
                     random
             );
 
-            planetResourceGenerator.generateAndAttachResources(
-                planet,
-                random
+            planetResourceGenerator
+                .generateAndAttachResources(
+                    planet,
+                    random
             );
 
             planet.setConsumptionProfile(
-                planetConsumptionProfile.generateConsumption(planet)
+                planetConsumptionProfile
+                    .generateConsumption(planet)
             );
 
             planet.setProductionProfile(
-                planetProductionProfile.generateProfile(planet)
+                planetProductionProfile
+                    .generateProfile(planet)
             );
 
             system.addPlanet(planet);

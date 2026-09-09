@@ -2,6 +2,7 @@ package com.stephenu.gts.starsystem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.stephenu.gts.planet.Planet;
 
@@ -44,6 +45,8 @@ public class StarSystem {
      */
     private Region region;
 
+    private int planetCount;
+
     @OneToMany(
         mappedBy = "starSystem",
         cascade = CascadeType.ALL,
@@ -59,8 +62,8 @@ public class StarSystem {
     public StarSystem(
         Long id,
         String name,
-        Integer xCoordinate,
-        Integer yCoordinate,
+        int xCoordinate,
+        int yCoordinate,
         Region region) {
 
         this.id = id;
@@ -78,5 +81,35 @@ public class StarSystem {
     public void removePlanet(Planet planet) {
         planets.remove(planet);
         planet.setStarSystem(null);
+    }
+
+    public void generatePlanetCount(Random random) {
+
+        final List<Integer> planetCounts = List.of(
+                1,
+                2, 2,
+                3, 3, 3, 3,
+                4, 4, 4, 4, 4,
+                5, 5,
+                6, 6,
+                7
+        );
+
+        this.planetCount =
+                chooseWeighted(
+                        planetCounts,
+                        random
+                );
+    }
+
+    public static <T> T chooseWeighted(
+        List<T> choices,
+        Random random) {
+
+        return choices.get(
+                random.nextInt(
+                        choices.size()
+                )
+        );
     }
 }
