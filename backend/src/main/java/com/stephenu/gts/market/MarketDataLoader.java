@@ -31,7 +31,7 @@ import lombok.RequiredArgsConstructor;
  * generated to create regional trade opportunities.
  */
 @Component
-@Order(4)
+@Order(5)
 @RequiredArgsConstructor
 public class MarketDataLoader implements CommandLineRunner {
 
