@@ -150,7 +150,7 @@ public class Market {
      * @param targetInventory desired inventory level
      * @return calculated market price
      */
-    private int calculatePrice(
+    public int calculatePrice(
             int basePrice,
             int inventory,
             int targetInventory) {

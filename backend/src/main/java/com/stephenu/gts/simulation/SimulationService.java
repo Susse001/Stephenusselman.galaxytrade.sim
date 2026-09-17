@@ -1,7 +1,13 @@
 package com.stephenu.gts.simulation;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.stephenu.gts.commodity.CommodityType;
 import com.stephenu.gts.market.Market;
 import com.stephenu.gts.market.MarketRepository;
+import com.stephenu.gts.starsystem.StarSystem;
 import com.stephenu.gts.trader.Trader;
 import com.stephenu.gts.trader.TraderRepository;
 import com.stephenu.gts.trader.TraderStatus;
@@ -9,45 +15,40 @@ import com.stephenu.gts.trader.TraderStatus;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-import java.util.Random;
-
-import org.springframework.stereotype.Service;
-
 /**
  * Coordinates each simulation tick.
  *
  * Every tick updates market conditions before advancing each trader
- * through its current state. Market prices, supply, demand, and trader
- * actions are processed once per simulation cycle.
+ * through its current state. Market production, consumption, trading,
+ * and trader movement are processed once per simulation cycle.
  */
 @Service
 @RequiredArgsConstructor
 public class SimulationService {
-    
+
     private final TraderRepository traderRepository;
     private final MarketRepository marketRepository;
     private final TradeOpportunityRepository tradeOpportunityRepository;
     private final TraderDecisionService traderDecisionService;
-	private final TravelService travelService;
+    private final TravelService travelService;
+    private final MarketUpdater marketUpdater;
 
     private long currentTick = 0;
-    private final Random random = new Random();
 
     /**
-	 * Advances the simulation by one tick.
-	 *
-	 * Each tick updates market conditions before processing trader behavior
-	 * to ensure all trading decisions are based on the latest market data.
-	 *
-	 * @return The current simulation tick.
-	 */
+     * Advances the simulation by one tick.
+     *
+     * Market conditions are updated before trader behavior so that
+     * trade decisions use the latest market state.
+     *
+     * @return The current simulation tick.
+     */
     @Transactional
     public long runTick() {
 
         currentTick++;
 
-        updateMarkets();
+        marketUpdater.updateMarkets();
         evaluateTraders();
 
         return currentTick;
@@ -57,76 +58,13 @@ public class SimulationService {
         return currentTick;
     }
 
-	/**
-	 * Updates every market in the simulation.
-	 */
-    private void updateMarkets() {
-
-    List<Market> markets = marketRepository.findAll();
-
-        for (Market market : markets) {
-            updateSupplyAndDemand(market);
-            updatePrice(market);
-        }
-
-        marketRepository.saveAll(markets);
-    }
-
-	/**
-	 * Applies random supply and demand fluctuations to a market.
-	 *
-	 * @param market The market to update.
-	 */
-    private void updateSupplyAndDemand(Market market) {
-
-        int supplyChange = random.nextInt(41) - 20;
-
-        int demandChange = random.nextInt(41) - 20;
-
-        market.setSupply(
-                Math.max(
-                        1,
-                        market.getSupply() + supplyChange
-                )
-        );
-
-        market.setDemand(
-                Math.max(
-                        1,
-                        market.getDemand() + demandChange
-                )
-        );
-    }
-
-	/**
-	 * Recalculates a market's price.
-	 *
-	 * Prices increase when demand exceeds supply and decrease when supply
-	 * exceeds demand. A minimum price is enforced.
-	 *
-	 * @param market The market to update.
-	 */
-    private void updatePrice(Market market) {
-
-        int price = market.getPrice();
-
-        if (market.getDemand() > market.getSupply()) {
-            price += 5;
-        }
-
-        if (market.getSupply() > market.getDemand()) {
-            price -= 5;
-        }
-
-        market.setPrice(Math.max(10, price));
-    }
-
-	/**
-	 * Advances every trader by one simulation step.
-	 */
+    /**
+     * Advances every trader by one simulation step.
+     */
     private void evaluateTraders() {
 
-        List<Trader> traders = traderRepository.findAll();
+        List<Trader> traders =
+                traderRepository.findAll();
 
         for (Trader trader : traders) {
             processTrader(trader);
@@ -135,14 +73,14 @@ public class SimulationService {
         traderRepository.saveAll(traders);
     }
 
-	/**
-	 * Advances a trader according to its current simulation state.
-	 *
-	 * Each trader follows a simple state machine that governs trade
-	 * selection, travel, buying, and selling.
-	 *
-	 * @param trader The trader to process.
-	 */
+    /**
+     * Advances a trader according to its current simulation state.
+     *
+     * Each trader follows a state machine that governs trade selection,
+     * travel, buying, and selling.
+     *
+     * @param trader The trader to process.
+     */
     private void processTrader(Trader trader) {
 
         switch (trader.getStatus()) {
@@ -159,15 +97,15 @@ public class SimulationService {
         }
     }
 
-	/**
-	 * Assigns the most profitable trade opportunity to an idle trader.
-	 *
-	 * @param trader The trader to update.
-	 */
+    /**
+     * Assigns the highest-scoring trade opportunity to an idle trader.
+     *
+     * @param trader The trader to update.
+     */
     private void assignTrade(Trader trader) {
 
         TradeOpportunity opportunity =
-            traderDecisionService.findBestTrade(trader);
+                traderDecisionService.findBestTrade(trader);
 
         if (opportunity == null) {
             return;
@@ -178,51 +116,114 @@ public class SimulationService {
         trader.setCurrentTrade(opportunity);
 
         int travelTicks =
-        travelService.calculateTravelTicks(
-                trader.getCurrentSystem(),
-                opportunity.getBuySystem()
-        );
+                travelService.calculateTravelTicks(
+                        trader.getCurrentSystem(),
+                        opportunity.getBuySystem()
+                );
 
         trader.setTravelTicksRemaining(travelTicks);
-		trader.setTotalTravelTicks(travelTicks);
+        trader.setTotalTravelTicks(travelTicks);
 
         trader.setStatus(
                 TraderStatus.TRAVELING_TO_BUY
         );
     }
 
-	/**
-	 * Advances a trader toward its purchase location.
-	 *
-	 * @param trader The trader to update.
-	 */
+    /**
+     * Advances a trader toward its purchase location.
+     *
+     * @param trader The trader to update.
+     */
     private void travelToBuy(Trader trader) {
 
         int remaining =
-            trader.getTravelTicksRemaining() - 1;
+                trader.getTravelTicksRemaining() - 1;
 
         trader.setTravelTicksRemaining(remaining);
 
         if (remaining > 0) {
-			return;
-		}
+            return;
+        }
 
-        trader.setCurrentSystem(trader.getCurrentTrade().getBuySystem());
+        trader.setCurrentSystem(
+                trader.getCurrentTrade().getBuySystem()
+        );
 
         trader.setStatus(TraderStatus.BUYING);
     }
 
-	/**
-	 * Purchases cargo and begins travel to the destination market.
-	 *
-	 * @param trader The trader to update.
-	 */
+    /**
+     * Purchases as much cargo as the trader can afford, carry, and
+     * the source market can supply.
+     *
+     * @param trader The trader executing the purchase.
+     */
     private void buy(Trader trader) {
 
-        TradeOpportunity trade = trader.getCurrentTrade();
+        TradeOpportunity trade =
+                trader.getCurrentTrade();
 
-        trader.setCargoCommodity(trade.getCommodity());
-        trader.setCargoAmount(trader.getCargoCapacity());
+        Market market =
+                findMarket(
+                        trade.getBuySystem(),
+                        trade.getCommodity()
+                );
+
+        if (market == null) {
+            cancelTrade(trader);
+            return;
+        }
+
+        long affordableUnits =
+                trader.getCredits()
+                        / trade.getBuyPrice();
+
+        long cargoUnits =
+                trader.getCargoCapacity();
+
+        long availableUnits =
+                market.getInventory();
+
+        long units =
+                Math.min(
+                        affordableUnits,
+                        Math.min(
+                                cargoUnits,
+                                availableUnits
+                        )
+                );
+
+        if (units <= 0) {
+            cancelTrade(trader);
+            return;
+        }
+
+        int purchaseAmount =
+                (int) units;
+
+        int purchaseCost =
+                purchaseAmount
+                        * trade.getBuyPrice();
+
+        market.setInventory(
+                market.getInventory()
+                        - purchaseAmount
+        );
+
+        trader.setCredits(
+                trader.getCredits()
+                        - purchaseCost
+        );
+
+        trader.setCargoCommodity(
+                trade.getCommodity()
+        );
+
+        trader.setCargoAmount(
+                purchaseAmount
+        );
+
+        marketRepository.save(market);
 
         int travelTicks =
                 travelService.calculateTravelTicks(
@@ -231,44 +232,78 @@ public class SimulationService {
                 );
 
         trader.setTravelTicksRemaining(travelTicks);
-		trader.setTotalTravelTicks(travelTicks);
+        trader.setTotalTravelTicks(travelTicks);
 
-        trader.setStatus(TraderStatus.TRAVELING_TO_SELL);
+        trader.setStatus(
+                TraderStatus.TRAVELING_TO_SELL
+        );
     }
 
-	/**
-	 * Advances a trader toward its sell location.
-	 *
-	 * @param trader The trader to update.
-	 */
+    /**
+     * Advances a trader toward its sell location.
+     *
+     * @param trader The trader to update.
+     */
     private void travelToSell(Trader trader) {
 
-        int remaining = trader.getTravelTicksRemaining() - 1;
+        int remaining =
+                trader.getTravelTicksRemaining() - 1;
+
         trader.setTravelTicksRemaining(remaining);
 
-        if (remaining > 0) {return;}
+        if (remaining > 0) {
+            return;
+        }
 
-        trader.setCurrentSystem(trader.getCurrentTrade().getSellSystem());
+        trader.setCurrentSystem(
+                trader.getCurrentTrade().getSellSystem()
+        );
 
         trader.setStatus(TraderStatus.SELLING);
     }
 
-	/**
-	 * Completes the current trade and returns the trader to the idle state.
-	 *
-	 * @param trader The trader to update.
-	 */
+    /**
+     * Sells the trader's cargo at the destination market.
+     *
+     * @param trader The trader executing the sale.
+     */
     private void sell(Trader trader) {
 
-        TradeOpportunity trade = trader.getCurrentTrade();
+        TradeOpportunity trade =
+                trader.getCurrentTrade();
+
+        Market market =
+                findMarket(
+                        trade.getSellSystem(),
+                        trade.getCommodity()
+                );
+
+        if (market == null) {
+            cancelTrade(trader);
+            return;
+        }
+
+        int cargoAmount =
+                trader.getCargoAmount();
+
+        int saleRevenue =
+                cargoAmount
+                        * trade.getSellPrice();
+
+        market.setInventory(
+                market.getInventory()
+                        + cargoAmount
+        );
 
         trader.setCredits(
                 trader.getCredits()
-                        + trade.getExpectedProfitPerUnit() * trader.getCargoAmount()
+                        + saleRevenue
         );
 
         trader.setCargoCommodity(null);
         trader.setCargoAmount(0);
+
+        marketRepository.save(market);
 
         tradeOpportunityRepository.delete(trade);
 
@@ -279,4 +314,44 @@ public class SimulationService {
         );
     }
 
+    /**
+     * Finds the market for a commodity within a star system.
+     *
+     * @param system The star system containing the market.
+     * @param commodity The commodity traded by the market.
+     * @return The matching market, or {@code null} if none exists.
+     */
+    private Market findMarket(
+            StarSystem system,
+            CommodityType commodity) {
+
+         return marketRepository
+                .findByStarSystemIdAndCommodityType(
+                        system.getId(),
+                        commodity
+                )
+                .orElse(null);
+    }
+
+    /**
+     * Cancels a trader's current trade and returns it to the idle state.
+     *
+     * @param trader The trader whose trade should be cancelled.
+     */
+    private void cancelTrade(Trader trader) {
+
+        TradeOpportunity trade =
+                trader.getCurrentTrade();
+
+        if (trade != null) {
+            tradeOpportunityRepository.delete(trade);
+        }
+
+        trader.setCurrentTrade(null);
+        trader.setCargoCommodity(null);
+        trader.setCargoAmount(0);
+        trader.setTravelTicksRemaining(0);
+
+        trader.setStatus(TraderStatus.IDLE);
+    }
 }
