@@ -1,5 +1,32 @@
 package com.stephenu.gts.simulation;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.stephenu.gts.commodity.Commodity;
+import com.stephenu.gts.commodity.CommodityType;
+import com.stephenu.gts.market.Market;
+import com.stephenu.gts.market.MarketRepository;
+import com.stephenu.gts.starsystem.StarSystem;
+import com.stephenu.gts.trader.Trader;
+import com.stephenu.gts.trader.TraderRepository;
+import com.stephenu.gts.trader.TraderStatus;
+
 @ExtendWith(MockitoExtension.class)
 class SimulationServiceTest {
 
@@ -173,7 +200,7 @@ class SimulationServiceTest {
     @Test
     void buying_respectsCreditsCapacityAndInventory() {
         Trader trader = createTrader();
-        trader.setCredits(500);
+        trader.setCredits((long) 500);
         trader.setCargoCapacity(10);
         trader.setCargoAmount(0);
         trader.setStatus(TraderStatus.BUYING);
@@ -234,7 +261,7 @@ class SimulationServiceTest {
     @Test
     void buying_respectsMarketInventory() {
         Trader trader = createTrader();
-        trader.setCredits(1_000);
+        trader.setCredits((long) 1000);
         trader.setCargoCapacity(20);
         trader.setStatus(TraderStatus.BUYING);
 
@@ -283,7 +310,7 @@ class SimulationServiceTest {
     @Test
     void buying_withNoAvailableUnits_cancelsTrade() {
         Trader trader = createTrader();
-        trader.setCredits(500);
+        trader.setCredits((long) 500);
         trader.setCargoCapacity(10);
         trader.setStatus(TraderStatus.BUYING);
 
@@ -361,7 +388,7 @@ class SimulationServiceTest {
     @Test
     void selling_transfersCargoAndRevenueAndCompletesTrade() {
         Trader trader = createTrader();
-        trader.setCredits(100);
+        trader.setCredits((long) 100);
         trader.setCargoAmount(5);
         trader.setStatus(TraderStatus.SELLING);
 
@@ -486,7 +513,7 @@ class SimulationServiceTest {
     private Trader createTrader() {
         Trader trader = new Trader();
 
-        trader.setCredits(1_000);
+        trader.setCredits((long) 1000);
         trader.setCargoCapacity(10);
         trader.setCargoAmount(0);
         trader.setStatus(TraderStatus.IDLE);

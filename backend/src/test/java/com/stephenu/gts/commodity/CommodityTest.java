@@ -16,7 +16,7 @@ class CommodityTest {
 
         Commodity food =
                 new Commodity(
-                        null,
+                        1L,
                         CommodityType.FOOD,
                         20,
                         1
@@ -30,7 +30,7 @@ class CommodityTest {
 
         Commodity food =
                 new Commodity(
-                        null,
+                        1L,
                         CommodityType.FOOD,
                         20,
                         1
@@ -46,7 +46,7 @@ class CommodityTest {
 
         Commodity commonMetals =
                 new Commodity(
-                        null,
+                        1L,
                         CommodityType.COMMON_METALS,
                         60,
                         1
@@ -54,7 +54,7 @@ class CommodityTest {
 
         Commodity rareMetals =
                 new Commodity(
-                        null,
+                        2L,
                         CommodityType.RARE_METALS,
                         110,
                         1
@@ -62,7 +62,7 @@ class CommodityTest {
 
         Commodity refinedMetals =
                 new Commodity(
-                        null,
+                        3L,
                         CommodityType.REFINED_METALS,
                         170,
                         2
@@ -94,7 +94,7 @@ class CommodityTest {
 
         Commodity commonMetals =
                 new Commodity(
-                        null,
+                        1L,
                         CommodityType.COMMON_METALS,
                         60,
                         1
@@ -102,7 +102,7 @@ class CommodityTest {
 
         Commodity rareMetals =
                 new Commodity(
-                        null,
+                        2L,
                         CommodityType.RARE_METALS,
                         110,
                         1
@@ -110,7 +110,7 @@ class CommodityTest {
 
         Commodity industrialMinerals =
                 new Commodity(
-                        null,
+                        3L,
                         CommodityType.INDUSTRIAL_MINERALS,
                         45,
                         1
@@ -118,7 +118,7 @@ class CommodityTest {
 
         Commodity refinedMetals =
                 new Commodity(
-                        null,
+                        4L,
                         CommodityType.REFINED_METALS,
                         170,
                         2
@@ -137,7 +137,7 @@ class CommodityTest {
 
         Commodity advancedMaterials =
                 new Commodity(
-                        null,
+                        5L,
                         CommodityType.ADVANCED_MATERIALS,
                         240,
                         2
@@ -171,7 +171,7 @@ class CommodityTest {
 
         Commodity commonMetals =
                 new Commodity(
-                        null,
+                        1L,
                         CommodityType.COMMON_METALS,
                         60,
                         1
@@ -179,7 +179,7 @@ class CommodityTest {
 
         Commodity refinedMetals =
                 new Commodity(
-                        null,
+                        2L,
                         CommodityType.REFINED_METALS,
                         170,
                         2
@@ -196,7 +196,7 @@ class CommodityTest {
 
         Commodity advancedMaterials =
                 new Commodity(
-                        null,
+                        3L,
                         CommodityType.ADVANCED_MATERIALS,
                         240,
                         2
@@ -227,7 +227,7 @@ class CommodityTest {
 
         Commodity commonMetals =
                 new Commodity(
-                        null,
+                        1L,
                         CommodityType.COMMON_METALS,
                         60,
                         1
@@ -235,7 +235,7 @@ class CommodityTest {
 
         Commodity refinedMetals =
                 new Commodity(
-                        null,
+                        2L,
                         CommodityType.REFINED_METALS,
                         170,
                         2
@@ -259,5 +259,4 @@ class CommodityTest {
         assertTrue(totals.containsKey(commonMetals));
         assertFalse(totals.containsKey(refinedMetals));
     }
-
 }
