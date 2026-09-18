@@ -1163,12 +1163,10 @@ public class Planet {
             type == PlanetType.VOLCANIC ||
             type == PlanetType.CRYOVOLCANIC) {
 
-            pool.remove(
-                    PopulationLevel.BILLIONS
-            );
-
-            pool.remove(
-                    PopulationLevel.TENS_OF_BILLIONS
+            pool.removeIf(
+                    population ->
+                            population == PopulationLevel.BILLIONS
+                            || population == PopulationLevel.TENS_OF_BILLIONS
             );
         }
 
@@ -1235,24 +1233,27 @@ public class Planet {
         if (features.contains(
                 PlanetFeature.POWERFUL_WEATHER_SYSTEMS)) {
 
-            pool.remove(
-                    PopulationLevel.TENS_OF_BILLIONS
+            pool.removeIf(
+                    population ->
+                            population == PopulationLevel.TENS_OF_BILLIONS
             );
         }
 
         if (features.contains(
                 PlanetFeature.WEAK_ATMOSPHERE)) {
 
-            pool.remove(
-                    PopulationLevel.TENS_OF_BILLIONS
+            pool.removeIf(
+                    population ->
+                            population == PopulationLevel.TENS_OF_BILLIONS
             );
         }
 
         if (features.contains(
                 PlanetFeature.STRONG_GRAVITY)) {
 
-            pool.remove(
-                    PopulationLevel.TENS_OF_BILLIONS
+            pool.removeIf(
+                    population ->
+                            population == PopulationLevel.TENS_OF_BILLIONS
             );
         }
 
@@ -1668,11 +1669,12 @@ public class Planet {
 
     private static final List<PopulationLevel> DEVELOPING_POPULATION_POOL =
             List.of(
+                    PopulationLevel.TENS_OF_MILLIONS,
+                    PopulationLevel.HUNDREDS_OF_MILLIONS,
                     PopulationLevel.HUNDREDS_OF_MILLIONS,
                     PopulationLevel.HUNDREDS_OF_MILLIONS,
                     PopulationLevel.BILLIONS,
-                    PopulationLevel.BILLIONS,
-                    PopulationLevel.TENS_OF_BILLIONS
+                    PopulationLevel.BILLIONS
             );
 
     private static final List<PopulationLevel> AGRARIAN_POPULATION_POOL =
@@ -1681,7 +1683,8 @@ public class Planet {
                     PopulationLevel.HUNDREDS_OF_MILLIONS,
                     PopulationLevel.HUNDREDS_OF_MILLIONS,
                     PopulationLevel.BILLIONS,
-                    PopulationLevel.BILLIONS
+                    PopulationLevel.BILLIONS,
+                    PopulationLevel.TENS_OF_BILLIONS
             );
 
     private static final List<PopulationLevel> INDUSTRIAL_POPULATION_POOL =
@@ -1696,7 +1699,7 @@ public class Planet {
 
     private static final List<PopulationLevel> ADVANCED_POPULATION_POOL =
             List.of(
-                    PopulationLevel.BILLIONS,
+                    PopulationLevel.HUNDREDS_OF_MILLIONS,
                     PopulationLevel.BILLIONS,
                     PopulationLevel.BILLIONS,
                     PopulationLevel.TENS_OF_BILLIONS,
