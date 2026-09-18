@@ -147,7 +147,8 @@ class PlanetConsumptionProfileTest {
 
         assertEquals(
                 baseline.get(CommodityType.LUXURY_GOODS) * 0.20,
-                consumption.get(CommodityType.LUXURY_GOODS)
+                consumption.get(CommodityType.LUXURY_GOODS),
+                0.0000001
         );
     }
 
