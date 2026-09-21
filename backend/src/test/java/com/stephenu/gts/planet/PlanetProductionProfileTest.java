@@ -139,14 +139,9 @@ class PlanetProductionProfileTest {
 
         addAllResources(
                 planet,
-                ResourceLevel.AVERAGE
-        );
-
-        addResource(
-                planet,
-                CommodityType.FOOD,
                 ResourceLevel.NONE
         );
+
 
         PlanetProductionProfile profile =
                 generator.generateProfile(planet);
@@ -540,7 +535,7 @@ class PlanetProductionProfileTest {
         double expected =
                 generator.getBaseManufacturing()
                         .get(CommodityType.CONSUMER_GOODS)
-                        * 0.70
+                        * 0.30
                         * 1.10;
 
         assertEquals(
