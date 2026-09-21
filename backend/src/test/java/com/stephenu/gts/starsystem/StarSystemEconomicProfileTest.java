@@ -14,8 +14,12 @@ import org.junit.jupiter.api.Test;
 import com.stephenu.gts.commodity.Commodity;
 import com.stephenu.gts.commodity.CommodityType;
 import com.stephenu.gts.commodity.ProductionRecipe;
+import com.stephenu.gts.planet.DevelopmentLevel;
+import com.stephenu.gts.planet.InfrastructureLevel;
 import com.stephenu.gts.planet.Planet;
+import com.stephenu.gts.planet.PlanetConsumptionProfile;
 import com.stephenu.gts.planet.PlanetProductionProfile;
+import com.stephenu.gts.planet.PopulationLevel;
 
 public class StarSystemEconomicProfileTest {
 
@@ -25,9 +29,7 @@ public class StarSystemEconomicProfileTest {
     @BeforeEach
     void setUp() {
         profile = new StarSystemEconomicProfile();
-
-        planet = new Planet();
-        planet.setProductionProfile(new PlanetProductionProfile());
+        planet = createTestPlanet();
     }
 
     @Test
@@ -91,10 +93,7 @@ public class StarSystemEconomicProfileTest {
         Map<CommodityType, Commodity> commodities =
                 createTestCommodities();
 
-        Planet secondPlanet = new Planet();
-        secondPlanet.setProductionProfile(
-                new PlanetProductionProfile()
-        );
+        Planet secondPlanet = createTestPlanet();
 
         planet.getProductionProfile()
                 .getExtractionCapacity()
@@ -654,12 +653,15 @@ public class StarSystemEconomicProfileTest {
     @Test
     void calculateSupplyChainModifierRewardsMultipleManufacturedInputs() {
         Commodity metals = new Commodity();
+        metals.setId(1L);
         metals.setType(CommodityType.REFINED_METALS);
 
         Commodity materials = new Commodity();
+        materials.setId(2L);
         materials.setType(CommodityType.ADVANCED_MATERIALS);
 
         Commodity candidate = new Commodity();
+        candidate.setId(3L);
         candidate.setType(CommodityType.MANUFACTURED_PARTS);
 
         ProductionRecipe recipe = new ProductionRecipe();
@@ -704,7 +706,7 @@ public class StarSystemEconomicProfileTest {
 
         Commodity commonMetals =
                 new Commodity(
-                        null,
+                        1L,
                         CommodityType.COMMON_METALS,
                         60,
                         1
@@ -712,7 +714,7 @@ public class StarSystemEconomicProfileTest {
 
         Commodity industrialMinerals =
                 new Commodity(
-                        null,
+                        2L,
                         CommodityType.INDUSTRIAL_MINERALS,
                         45,
                         1
@@ -720,7 +722,7 @@ public class StarSystemEconomicProfileTest {
 
         Commodity rareElements =
                 new Commodity(
-                        null,
+                        3L,
                         CommodityType.RARE_ELEMENTS,
                         140,
                         1
@@ -728,7 +730,7 @@ public class StarSystemEconomicProfileTest {
 
         Commodity hydrocarbons =
                 new Commodity(
-                        null,
+                        4L,
                         CommodityType.HYDROCARBONS,
                         50,
                         1
@@ -736,7 +738,7 @@ public class StarSystemEconomicProfileTest {
 
         Commodity refinedMetals =
                 new Commodity(
-                        null,
+                        5L,
                         CommodityType.REFINED_METALS,
                         170,
                         2
@@ -744,7 +746,7 @@ public class StarSystemEconomicProfileTest {
 
         Commodity manufacturedParts =
                 new Commodity(
-                        null,
+                        6L,
                         CommodityType.MANUFACTURED_PARTS,
                         220,
                         2
@@ -752,7 +754,7 @@ public class StarSystemEconomicProfileTest {
 
         Commodity electronicComponents =
                 new Commodity(
-                        null,
+                        7L,
                         CommodityType.ELECTRONIC_COMPONENTS,
                         290,
                         2
@@ -810,5 +812,31 @@ public class StarSystemEconomicProfileTest {
                 CommodityType.MANUFACTURED_PARTS, manufacturedParts,
                 CommodityType.ELECTRONIC_COMPONENTS, electronicComponents
         );
+    }
+
+    private Planet createTestPlanet() {
+        Planet planet = new Planet();
+
+        planet.setDevelopment(
+                DevelopmentLevel.DEVELOPING
+        );
+
+        planet.setInfrastructure(
+                InfrastructureLevel.GOOD
+        );
+
+        planet.setPopulation(
+                PopulationLevel.BILLIONS
+        );
+
+        planet.setProductionProfile(
+                new PlanetProductionProfile()
+        );
+
+        planet.setConsumptionProfile(
+                new PlanetConsumptionProfile()
+        );
+
+        return planet;
     }
 }
