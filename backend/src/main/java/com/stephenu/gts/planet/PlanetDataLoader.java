@@ -2,12 +2,16 @@ package com.stephenu.gts.planet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Collections;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import com.stephenu.gts.starsystem.Region;
 import com.stephenu.gts.starsystem.StarSystem;
 import com.stephenu.gts.starsystem.StarSystemRepository;
 
@@ -38,6 +42,8 @@ public class PlanetDataLoader implements CommandLineRunner {
         for (StarSystem system : starSystemRepository.findAll()) {
             planets.addAll(generatePlanets(system));
         }
+
+        addLuxuryProducers(planets);
 
         planetRepository.saveAll(planets);
     }
@@ -82,5 +88,27 @@ public class PlanetDataLoader implements CommandLineRunner {
         }
 
         return planets;
+    }
+
+    private void addLuxuryProducers(List<Planet> planets) {
+
+        Map<Region, List<Planet>> planetsByRegion =
+                planets.stream()
+                        .collect(Collectors.groupingBy(
+                                planet -> planet.getStarSystem().getRegion()
+                        ));
+
+        for (List<Planet> regionPlanets : planetsByRegion.values()) {
+
+            Collections.shuffle(regionPlanets, random);
+
+            int producerCount =
+                    Math.min(3, regionPlanets.size());
+
+            for (int i = 0; i < producerCount; i++) {
+                regionPlanets.get(i)
+                        .addLuxuryProduction();
+            }
+        }
     }
 }

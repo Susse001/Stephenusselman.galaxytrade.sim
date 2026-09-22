@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import com.stephenu.gts.commodity.CommodityType;
 import com.stephenu.gts.starsystem.Region;
 import com.stephenu.gts.starsystem.StarSystem;
 
@@ -213,6 +214,20 @@ public class Planet {
             int orbitalOrder) {
 
         return system.getName() + " " + orbitalOrder;
+    }
+
+    /**
+     * Adds 5 flat Luxury Goods production to the given planet
+     * after production modifiers.
+     */
+    public void addLuxuryProduction() {
+        productionProfile
+                .getManufacturingPotential()
+                .merge(
+                        CommodityType.LUXURY_GOODS,
+                        5.0,
+                        Double::sum
+                );
     }
 
     /**
