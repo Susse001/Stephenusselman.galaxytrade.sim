@@ -45,11 +45,20 @@ public class MarketUpdater {
         CommodityType type =
                 market.getCommodity().getType();
 
-        double production =
+        double baseProduction =
                 profile.getExtractionCapacity()
                         .getOrDefault(type, 0.0)
                 + profile.getManufacturing()
                         .getOrDefault(type, 0.0);
+
+        double productionModifier =
+            calculateProductionModifier(
+                    market.getInventory(),
+                    market.getTargetInventory()
+            );
+
+        double production =
+            baseProduction * productionModifier;
 
         double consumption =
                 profile.getConsumption()
@@ -71,5 +80,27 @@ public class MarketUpdater {
             market.getTargetInventory());
         
             market.setPrice(newPrice);
+    }
+
+    private double calculateProductionModifier(
+        int inventory,
+        int targetInventory) {
+
+        if (targetInventory <= 0) {
+            return 1.0;
+        }
+
+        double inventoryRatio =
+                (double) inventory / targetInventory;
+
+        if (inventoryRatio < 0.25) {
+            return 1.20;
+        }
+
+        if (inventoryRatio > 0.75) {
+            return 0.80;
+        }
+
+        return 1.00;
     }
 }
