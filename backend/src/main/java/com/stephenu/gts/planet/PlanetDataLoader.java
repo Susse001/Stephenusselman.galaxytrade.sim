@@ -83,7 +83,6 @@ public class PlanetDataLoader implements CommandLineRunner {
                     .generateProfile(planet)
             );
 
-            system.addPlanet(planet);
             planets.add(planet);
         }
 

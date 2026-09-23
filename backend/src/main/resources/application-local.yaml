@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/gts
+    url: jdbc:postgresql://localhost:5432/gts-postgres
     username: gts
-    password: gtspassword
+    password: gts
 
   jpa:
     hibernate:

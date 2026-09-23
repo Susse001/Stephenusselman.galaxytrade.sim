@@ -34,7 +34,7 @@ public class StarSystemEconomyDataLoader implements CommandLineRunner {
                         ));
 
         List<StarSystem> systems =
-                systemRepository.findAll();
+                systemRepository.findAllWithPlanets();
 
         for (StarSystem system : systems) {
 

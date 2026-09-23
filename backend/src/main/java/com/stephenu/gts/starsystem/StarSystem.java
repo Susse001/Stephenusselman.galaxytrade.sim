@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -57,6 +58,7 @@ public class StarSystem {
     /**
      * The economic capabilities and limitatations of all the planets in this star system.
      */
+    @Transient 
     private StarSystemEconomicProfile economicProfile;
 
     public StarSystem(
