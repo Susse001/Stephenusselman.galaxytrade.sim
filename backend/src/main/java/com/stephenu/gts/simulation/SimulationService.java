@@ -32,6 +32,7 @@ public class SimulationService {
     private final TraderDecisionService traderDecisionService;
     private final TravelService travelService;
     private final MarketUpdater marketUpdater;
+    private final GalaxyEconomicMonitor galaxyEconomicMonitor;
 
     private long currentTick = 0;
 
@@ -50,6 +51,8 @@ public class SimulationService {
 
         marketUpdater.updateMarkets();
         evaluateTraders();
+
+        galaxyEconomicMonitor.printEconomicSummary();
 
         return currentTick;
     }
