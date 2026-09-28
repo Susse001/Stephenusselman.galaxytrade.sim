@@ -11,11 +11,11 @@ import com.stephenu.gts.commodity.CommodityType;
 
 class PlanetConsumptionProfileTest {
 
-    private PlanetConsumptionProfile generator;
+    private PlanetConsumptionProfileGenerator generator;
 
     @BeforeEach
     void setUp() {
-        generator = new PlanetConsumptionProfile();
+        generator = new PlanetConsumptionProfileGenerator();
     }
 
     private Planet createPlanet(
@@ -38,7 +38,7 @@ class PlanetConsumptionProfileTest {
         Map<CommodityType, Double> baseline =
                 generator.createBaselineConsumption();
 
-        PlanetConsumptionProfile profile =
+        PlanetConsumptionProfileGenerator profile =
                 generator.generateConsumption(planet);
 
         Map<CommodityType, Double> consumption =
@@ -82,7 +82,7 @@ class PlanetConsumptionProfileTest {
         Map<CommodityType, Double> baseline =
                 generator.createBaselineConsumption();
 
-        PlanetConsumptionProfile profile =
+        PlanetConsumptionProfileGenerator profile =
                 generator.generateConsumption(planet);
 
         assertEquals(
@@ -108,7 +108,7 @@ class PlanetConsumptionProfileTest {
         Map<CommodityType, Double> baseline =
                 generator.createBaselineConsumption();
 
-        PlanetConsumptionProfile profile =
+        PlanetConsumptionProfileGenerator profile =
                 generator.generateConsumption(planet);
 
         assertEquals(
@@ -129,7 +129,7 @@ class PlanetConsumptionProfileTest {
         Map<CommodityType, Double> baseline =
                 generator.createBaselineConsumption();
 
-        PlanetConsumptionProfile profile =
+        PlanetConsumptionProfileGenerator profile =
                 generator.generateConsumption(planet);
 
         Map<CommodityType, Double> consumption =
@@ -164,7 +164,7 @@ class PlanetConsumptionProfileTest {
         Map<CommodityType, Double> baseline =
                 generator.createBaselineConsumption();
 
-        PlanetConsumptionProfile profile =
+        PlanetConsumptionProfileGenerator profile =
                 generator.generateConsumption(planet);
 
         Map<CommodityType, Double> consumption =
@@ -198,7 +198,7 @@ class PlanetConsumptionProfileTest {
         Map<CommodityType, Double> baseline =
                 generator.createBaselineConsumption();
 
-        PlanetConsumptionProfile profile =
+        PlanetConsumptionProfileGenerator profile =
                 generator.generateConsumption(planet);
 
         Map<CommodityType, Double> consumption =

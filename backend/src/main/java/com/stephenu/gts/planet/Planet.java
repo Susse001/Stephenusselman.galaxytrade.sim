@@ -14,6 +14,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -106,8 +107,9 @@ public class Planet {
     /**
      * Calculated consumption requirements of this planet.
      */
-    @Transient
-    private PlanetConsumptionProfile consumptionProfile;
+    @Embedded
+    private PlanetConsumptionProfile consumptionProfile =   
+            new PlanetConsumptionProfile();
 
     /**
      * Unique planetary features.
