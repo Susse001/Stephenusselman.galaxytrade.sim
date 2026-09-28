@@ -18,7 +18,7 @@ import com.stephenu.gts.planet.DevelopmentLevel;
 import com.stephenu.gts.planet.InfrastructureLevel;
 import com.stephenu.gts.planet.Planet;
 import com.stephenu.gts.planet.PlanetConsumptionProfileGenerator;
-import com.stephenu.gts.planet.PlanetProductionProfile;
+import com.stephenu.gts.planet.PlanetProductionProfileGenerator;
 import com.stephenu.gts.planet.PopulationLevel;
 
 public class StarSystemEconomicProfileTest {
@@ -830,7 +830,7 @@ public class StarSystemEconomicProfileTest {
         );
 
         planet.setProductionProfile(
-                new PlanetProductionProfile()
+                new PlanetProductionProfileGenerator()
         );
 
         planet.setConsumptionProfile(

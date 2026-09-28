@@ -1,23 +1,23 @@
 package com.stephenu.gts.planet;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.Map;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.stephenu.gts.commodity.Commodity;
 import com.stephenu.gts.commodity.CommodityType;
 
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 class PlanetProductionProfileTest {
 
-    private PlanetProductionProfile generator;
+    private PlanetProductionProfileGenerator generator;
 
     @BeforeEach
     void setUp() {
-        generator = new PlanetProductionProfile();
+        generator = new PlanetProductionProfileGenerator();
     }
 
     private Planet createPlanet(
@@ -93,7 +93,7 @@ class PlanetProductionProfileTest {
         );
 
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         Map<CommodityType, Double> extraction =
                 profile.getExtractionCapacity();
@@ -104,19 +104,22 @@ class PlanetProductionProfileTest {
         assertEquals(
                 baseline.get(CommodityType.FOOD)
                         * 1.15,
-                extraction.get(CommodityType.FOOD)
+                extraction.get(CommodityType.FOOD),
+                0.0000001
         );
 
         assertEquals(
                 baseline.get(CommodityType.COMMON_METALS)
                         * 1.15,
-                extraction.get(CommodityType.COMMON_METALS)
+                extraction.get(CommodityType.COMMON_METALS),
+                0.0000001
         );
 
         assertEquals(
                 baseline.get(CommodityType.RARE_ELEMENTS)
                         * 1.15,
-                extraction.get(CommodityType.RARE_ELEMENTS)
+                extraction.get(CommodityType.RARE_ELEMENTS),
+                0.0000001
         );
     }
 
@@ -132,24 +135,17 @@ class PlanetProductionProfileTest {
 
         addAllResources(
                 planet,
-                ResourceLevel.AVERAGE
-        );
-
-        planet.getResources().clear();
-
-        addAllResources(
-                planet,
                 ResourceLevel.NONE
         );
 
-
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         assertEquals(
                 0.0,
                 profile.getExtractionCapacity()
-                        .get(CommodityType.FOOD)
+                        .get(CommodityType.FOOD),
+                0.0000001
         );
     }
 
@@ -162,13 +158,6 @@ class PlanetProductionProfileTest {
                         DevelopmentLevel.DEVELOPING,
                         InfrastructureLevel.GOOD
                 );
-
-        addAllResources(
-                planet,
-                ResourceLevel.AVERAGE
-        );
-
-        planet.getResources().clear();
 
         for (CommodityType commodityType :
                 generator.getBaseExtraction().keySet()) {
@@ -186,7 +175,7 @@ class PlanetProductionProfileTest {
         }
 
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         double expected =
                 generator.getBaseExtraction()
@@ -197,7 +186,8 @@ class PlanetProductionProfileTest {
         assertEquals(
                 expected,
                 profile.getExtractionCapacity()
-                        .get(CommodityType.COMMON_METALS)
+                        .get(CommodityType.COMMON_METALS),
+                0.0000001
         );
     }
 
@@ -210,13 +200,6 @@ class PlanetProductionProfileTest {
                         DevelopmentLevel.DEVELOPING,
                         InfrastructureLevel.GOOD
                 );
-
-        addAllResources(
-                planet,
-                ResourceLevel.AVERAGE
-        );
-
-        planet.getResources().clear();
 
         for (CommodityType commodityType :
                 generator.getBaseExtraction().keySet()) {
@@ -234,7 +217,7 @@ class PlanetProductionProfileTest {
         }
 
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         double expected =
                 generator.getBaseExtraction()
@@ -245,7 +228,8 @@ class PlanetProductionProfileTest {
         assertEquals(
                 expected,
                 profile.getExtractionCapacity()
-                        .get(CommodityType.RARE_METALS)
+                        .get(CommodityType.RARE_METALS),
+                0.0000001
         );
     }
 
@@ -265,7 +249,7 @@ class PlanetProductionProfileTest {
         );
 
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         double expected =
                 generator.getBaseExtraction()
@@ -276,7 +260,8 @@ class PlanetProductionProfileTest {
         assertEquals(
                 expected,
                 profile.getExtractionCapacity()
-                        .get(CommodityType.FOOD)
+                        .get(CommodityType.FOOD),
+                0.0000001
         );
     }
 
@@ -296,7 +281,7 @@ class PlanetProductionProfileTest {
         );
 
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         double expected =
                 generator.getBaseExtraction()
@@ -307,7 +292,8 @@ class PlanetProductionProfileTest {
         assertEquals(
                 expected,
                 profile.getExtractionCapacity()
-                        .get(CommodityType.WATER)
+                        .get(CommodityType.WATER),
+                0.0000001
         );
     }
 
@@ -327,7 +313,7 @@ class PlanetProductionProfileTest {
         );
 
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         double expected =
                 generator.getBaseExtraction()
@@ -337,7 +323,8 @@ class PlanetProductionProfileTest {
         assertEquals(
                 expected,
                 profile.getExtractionCapacity()
-                        .get(CommodityType.INDUSTRIAL_MINERALS)
+                        .get(CommodityType.INDUSTRIAL_MINERALS),
+                0.0000001
         );
     }
 
@@ -350,13 +337,6 @@ class PlanetProductionProfileTest {
                         DevelopmentLevel.ADVANCED,
                         InfrastructureLevel.EXCELLENT
                 );
-
-        addAllResources(
-                planet,
-                ResourceLevel.AVERAGE
-        );
-
-        planet.getResources().clear();
 
         for (CommodityType commodityType :
                 generator.getBaseExtraction().keySet()) {
@@ -374,7 +354,7 @@ class PlanetProductionProfileTest {
         }
 
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         double expected =
                 generator.getBaseExtraction()
@@ -387,7 +367,8 @@ class PlanetProductionProfileTest {
         assertEquals(
                 expected,
                 profile.getExtractionCapacity()
-                        .get(CommodityType.RARE_ELEMENTS)
+                        .get(CommodityType.RARE_ELEMENTS),
+                0.0000001
         );
     }
 
@@ -414,7 +395,7 @@ class PlanetProductionProfileTest {
 
         assertThrows(
                 IllegalStateException.class,
-                () -> generator.generateProfile(planet)
+                () -> generator.generateProduction(planet)
         );
     }
 
@@ -434,7 +415,7 @@ class PlanetProductionProfileTest {
         );
 
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         Map<CommodityType, Double> manufacturing =
                 profile.getManufacturingPotential();
@@ -449,7 +430,8 @@ class PlanetProductionProfileTest {
                         * 1.0,
                 manufacturing.get(
                         CommodityType.REFINED_METALS
-                )
+                ),
+                0.0000001
         );
     }
 
@@ -469,7 +451,7 @@ class PlanetProductionProfileTest {
         );
 
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         double expected =
                 generator.getBaseManufacturing()
@@ -480,7 +462,8 @@ class PlanetProductionProfileTest {
         assertEquals(
                 expected,
                 profile.getManufacturingPotential()
-                        .get(CommodityType.REFINED_METALS)
+                        .get(CommodityType.REFINED_METALS),
+                0.0000001
         );
     }
 
@@ -500,7 +483,7 @@ class PlanetProductionProfileTest {
         );
 
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         double expected =
                 generator.getBaseManufacturing()
@@ -510,7 +493,8 @@ class PlanetProductionProfileTest {
         assertEquals(
                 expected,
                 profile.getManufacturingPotential()
-                        .get(CommodityType.REFINED_METALS)
+                        .get(CommodityType.REFINED_METALS),
+                0.0000001
         );
     }
 
@@ -530,7 +514,7 @@ class PlanetProductionProfileTest {
         );
 
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         double expected =
                 generator.getBaseManufacturing()
@@ -541,7 +525,8 @@ class PlanetProductionProfileTest {
         assertEquals(
                 expected,
                 profile.getManufacturingPotential()
-                        .get(CommodityType.CONSUMER_GOODS)
+                        .get(CommodityType.CONSUMER_GOODS),
+                0.0000001
         );
     }
 
@@ -561,7 +546,7 @@ class PlanetProductionProfileTest {
         );
 
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         double expected =
                 generator.getBaseManufacturing()
@@ -572,7 +557,8 @@ class PlanetProductionProfileTest {
         assertEquals(
                 expected,
                 profile.getManufacturingPotential()
-                        .get(CommodityType.REFINED_METALS)
+                        .get(CommodityType.REFINED_METALS),
+                0.0000001
         );
     }
 
@@ -592,7 +578,7 @@ class PlanetProductionProfileTest {
         );
 
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         double expected =
                 generator.getBaseManufacturing()
@@ -602,7 +588,8 @@ class PlanetProductionProfileTest {
         assertEquals(
                 expected,
                 profile.getManufacturingPotential()
-                        .get(CommodityType.CONSUMER_GOODS)
+                        .get(CommodityType.CONSUMER_GOODS),
+                0.0000001
         );
     }
 
@@ -622,7 +609,7 @@ class PlanetProductionProfileTest {
         );
 
         PlanetProductionProfile profile =
-                generator.generateProfile(planet);
+                generator.generateProduction(planet);
 
         double expected =
                 generator.getBaseManufacturing()
@@ -634,7 +621,8 @@ class PlanetProductionProfileTest {
         assertEquals(
                 expected,
                 profile.getManufacturingPotential()
-                        .get(CommodityType.LUXURY_GOODS)
+                        .get(CommodityType.LUXURY_GOODS),
+                0.0000001
         );
     }
 }

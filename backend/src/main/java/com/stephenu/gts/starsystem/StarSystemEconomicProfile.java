@@ -8,7 +8,7 @@ import com.stephenu.gts.commodity.Commodity;
 import com.stephenu.gts.commodity.CommodityType;
 import com.stephenu.gts.commodity.ProductionRecipe;
 import com.stephenu.gts.planet.Planet;
-import com.stephenu.gts.planet.PlanetProductionProfile;
+import com.stephenu.gts.planet.PlanetProductionProfileGenerator;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -79,7 +79,7 @@ public class StarSystemEconomicProfile {
 
         for (Planet planet : system.getPlanets()) {
 
-            PlanetProductionProfile production =
+            PlanetProductionProfileGenerator production =
                     planet.getProductionProfile();
 
             addToMap(

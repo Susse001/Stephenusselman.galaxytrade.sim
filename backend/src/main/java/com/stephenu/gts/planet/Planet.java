@@ -25,7 +25,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -101,8 +100,9 @@ public class Planet {
     /**
      * Planet's calculated extraction and manufacturing potential.
      */
-    @Transient
-    private PlanetProductionProfile productionProfile;
+    @Embedded
+    private PlanetProductionProfile productionProfile =
+            new PlanetProductionProfile();
 
     /**
      * Calculated consumption requirements of this planet.
