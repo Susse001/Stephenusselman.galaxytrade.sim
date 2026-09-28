@@ -38,7 +38,7 @@ class PlanetConsumptionProfileTest {
         Map<CommodityType, Double> baseline =
                 generator.createBaselineConsumption();
 
-        PlanetConsumptionProfileGenerator profile =
+        PlanetConsumptionProfile profile =
                 generator.generateConsumption(planet);
 
         Map<CommodityType, Double> consumption =
@@ -82,7 +82,7 @@ class PlanetConsumptionProfileTest {
         Map<CommodityType, Double> baseline =
                 generator.createBaselineConsumption();
 
-        PlanetConsumptionProfileGenerator profile =
+        PlanetConsumptionProfile profile =
                 generator.generateConsumption(planet);
 
         assertEquals(
@@ -108,7 +108,7 @@ class PlanetConsumptionProfileTest {
         Map<CommodityType, Double> baseline =
                 generator.createBaselineConsumption();
 
-        PlanetConsumptionProfileGenerator profile =
+        PlanetConsumptionProfile profile =
                 generator.generateConsumption(planet);
 
         assertEquals(
@@ -129,7 +129,7 @@ class PlanetConsumptionProfileTest {
         Map<CommodityType, Double> baseline =
                 generator.createBaselineConsumption();
 
-        PlanetConsumptionProfileGenerator profile =
+        PlanetConsumptionProfile profile =
                 generator.generateConsumption(planet);
 
         Map<CommodityType, Double> consumption =
@@ -164,7 +164,7 @@ class PlanetConsumptionProfileTest {
         Map<CommodityType, Double> baseline =
                 generator.createBaselineConsumption();
 
-        PlanetConsumptionProfileGenerator profile =
+        PlanetConsumptionProfile profile =
                 generator.generateConsumption(planet);
 
         Map<CommodityType, Double> consumption =
@@ -198,7 +198,7 @@ class PlanetConsumptionProfileTest {
         Map<CommodityType, Double> baseline =
                 generator.createBaselineConsumption();
 
-        PlanetConsumptionProfileGenerator profile =
+        PlanetConsumptionProfile profile =
                 generator.generateConsumption(planet);
 
         Map<CommodityType, Double> consumption =
