@@ -21,6 +21,8 @@ public class StarSystemEconomyDataLoader implements CommandLineRunner {
 
     private final StarSystemRepository systemRepository;
     private final CommodityRepository commodityRepository;
+    private final StarSystemEconomicProfileGenerator
+        economicProfileGenerator;
 
     @Override
     public void run(String... args) {
@@ -38,14 +40,12 @@ public class StarSystemEconomyDataLoader implements CommandLineRunner {
 
         for (StarSystem system : systems) {
 
-            StarSystemEconomicProfile profile =
-                    new StarSystemEconomicProfile()
-                            .generateProfile(
-                                    system,
-                                    commodities
-                            );
-
-            system.setEconomicProfile(profile);
+            system.setEconomicProfile(
+                economicProfileGenerator.generateEconomicProfile(
+                        system,
+                        commodities
+                )
+);
         }
 
         systemRepository.saveAll(systems);

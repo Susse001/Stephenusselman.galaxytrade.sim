@@ -7,13 +7,13 @@ import java.util.Random;
 import com.stephenu.gts.planet.Planet;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -58,8 +58,9 @@ public class StarSystem {
     /**
      * The economic capabilities and limitatations of all the planets in this star system.
      */
-    @Transient 
-    private StarSystemEconomicProfile economicProfile;
+    @Embedded
+    private StarSystemEconomicProfile economicProfile =
+        new StarSystemEconomicProfile();
 
     public StarSystem(
         Long id,
