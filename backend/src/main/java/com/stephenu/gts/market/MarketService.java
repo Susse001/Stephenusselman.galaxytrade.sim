@@ -6,6 +6,7 @@ import com.stephenu.gts.commodity.Commodity;
 import com.stephenu.gts.market.dto.MarketResponse;
 import com.stephenu.gts.starsystem.StarSystem;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class MarketService {
      *
      * @return A list of all markets.
      */
+    @Transactional
     public List<MarketResponse> getAllMarkets() {
         return marketRepository.findAll()
                 .stream()
@@ -37,6 +39,7 @@ public class MarketService {
      * @param systemId The identifier of the requested star system.
      * @return A list of markets for the specified star system.
      */
+    @Transactional
     public List<MarketResponse> getMarketsForSystem(Long systemId) {
         return marketRepository.findByStarSystemId(systemId)
                 .stream()

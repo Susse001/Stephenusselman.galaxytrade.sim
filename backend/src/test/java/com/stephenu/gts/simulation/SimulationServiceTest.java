@@ -58,7 +58,8 @@ class SimulationServiceTest {
                 tradeOpportunityRepository,
                 traderDecisionService,
                 travelService,
-                marketUpdater
+                marketUpdater, 
+                null
         );
     }
 

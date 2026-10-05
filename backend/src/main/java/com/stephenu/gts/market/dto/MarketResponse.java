@@ -12,8 +12,8 @@ import com.stephenu.gts.starsystem.Region;
  * @param region The region containing the star system.
  * @param commodityType The traded commodity.
  * @param price The current market price.
- * @param supply The available supply.
- * @param demand The current demand.
+ * @param inventory The current inventory of the commodity.
+ * @param targetInventory The desired inventory level for the commodity.
  */
 public record MarketResponse(
         Long id,
@@ -22,6 +22,6 @@ public record MarketResponse(
         Region region,
         CommodityType commodityType,
         Integer price,
-        Integer supply,
-        Integer demand
+        Integer inventory,
+        Integer targetInventory
 ) {}

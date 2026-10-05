@@ -4,8 +4,11 @@ import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Service;
 
+import com.stephenu.gts.planet.dto.PlanetResponse;
+import com.stephenu.gts.starsystem.dto.StarSystemDetailedResponse;
 import com.stephenu.gts.starsystem.dto.StarSystemResponse;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -30,14 +33,15 @@ public class StarSystemService {
     }
 
     /**
-     * Returns the star system with the specified ID.
+     * Returns the star system with the specified ID and its planets.
      *
      * @param id The identifier of the requested star system.
-     * @return The requested star system.
+     * @return The requested star system and its planets.
      * @throws NoSuchElementException If no star system exists with the specified ID.
      */
-    public StarSystemResponse getSystem(Long id) {
-        return mapToResponse(
+    @Transactional
+    public StarSystemDetailedResponse getSystem(Long id) {
+        return mapToDetailedResponse(
                 systemRepository.findById(id)
                         .orElseThrow()
         );
@@ -50,6 +54,22 @@ public class StarSystemService {
                 system.getXCoordinate(),
                 system.getYCoordinate(),
                 system.getRegion()
+        );
+    }
+
+    private StarSystemDetailedResponse mapToDetailedResponse(
+            StarSystem system) {
+
+        return new StarSystemDetailedResponse(
+                system.getId(),
+                system.getName(),
+                system.getXCoordinate(),
+                system.getYCoordinate(),
+                system.getRegion(),
+                system.getPlanets()
+                        .stream()
+                        .map(PlanetResponse::from)
+                        .toList()
         );
     }
 }

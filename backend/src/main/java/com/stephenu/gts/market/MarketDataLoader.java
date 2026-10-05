@@ -37,7 +37,7 @@ public class MarketDataLoader implements CommandLineRunner {
 	 * @param args command-line arguments supplied during application startup
 	 */
 	@Override
-	@Transactional 
+	@Transactional
 	public void run(String... args) {
 
 		if (marketRepository.count() > 0) {

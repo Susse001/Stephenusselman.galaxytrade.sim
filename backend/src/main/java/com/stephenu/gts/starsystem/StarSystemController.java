@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.stephenu.gts.starsystem.dto.StarSystemDetailedResponse;
 import com.stephenu.gts.starsystem.dto.StarSystemResponse;
 
 import lombok.RequiredArgsConstructor;
@@ -31,13 +32,13 @@ public class StarSystemController {
     }
 
     /**
-     * Returns the star system with the specified ID.
+     * Returns the star system with the specified ID and its planets.
      *
      * @param id The identifier of the requested star system.
-     * @return The requested star system.
+     * @return The requested star system and its planets.
      */
     @GetMapping("/{id}")
-    public StarSystemResponse getSystem(
+    public StarSystemDetailedResponse getSystem(
             @PathVariable Long id
     ) {
         return systemService.getSystem(id);

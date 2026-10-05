@@ -8,6 +8,7 @@ import com.stephenu.gts.starsystem.StarSystem;
 import com.stephenu.gts.starsystem.StarSystemEconomicProfile;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -51,14 +52,14 @@ public class Market {
     /**
      * The star system that owns this market.
      */
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "star_system_id")
     private StarSystem starSystem;
 
     /**
      * The commodity traded by this market.
      */
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "commodity_id")
     private Commodity commodity;
 

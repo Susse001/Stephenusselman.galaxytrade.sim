@@ -3,6 +3,8 @@ package com.stephenu.gts.planet;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import com.stephenu.gts.planet.dto.PlanetResponse;
+
 import java.util.List;
 
 /**
@@ -19,7 +21,7 @@ public class PlanetController {
      * Returns every planet.
      */
     @GetMapping
-    public List<Planet> getAllPlanets() {
+    public List<PlanetResponse> getAllPlanets() {
         return planetService.getAllPlanets();
     }
 
@@ -27,7 +29,7 @@ public class PlanetController {
      * Returns a planet by id.
      */
     @GetMapping("/{id}")
-    public Planet getPlanet(
+    public PlanetResponse getPlanet(
             @PathVariable Long id) {
 
         return planetService.getPlanet(id);
