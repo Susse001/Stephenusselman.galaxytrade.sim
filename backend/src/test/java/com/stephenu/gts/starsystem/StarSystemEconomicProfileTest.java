@@ -17,23 +17,31 @@ import com.stephenu.gts.commodity.ProductionRecipe;
 import com.stephenu.gts.planet.DevelopmentLevel;
 import com.stephenu.gts.planet.InfrastructureLevel;
 import com.stephenu.gts.planet.Planet;
-import com.stephenu.gts.planet.PlanetConsumptionProfileGenerator;
+import com.stephenu.gts.planet.PlanetConsumptionProfile;
+import com.stephenu.gts.planet.PlanetProductionProfile;
 import com.stephenu.gts.planet.PlanetProductionProfileGenerator;
 import com.stephenu.gts.planet.PopulationLevel;
 
 public class StarSystemEconomicProfileTest {
 
+    private StarSystemEconomicProfileGenerator generator;
     private StarSystemEconomicProfile profile;
     private Planet planet;
 
     @BeforeEach
     void setUp() {
+        generator =
+                new StarSystemEconomicProfileGenerator(
+                        new PlanetProductionProfileGenerator()
+                );
+
         profile = new StarSystemEconomicProfile();
+
         planet = createTestPlanet();
     }
 
     @Test
-    void generateProfileBuildsProfileFromSinglePlanet() {
+    void generateEconomicProfileBuildsProfileFromSinglePlanet() {
         Map<CommodityType, Commodity> commodities =
                 createTestCommodities();
 
@@ -62,7 +70,7 @@ public class StarSystemEconomicProfileTest {
         system.addPlanet(planet);
 
         StarSystemEconomicProfile result =
-                profile.generateProfile(
+                generator.generateEconomicProfile(
                         system,
                         commodities
                 );
@@ -89,7 +97,7 @@ public class StarSystemEconomicProfileTest {
     }
 
     @Test
-    void generateProfileAggregatesMultiplePlanets() {
+    void generateEconomicProfileAggregatesMultiplePlanets() {
         Map<CommodityType, Commodity> commodities =
                 createTestCommodities();
 
@@ -128,7 +136,7 @@ public class StarSystemEconomicProfileTest {
         system.addPlanet(secondPlanet);
 
         StarSystemEconomicProfile result =
-                profile.generateProfile(
+                generator.generateEconomicProfile(
                         system,
                         commodities
                 );
@@ -152,22 +160,29 @@ public class StarSystemEconomicProfileTest {
     void chooseSpecializationSelectsCommodityWithHigherPotential() {
         planet.getProductionProfile()
                 .getManufacturingPotential()
-                .put(CommodityType.MANUFACTURED_PARTS, 100.0);
+                .put(
+                        CommodityType.MANUFACTURED_PARTS,
+                        100.0
+                );
 
         planet.getProductionProfile()
                 .getManufacturingPotential()
-                .put(CommodityType.ELECTRONIC_COMPONENTS, 50.0);
+                .put(
+                        CommodityType.ELECTRONIC_COMPONENTS,
+                        50.0
+                );
 
         Map<CommodityType, Commodity> commodities =
                 createTestCommodities();
 
         CommodityType result =
-                profile.chooseSpecialization(
+                generator.chooseSpecialization(
                         planet,
                         new EnumMap<>(CommodityType.class),
                         new EnumMap<>(CommodityType.class),
                         commodities,
-                        new EnumMap<>(CommodityType.class)
+                        new EnumMap<>(CommodityType.class),
+                        profile
                 );
 
         assertEquals(
@@ -215,14 +230,14 @@ public class StarSystemEconomicProfileTest {
                 0.0
         );
 
-
         CommodityType result =
-                profile.chooseSpecialization(
+                generator.chooseSpecialization(
                         planet,
                         new EnumMap<>(CommodityType.class),
                         new EnumMap<>(CommodityType.class),
                         commodities,
-                        new EnumMap<>(CommodityType.class)
+                        new EnumMap<>(CommodityType.class),
+                        profile
                 );
 
         assertEquals(
@@ -274,12 +289,13 @@ public class StarSystemEconomicProfileTest {
         );
 
         CommodityType result =
-                profile.chooseSpecialization(
+                generator.chooseSpecialization(
                         planet,
                         new EnumMap<>(CommodityType.class),
                         new EnumMap<>(CommodityType.class),
                         commodities,
-                        manufacturing
+                        manufacturing,
+                        profile
                 );
 
         assertEquals(
@@ -316,12 +332,13 @@ public class StarSystemEconomicProfileTest {
         );
 
         CommodityType result =
-                profile.chooseSpecialization(
+                generator.chooseSpecialization(
                         planet,
                         systemSpecializations,
                         new EnumMap<>(CommodityType.class),
                         commodities,
-                        new EnumMap<>(CommodityType.class)
+                        new EnumMap<>(CommodityType.class),
+                        profile
                 );
 
         assertEquals(
@@ -358,12 +375,13 @@ public class StarSystemEconomicProfileTest {
         );
 
         CommodityType result =
-                profile.chooseSpecialization(
+                generator.chooseSpecialization(
                         planet,
                         new EnumMap<>(CommodityType.class),
                         new EnumMap<>(CommodityType.class),
                         commodities,
-                        manufacturing
+                        manufacturing,
+                        profile
                 );
 
         assertEquals(
@@ -400,12 +418,13 @@ public class StarSystemEconomicProfileTest {
         );
 
         CommodityType result =
-                profile.chooseSpecialization(
+                generator.chooseSpecialization(
                         planet,
                         new EnumMap<>(CommodityType.class),
                         planetSpecializations,
                         commodities,
-                        new EnumMap<>(CommodityType.class)
+                        new EnumMap<>(CommodityType.class),
+                        profile
                 );
 
         assertEquals(
@@ -420,9 +439,10 @@ public class StarSystemEconomicProfileTest {
                 new EnumMap<>(CommodityType.class);
 
         double result =
-                profile.calculateSelfSufficiencyModifier(
+                generator.calculateSelfSufficiencyModifier(
                         CommodityType.MANUFACTURED_PARTS,
-                        commodities
+                        commodities,
+                        profile
                 );
 
         assertEquals(1.0, result);
@@ -440,15 +460,17 @@ public class StarSystemEconomicProfileTest {
 
         Map<CommodityType, Commodity> commodities =
                 new EnumMap<>(CommodityType.class);
+
         commodities.put(
                 CommodityType.MANUFACTURED_PARTS,
                 candidate
         );
 
         double result =
-                profile.calculateSelfSufficiencyModifier(
+                generator.calculateSelfSufficiencyModifier(
                         CommodityType.MANUFACTURED_PARTS,
-                        commodities
+                        commodities,
+                        profile
                 );
 
         assertEquals(1.0, result);
@@ -466,6 +488,7 @@ public class StarSystemEconomicProfileTest {
 
         Map<Commodity, Double> tier1Totals =
                 new HashMap<>();
+
         tier1Totals.put(input, 10.0);
 
         recipe.setTier1GoodTotals(tier1Totals);
@@ -475,6 +498,7 @@ public class StarSystemEconomicProfileTest {
 
         Map<CommodityType, Commodity> commodities =
                 new EnumMap<>(CommodityType.class);
+
         commodities.put(
                 CommodityType.MANUFACTURED_PARTS,
                 candidate
@@ -486,9 +510,10 @@ public class StarSystemEconomicProfileTest {
         );
 
         double result =
-                profile.calculateSelfSufficiencyModifier(
+                generator.calculateSelfSufficiencyModifier(
                         CommodityType.MANUFACTURED_PARTS,
-                        commodities
+                        commodities,
+                        profile
                 );
 
         assertEquals(1.5, result);
@@ -506,6 +531,7 @@ public class StarSystemEconomicProfileTest {
 
         Map<Commodity, Double> tier1Totals =
                 new HashMap<>();
+
         tier1Totals.put(input, 10.0);
 
         recipe.setTier1GoodTotals(tier1Totals);
@@ -515,6 +541,7 @@ public class StarSystemEconomicProfileTest {
 
         Map<CommodityType, Commodity> commodities =
                 new EnumMap<>(CommodityType.class);
+
         commodities.put(
                 CommodityType.MANUFACTURED_PARTS,
                 candidate
@@ -526,9 +553,10 @@ public class StarSystemEconomicProfileTest {
         );
 
         double result =
-                profile.calculateSelfSufficiencyModifier(
+                generator.calculateSelfSufficiencyModifier(
                         CommodityType.MANUFACTURED_PARTS,
-                        commodities
+                        commodities,
+                        profile
                 );
 
         assertEquals(0.5, result);
@@ -553,10 +581,11 @@ public class StarSystemEconomicProfileTest {
                 new EnumMap<>(CommodityType.class);
 
         double result =
-                profile.calculateDistributionConsumptionModifier(
+                generator.calculateDistributionConsumptionModifier(
                         CommodityType.ELECTRONIC_COMPONENTS,
                         manufacturing,
-                        specializations
+                        specializations,
+                        profile
                 );
 
         // Production ratio = 0.5
@@ -585,10 +614,11 @@ public class StarSystemEconomicProfileTest {
                 new EnumMap<>(CommodityType.class);
 
         double result =
-                profile.calculateDistributionConsumptionModifier(
+                generator.calculateDistributionConsumptionModifier(
                         CommodityType.ELECTRONIC_COMPONENTS,
                         manufacturing,
-                        specializations
+                        specializations,
+                        profile
                 );
 
         assertEquals(1.20, result);
@@ -600,7 +630,7 @@ public class StarSystemEconomicProfileTest {
                 new EnumMap<>(CommodityType.class);
 
         double result =
-                profile.calculateSupplyChainModifier(
+                generator.calculateSupplyChainModifier(
                         CommodityType.MANUFACTURED_PARTS,
                         new EnumMap<>(CommodityType.class),
                         commodities
@@ -621,6 +651,7 @@ public class StarSystemEconomicProfileTest {
 
         Map<Commodity, Double> inputs =
                 new HashMap<>();
+
         inputs.put(input, 2.0);
 
         recipe.setInputs(inputs);
@@ -628,6 +659,7 @@ public class StarSystemEconomicProfileTest {
 
         Map<CommodityType, Commodity> commodities =
                 new EnumMap<>(CommodityType.class);
+
         commodities.put(
                 CommodityType.MANUFACTURED_PARTS,
                 candidate
@@ -635,13 +667,14 @@ public class StarSystemEconomicProfileTest {
 
         Map<CommodityType, Double> manufacturing =
                 new EnumMap<>(CommodityType.class);
+
         manufacturing.put(
                 CommodityType.REFINED_METALS,
                 20.0
         );
 
         double result =
-                profile.calculateSupplyChainModifier(
+                generator.calculateSupplyChainModifier(
                         CommodityType.MANUFACTURED_PARTS,
                         manufacturing,
                         commodities
@@ -668,6 +701,7 @@ public class StarSystemEconomicProfileTest {
 
         Map<Commodity, Double> inputs =
                 new HashMap<>();
+
         inputs.put(metals, 2.0);
         inputs.put(materials, 3.0);
 
@@ -676,6 +710,7 @@ public class StarSystemEconomicProfileTest {
 
         Map<CommodityType, Commodity> commodities =
                 new EnumMap<>(CommodityType.class);
+
         commodities.put(
                 CommodityType.MANUFACTURED_PARTS,
                 candidate
@@ -683,17 +718,19 @@ public class StarSystemEconomicProfileTest {
 
         Map<CommodityType, Double> manufacturing =
                 new EnumMap<>(CommodityType.class);
+
         manufacturing.put(
                 CommodityType.REFINED_METALS,
                 20.0
         );
+
         manufacturing.put(
                 CommodityType.ADVANCED_MATERIALS,
                 20.0
         );
 
         double result =
-                profile.calculateSupplyChainModifier(
+                generator.calculateSupplyChainModifier(
                         CommodityType.MANUFACTURED_PARTS,
                         manufacturing,
                         commodities
@@ -830,11 +867,11 @@ public class StarSystemEconomicProfileTest {
         );
 
         planet.setProductionProfile(
-                new PlanetProductionProfileGenerator()
+                new PlanetProductionProfile()
         );
 
         planet.setConsumptionProfile(
-                new PlanetConsumptionProfileGenerator()
+                new PlanetConsumptionProfile()
         );
 
         return planet;
