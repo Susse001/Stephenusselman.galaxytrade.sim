@@ -12,6 +12,7 @@ import com.stephenu.gts.commodity.Commodity;
 import com.stephenu.gts.commodity.CommodityRepository;
 import com.stephenu.gts.commodity.CommodityType;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -25,6 +26,7 @@ public class StarSystemEconomyDataLoader implements CommandLineRunner {
         economicProfileGenerator;
 
     @Override
+    @Transactional 
     public void run(String... args) {
 
         Map<CommodityType, Commodity> commodities =
@@ -36,7 +38,7 @@ public class StarSystemEconomyDataLoader implements CommandLineRunner {
                         ));
 
         List<StarSystem> systems =
-                systemRepository.findAllWithPlanets();
+                systemRepository.findAll();
 
         for (StarSystem system : systems) {
 
