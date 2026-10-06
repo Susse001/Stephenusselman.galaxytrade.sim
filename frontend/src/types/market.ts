@@ -8,6 +8,6 @@ export interface Market {
     region: string;
     commodityType: string;
     price: number;
-    supply: number;
-    demand: number;
+    inventory: number;
+    targetInventory: number;
 }

@@ -1,8 +1,8 @@
 import type { Market } from "../types/market";
-import type { StarSystem } from "../types/starSystem";
+import type { StarSystemDetailed } from "../types/starSystemDetailed";
 
 interface SystemPanelProps {
-    system: StarSystem | null;
+    system: StarSystemDetailed | null;
     markets: Market[];
     loading: boolean;
 }
@@ -27,22 +27,73 @@ export default function SystemPanel({
                 backgroundColor: "#1f2937",
                 color: "white",
                 borderRadius: "8px",
-                minWidth: "300px"
+                width: "500px",
+                maxHeight: "600px",
+                overflowY: "auto"
             }}
         >
             <h3>{system.name}</h3>
 
-            <p>
-                <strong>Region:</strong>{" "}
-                {system.region}
-            </p>
+            <div
+                style={{
+                    display: "flex",
+                    gap: "1.5rem"
+                }}
+            >
+                <div>
+                    <strong>Region:</strong>{" "}
+                    {system.region}
+                </div>
 
-            <p>
-                <strong>Coordinates:</strong>{" "}
-                ({system.xCoordinate},
-                {" "}
-                {system.yCoordinate})
-            </p>
+                <div>
+                    <strong>Coordinates:</strong>{" "}
+                    ({system.xCoordinate}, {system.yCoordinate})
+                </div>
+            </div>
+
+            <hr />
+
+            <h4>Planets</h4>
+
+            {system.planets.length === 0 && (
+                <p>No planets found.</p>
+            )}
+
+            {system.planets.map(planet => (
+                <div
+                    key={planet.id}
+                    style={{
+                        padding: "0.75rem",
+                        marginBottom: "0.5rem",
+                        backgroundColor: "#374151",
+                        borderRadius: "6px",
+                        cursor: "pointer"
+                    }}
+                >
+                    <strong>{planet.name}</strong>
+
+                    <div
+                        style={{
+                            display: "flex",
+                            gap: "1rem",
+                            marginTop: "0.25rem",
+                            fontSize: "0.9rem"
+                        }}
+                    >
+                        <span>
+                            {planet.planetType}
+                        </span>
+
+                        <span>
+                            {planet.population}
+                        </span>
+
+                        <span>
+                            {planet.development}
+                        </span>
+                    </div>
+                </div>
+            ))}
 
             <hr />
 
@@ -52,35 +103,47 @@ export default function SystemPanel({
                 <p>Loading market data...</p>
             )}
 
-            {!loading &&
-                markets.length === 0 && (
+            {!loading && markets.length === 0 && (
                 <p>No market data available.</p>
             )}
 
-            {markets.map(market => (
+            {!loading && markets.length > 0 && (
                 <div
-                    key={market.id}
                     style={{
-                        marginBottom: "0.75rem"
+                        display: "grid",
+                        gridTemplateColumns: "1fr auto auto",
+                        gap: "0.5rem 1rem",
+                        fontSize: "0.9rem"
                     }}
                 >
-                    <strong>
-                        {market.commodityType}
-                    </strong>
+                    <strong>Commodity</strong>
+                    <strong>Price</strong>
+                    <strong>Inventory</strong>
 
-                    <div>
-                        Price: {market.price}
-                    </div>
+                    {markets.map(market => (
+                        <div
+                            key={market.id}
+                            style={{
+                                display: "contents"
+                            }}
+                        >
+                            <div>
+                                {market.commodityType}
+                            </div>
 
-                    <div>
-                        Supply: {market.supply}
-                    </div>
+                            <div>
+                                {market.price}
+                            </div>
 
-                    <div>
-                        Demand: {market.demand}
-                    </div>
+                            <div>
+                                {market.inventory}
+                                {" / "}
+                                {market.targetInventory}
+                            </div>
+                        </div>
+                    ))}
                 </div>
-            ))}
+            )}
         </div>
     );
 }
