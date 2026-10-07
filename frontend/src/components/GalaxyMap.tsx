@@ -1,24 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import type { StarSystem } from "../types/starSystem";
-import SystemPanel from "./SystemPanel";
-import GalaxySystems from "./GalaxySystems";
-
+import type { StarSystemDetailed } from "../types/starSystemDetailed";
+import type { Planet } from "../types/planet";
 import type { Market } from "../types/market";
-import { getMarketsForSystem } from "../api/marketApi";
+import type { Trader } from "../types/trader";
 
-import type {Trader} from "../types/trader";
-import {getTraders} from "../api/traderApi";
-import TraderPanel from "./TraderPanel";
-import TradeRouteOverlay from "./TradeRouteOverlay";
+import { getSystem } from "../api/systemApi";
+import { getMarketsForSystem } from "../api/marketApi";
+import { getPlanet } from "../api/planetApi";
+import { getTraders } from "../api/traderApi";
+import { getSimulationStatus } from "../api/simulationApi";
+
+import GalaxySystems from "./GalaxySystems";
 import GalaxyTraders from "./GalaxyTraders";
+import TradeRouteOverlay from "./TradeRouteOverlay";
+import SystemPanel from "./SystemPanel";
+import PlanetPanel from "./PlanetPanel";
+import TraderPanel from "./TraderPanel";
 
 interface GalaxyMapProps {
     systems: StarSystem[];
 }
 
 /**
- * Renders the galaxy map.
+ * Renders the galaxy map and keeps displayed trader state synchronized
+ * with the backend simulation.
  */
 export default function GalaxyMap({
     systems
@@ -26,6 +33,12 @@ export default function GalaxyMap({
 
     const [selectedSystem, setSelectedSystem] =
         useState<StarSystem | null>(null);
+
+    const [selectedSystemDetails, setSelectedSystemDetails] =
+        useState<StarSystemDetailed | null>(null);
+
+    const [selectedPlanet, setSelectedPlanet] =
+        useState<Planet | null>(null);
 
     const [markets, setMarkets] =
         useState<Market[]>([]);
@@ -39,17 +52,81 @@ export default function GalaxyMap({
     const [selectedTrader, setSelectedTrader] =
         useState<Trader | null>(null);
 
+    const lastSimulationTick =
+        useRef<number | null>(null);
+
+
     useEffect(() => {
 
-        const interval = setInterval(() => {
+        async function initializeSimulationState() {
 
-            getTraders()
-                .then(setTraders)
-                .catch(error =>
-                    console.error(error)
+            try {
+
+                const [status, traderData] =
+                    await Promise.all([
+                        getSimulationStatus(),
+                        getTraders()
+                    ]);
+
+                lastSimulationTick.current =
+                    status.tick;
+
+                setTraders(traderData);
+
+            } catch (error) {
+
+                console.error(
+                    "Failed to initialize simulation state",
+                    error
                 );
+            }
+        }
 
-        }, 1000);
+        initializeSimulationState();
+
+    }, []);
+
+    useEffect(() => {
+
+        const interval = setInterval(async () => {
+
+            try {
+
+                const status =
+                    await getSimulationStatus();
+
+                if (
+                    lastSimulationTick.current === null
+                ) {
+                    lastSimulationTick.current =
+                        status.tick;
+
+                    return;
+                }
+
+                if (
+                    status.tick !==
+                    lastSimulationTick.current
+                ) {
+
+                    lastSimulationTick.current =
+                        status.tick;
+
+                    const updatedTraders =
+                        await getTraders();
+
+                    setTraders(updatedTraders);
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Failed to check simulation status",
+                    error
+                );
+            }
+
+        }, 5000);
 
         return () =>
             clearInterval(interval);
@@ -61,41 +138,84 @@ export default function GalaxyMap({
     ) {
 
         setSelectedSystem(system);
+        setSelectedPlanet(null);
         setLoadingMarkets(true);
 
         try {
-            setMarkets(await getMarketsForSystem(system.id)
-        );
+
+            const [
+                systemDetails,
+                marketData
+            ] = await Promise.all([
+                getSystem(system.id),
+                getMarketsForSystem(system.id)
+            ]);
+
+            setSelectedSystemDetails(
+                systemDetails
+            );
+
+            setMarkets(marketData);
 
         } catch (error) {
+
             console.error(
-                "Failed to load market data",
+                "Failed to load system data",
                 error
             );
 
+            setSelectedSystemDetails(null);
             setMarkets([]);
 
         } finally {
 
             setLoadingMarkets(false);
+        }
+    }
 
+    async function handlePlanetClick(
+        planetId: number
+    ) {
+
+        try {
+
+            setSelectedPlanet(
+                await getPlanet(planetId)
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Failed to load planet data",
+                error
+            );
+
+            setSelectedPlanet(null);
         }
     }
 
     const minX = Math.min(
-        ...systems.map(system => system.xCoordinate)
+        ...systems.map(
+            system => system.xCoordinate
+        )
     );
 
     const minY = Math.min(
-        ...systems.map(system => system.yCoordinate)
+        ...systems.map(
+            system => system.yCoordinate
+        )
     );
 
     const maxX = Math.max(
-        ...systems.map(system => system.xCoordinate)
+        ...systems.map(
+            system => system.xCoordinate
+        )
     );
 
     const maxY = Math.max(
-        ...systems.map(system => system.yCoordinate)
+        ...systems.map(
+            system => system.yCoordinate
+        )
     );
 
     const VIEWBOX_PADDING = 10;
@@ -110,9 +230,11 @@ export default function GalaxyMap({
                 } ${
                     minY - VIEWBOX_PADDING
                 } ${
-                    maxX - minX + VIEWBOX_PADDING * 2
+                    maxX - minX +
+                    VIEWBOX_PADDING * 2
                 } ${
-                    maxY - minY + VIEWBOX_PADDING * 2
+                    maxY - minY +
+                    VIEWBOX_PADDING * 2
                 }`}
                 preserveAspectRatio="xMidYMid meet"
                 style={{
@@ -140,8 +262,8 @@ export default function GalaxyMap({
                 />
 
                 <TradeRouteOverlay
-                trader={selectedTrader}
-                systems={systems}
+                    trader={selectedTrader}
+                    systems={systems}
                 />
 
                 <GalaxySystems
@@ -156,20 +278,25 @@ export default function GalaxyMap({
                     selectedTrader={selectedTrader}
                     onTraderClick={setSelectedTrader}
                 />
-
             </svg>
 
             <div
                 style={{
                     display: "flex",
+                    flexWrap: "wrap",
                     gap: "1rem",
                     marginTop: "1rem"
                 }}
             >
                 <SystemPanel
-                    system={selectedSystem}
+                    system={selectedSystemDetails}
                     markets={markets}
                     loading={loadingMarkets}
+                    onPlanetClick={handlePlanetClick}
+                />
+
+                <PlanetPanel
+                    planet={selectedPlanet}
                 />
 
                 <TraderPanel

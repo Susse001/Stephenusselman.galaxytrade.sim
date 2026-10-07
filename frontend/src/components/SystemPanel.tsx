@@ -5,6 +5,7 @@ interface SystemPanelProps {
     system: StarSystemDetailed | null;
     markets: Market[];
     loading: boolean;
+    onPlanetClick: (planetId: number) => void;
 }
 
 /**
@@ -13,7 +14,8 @@ interface SystemPanelProps {
 export default function SystemPanel({
     system,
     markets,
-    loading
+    loading,
+    onPlanetClick
 }: SystemPanelProps) {
 
     if (!system) {
@@ -62,6 +64,7 @@ export default function SystemPanel({
             {system.planets.map(planet => (
                 <div
                     key={planet.id}
+                    onClick={() => onPlanetClick(planet.id)}
                     style={{
                         padding: "0.75rem",
                         marginBottom: "0.5rem",
