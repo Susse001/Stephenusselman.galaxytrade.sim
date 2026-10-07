@@ -152,10 +152,9 @@ public class StarSystemDataLoader implements CommandLineRunner {
         for (int i = 0; i < SYSTEM_COUNT; i++) {
 
             String name =
-                    SYSTEM_NAMES.get(i % SYSTEM_NAMES.size())
+                    (i + 1)
                     + "-"
-                    + (i + 1);
-
+                    + SYSTEM_NAMES.get(i % SYSTEM_NAMES.size());
             int x;
             int y;
 

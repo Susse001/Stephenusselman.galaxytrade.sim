@@ -1,5 +1,11 @@
 package com.stephenu.gts.simulation;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
@@ -108,25 +114,67 @@ public class GalaxyEconomicMonitor {
         );
     }
 
-    public void printEconomicSummary() {
+    public void outputEconomicSummary(long tick) {
 
-        System.out.println();
-        System.out.println("========== GALAXY ECONOMIC SUMMARY ==========");
+        Path logFile =
+                Paths.get(
+                        "logs",
+                        "galaxy-economic-summary.txt"
+                );
 
-        for (CommodityEconomicSummary summary :
-                getEconomicSummary()) {
+        try {
 
-            System.out.printf(
-                    "%-24s Production: %8.1f | Consumption: %8.1f | Net: %8.1f | Inventory: %10.1f%n",
-                    summary.getCommodity(),
-                    summary.getProduction(),
-                    summary.getConsumption(),
-                    summary.getNetProduction(),
-                    summary.getInventory()
-            );
+                Files.createDirectories(
+                        logFile.getParent()
+                );
+
+                try (BufferedWriter writer =
+                        Files.newBufferedWriter(
+                                logFile,
+                                StandardOpenOption.CREATE,
+                                StandardOpenOption.APPEND
+                        )) {
+
+                writer.newLine();
+                writer.write(
+                        "========== GALAXY ECONOMIC SUMMARY =========="
+                );
+                writer.newLine();
+                writer.write(
+                        "Tick: " + tick
+                );
+                writer.newLine();
+
+                for (CommodityEconomicSummary summary :
+                        getEconomicSummary()) {
+
+                        writer.write(
+                                String.format(
+                                        "%-24s Production: %8.1f | Consumption: %8.1f | Net: %8.1f | Inventory: %10.1f",
+                                        summary.getCommodity(),
+                                        summary.getProduction(),
+                                        summary.getConsumption(),
+                                        summary.getNetProduction(),
+                                        summary.getInventory()
+                                )
+                        );
+
+                        writer.newLine();
+                }
+
+                writer.write(
+                        "=============================================="
+                );
+
+                writer.newLine();
+                }
+
+        } catch (IOException exception) {
+
+                throw new RuntimeException(
+                        "Failed to write economic summary",
+                        exception
+                );
         }
-
-        System.out.println("==============================================");
-        System.out.println();
-    }
+        }
 }

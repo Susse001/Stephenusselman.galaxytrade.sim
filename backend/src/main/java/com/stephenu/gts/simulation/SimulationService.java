@@ -52,7 +52,7 @@ public class SimulationService {
         marketUpdater.updateMarkets();
         evaluateTraders();
 
-        galaxyEconomicMonitor.printEconomicSummary();
+        galaxyEconomicMonitor.outputEconomicSummary(currentTick);
 
         return currentTick;
     }
