@@ -123,12 +123,14 @@ public class StarSystemEconomicProfileGenerator {
         Map<Planet, Integer> specializationSlots =
                 new HashMap<>();
 
-        Map<Planet, Map<CommodityType, Integer>>
-                planetSpecializations =
-                new HashMap<>();
-
         Map<CommodityType, Integer> systemSpecializations =
-                new EnumMap<>(CommodityType.class);
+                profile.getSpecializations();
+
+        systemSpecializations.clear();
+
+        for (CommodityType commodity : CommodityType.values()) {
+            systemSpecializations.put(commodity, 0);
+        }
 
         for (Planet planet : system.getPlanets()) {
 
@@ -137,19 +139,12 @@ public class StarSystemEconomicProfileGenerator {
                     calculateSpecializationSlots(planet)
             );
 
-            planetSpecializations.put(
-                    planet,
-                    new EnumMap<>(CommodityType.class)
-            );
-        }
-
-        for (CommodityType commodity : CommodityType.values()) {
-            systemSpecializations.put(commodity, 0);
+            planet.getSpecializations().clear();
         }
 
         /*
-         * Every manufacturing industry begins at 20% utilization.
-         */
+        * Every manufacturing industry begins at 20% utilization.
+        */
         for (Planet planet : system.getPlanets()) {
 
             Map<CommodityType, Double> potential =
@@ -173,8 +168,8 @@ public class StarSystemEconomicProfileGenerator {
                         .orElse(0);
 
         for (int round = 0;
-             round < maximumRounds;
-             round++) {
+            round < maximumRounds;
+            round++) {
 
             for (Planet planet : system.getPlanets()) {
 
@@ -189,7 +184,7 @@ public class StarSystemEconomicProfileGenerator {
                         chooseSpecialization(
                                 planet,
                                 systemSpecializations,
-                                planetSpecializations.get(planet),
+                                planet.getSpecializations(),
                                 commodities,
                                 manufacturing,
                                 profile
@@ -199,9 +194,8 @@ public class StarSystemEconomicProfileGenerator {
                     continue;
                 }
 
-                Map<CommodityType, Integer>
-                        specializations =
-                        planetSpecializations.get(planet);
+                Map<CommodityType, Integer> specializations =
+                        planet.getSpecializations();
 
                 int previous =
                         specializations.getOrDefault(

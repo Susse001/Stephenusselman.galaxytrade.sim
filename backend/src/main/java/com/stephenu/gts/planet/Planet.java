@@ -1,8 +1,10 @@
 package com.stephenu.gts.planet;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
@@ -24,6 +26,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapKeyColumn;
+import jakarta.persistence.MapKeyEnumerated;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -123,6 +127,17 @@ public class Planet {
     @Column(name = "feature")
     @Enumerated(EnumType.STRING)
     private Set<PlanetFeature> features = new HashSet<>();
+
+    @ElementCollection
+    @CollectionTable(
+            name = "planet_specializations",
+            joinColumns = @JoinColumn(name = "planet_id")
+    )
+    @MapKeyEnumerated(EnumType.STRING)
+    @MapKeyColumn(name = "commodity")
+    @Column(name = "specialization_count")
+    private Map<CommodityType, Integer> specializations =
+            new EnumMap<>(CommodityType.class);
 
     /**
      * 

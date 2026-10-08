@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
  * to create initial trading opportunities.
  */
 @Component
-@Order(5)
+@Order(6)
 @RequiredArgsConstructor
 public class MarketDataLoader implements CommandLineRunner {
 

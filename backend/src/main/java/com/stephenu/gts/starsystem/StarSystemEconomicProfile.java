@@ -77,6 +77,19 @@ public class StarSystemEconomicProfile {
     private Map<CommodityType, Double> consumption =
             new EnumMap<>(CommodityType.class);
 
+
+    @ElementCollection
+    @CollectionTable(
+            name = "system_specializations",
+            joinColumns = @JoinColumn(name = "star_system_id")
+    )
+    
+    @MapKeyEnumerated(EnumType.STRING)
+    @MapKeyColumn(name = "commodity")
+    @Column(name = "specialization_count")
+    private Map<CommodityType, Integer> specializations =
+            new EnumMap<>(CommodityType.class);
+
     public StarSystemEconomicProfile(
             Map<CommodityType, Double> extractionCapacity,
             Map<CommodityType, Double> manufacturingPotential,

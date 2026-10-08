@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  * starting credits and strategy profiles.
  */
 @Component
-@Order(5)
+@Order(7)
 @RequiredArgsConstructor
 public class TraderDataLoader
         implements CommandLineRunner {
