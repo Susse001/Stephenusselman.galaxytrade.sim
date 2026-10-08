@@ -464,7 +464,6 @@ public class PlanetResourceGenerator {
 
         return List.of(
                 ResourceLevel.AVERAGE,
-                ResourceLevel.AVERAGE,
                 ResourceLevel.RICH
         );
     }
@@ -671,7 +670,6 @@ public class PlanetResourceGenerator {
         return List.of(
                 ResourceLevel.AVERAGE,
                 ResourceLevel.RICH,
-                ResourceLevel.RICH,
                 ResourceLevel.RICH
         );
     }
@@ -862,7 +860,6 @@ public class PlanetResourceGenerator {
 
         return List.of(
                 ResourceLevel.SCARCE,
-                ResourceLevel.AVERAGE,
                 ResourceLevel.AVERAGE
         );
     }
@@ -1238,7 +1235,6 @@ public class PlanetResourceGenerator {
 
         return List.of(
                 ResourceLevel.AVERAGE,
-                ResourceLevel.RICH,
                 ResourceLevel.RICH
         );
     }
@@ -1418,7 +1414,6 @@ public class PlanetResourceGenerator {
     private List<ResourceLevel> generateBarrenWaterPool() {
         return List.of(
                 ResourceLevel.NONE,
-                ResourceLevel.SCARCE,
                 ResourceLevel.SCARCE
         );
     }

@@ -29,7 +29,7 @@ public class PlanetProductionProfileGenerator {
     private static final Map<CommodityType, Double> BASE_EXTRACTION =
         Map.of(
 
-                    CommodityType.FOOD, 160.0,
+                    CommodityType.FOOD, 170.0,
                     CommodityType.WATER, 150.0,
                     CommodityType.BIOMATERIALS, 65.0,
 
@@ -143,15 +143,15 @@ public class PlanetProductionProfileGenerator {
                 Map.entry(CommodityType.MANUFACTURED_PARTS, 38.0),
                 Map.entry(CommodityType.ELECTRONIC_COMPONENTS, 32.0),
                 Map.entry(CommodityType.PHARMACEUTICALS, 35.0),
-                Map.entry(CommodityType.FUEL, 30.0),
+                Map.entry(CommodityType.FUEL, 34.0),
 
                 // Tier 3
-                Map.entry(CommodityType.CONSUMER_GOODS, 32.0),
-                Map.entry(CommodityType.MEDICAL_SUPPLIES, 15.0),
-                Map.entry(CommodityType.INDUSTRIAL_MACHINERY, 14.0),
-                Map.entry(CommodityType.ELECTRONICS, 14.0),
-                Map.entry(CommodityType.CAPITAL_GOODS, 7.0),
-                Map.entry(CommodityType.LUXURY_GOODS, 4.0)
+                Map.entry(CommodityType.CONSUMER_GOODS, 60.0),
+                Map.entry(CommodityType.MEDICAL_SUPPLIES, 28.0),
+                Map.entry(CommodityType.INDUSTRIAL_MACHINERY, 26.0),
+                Map.entry(CommodityType.ELECTRONICS, 30.0),
+                Map.entry(CommodityType.CAPITAL_GOODS, 14.0),
+                Map.entry(CommodityType.LUXURY_GOODS, 8.0)
         );
 
     private static final Map<PopulationLevel, Double> MANUFACTURING_POPULATION_MULTIPLIERS =

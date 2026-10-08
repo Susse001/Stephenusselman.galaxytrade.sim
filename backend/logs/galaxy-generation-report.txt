@@ -3232,3 +3232,3409 @@ Planets: 4
     PETROCHEMICALS           1
 
 
+
+
+============================================================
+                 GALAXY GENERATION REPORT
+============================================================
+Generated: 2026-10-08T15:24:19.626633800
+
+GALAXY OVERVIEW
+----------------
+Star Systems:       30
+Planets:            120
+Average Planets:    4.00
+
+PLANET TYPES
+------------
+CONTINENTAL             15
+OCEANIC                  5
+ARID                    10
+ALPINE                  20
+FROZEN                  20
+BARREN                  33
+VOLCANIC                 6
+CRYOVOLCANIC            11
+
+ORBIT ZONES
+-----------
+INNER                   22
+MIDDLE                  38
+OUTER                   60
+
+POPULATION LEVELS
+-----------------
+TENS_OF_MILLIONS             28
+HUNDREDS_OF_MILLIONS         60
+BILLIONS                     24
+TENS_OF_BILLIONS              8
+
+DEVELOPMENT LEVELS
+------------------
+COLONIAL                29
+AGRARIAN                 9
+DEVELOPING              36
+INDUSTRIAL              32
+ADVANCED                14
+
+INFRASTRUCTURE LEVELS
+---------------------
+POOR                    30
+MODEST                  48
+GOOD                    30
+EXCELLENT               12
+
+RESOURCE LEVEL DISTRIBUTION
+--------------------------
+Commodity                   NONE  SCARCE  AVERAGE    RICH  ABUNDANT
+FOOD                          38      37       29      13         3
+WATER                         16      27       32      26        19
+BIOMATERIALS                  22      53       22      17         6
+COMMON_METALS                  0      16       28      58        18
+RARE_METALS                    6      28       42      35         9
+INDUSTRIAL_MINERALS            0       6       36      63        15
+HYDROCARBONS                  44      38       27      10         1
+INDUSTRIAL_CHEMICALS           6      16       54      34        10
+RARE_ELEMENTS                  0      26       42      42        10
+REFINED_METALS                 0       0        0       0         0
+PETROCHEMICALS                 0       0        0       0         0
+ADVANCED_MATERIALS             0       0        0       0         0
+MANUFACTURED_PARTS             0       0        0       0         0
+ELECTRONIC_COMPONENTS          0       0        0       0         0
+PHARMACEUTICALS                0       0        0       0         0
+FUEL                           0       0        0       0         0
+ELECTRONICS                    0       0        0       0         0
+MEDICAL_SUPPLIES               0       0        0       0         0
+INDUSTRIAL_MACHINERY           0       0        0       0         0
+CAPITAL_GOODS                  0       0        0       0         0
+CONSUMER_GOODS                 0       0        0       0         0
+LUXURY_GOODS                   0       0        0       0         0
+
+MANUFACTURING SPECIALIZATIONS
+-----------------------------
+Commodity                Specializations    Systems
+FOOD                                   0          0
+WATER                                  0          0
+BIOMATERIALS                           0          0
+COMMON_METALS                          0          0
+RARE_METALS                            0          0
+INDUSTRIAL_MINERALS                    0          0
+HYDROCARBONS                           0          0
+INDUSTRIAL_CHEMICALS                   0          0
+RARE_ELEMENTS                          0          0
+REFINED_METALS                        64         29
+PETROCHEMICALS                        72         29
+ADVANCED_MATERIALS                    56         28
+MANUFACTURED_PARTS                    53         29
+ELECTRONIC_COMPONENTS                 56         28
+PHARMACEUTICALS                       59         29
+FUEL                                  74         29
+ELECTRONICS                           20         15
+MEDICAL_SUPPLIES                      30         21
+INDUSTRIAL_MACHINERY                  39         25
+CAPITAL_GOODS                         21         10
+CONSUMER_GOODS                        36         24
+LUXURY_GOODS                          37         20
+
+MANUFACTURING SUMMARY
+---------------------
+Commodity                   Potential       Actual  Utilization
+FOOD                              0.0          0.0         0.0%
+WATER                             0.0          0.0         0.0%
+BIOMATERIALS                      0.0          0.0         0.0%
+COMMON_METALS                     0.0          0.0         0.0%
+RARE_METALS                       0.0          0.0         0.0%
+INDUSTRIAL_MINERALS               0.0          0.0         0.0%
+HYDROCARBONS                      0.0          0.0         0.0%
+INDUSTRIAL_CHEMICALS              0.0          0.0         0.0%
+RARE_ELEMENTS                     0.0          0.0         0.0%
+REFINED_METALS                 3877.7       1809.9        46.7%
+PETROCHEMICALS                 3231.4       1604.2        49.6%
+ADVANCED_MATERIALS             2769.8       1213.3        43.8%
+MANUFACTURED_PARTS             3508.4       1596.0        45.5%
+ELECTRONIC_COMPONENTS          2954.4       1342.4        45.4%
+PHARMACEUTICALS                3231.4       1493.2        46.2%
+FUEL                           3139.1       1639.2        52.2%
+ELECTRONICS                    2341.1        876.0        37.4%
+MEDICAL_SUPPLIES               2265.5        907.4        40.1%
+INDUSTRIAL_MACHINERY           2103.7        895.7        42.6%
+CAPITAL_GOODS                  1092.5        416.2        38.1%
+CONSUMER_GOODS                 4854.6       2032.0        41.9%
+LUXURY_GOODS                    669.3        304.5        45.5%
+
+SYSTEM BREAKDOWN
+================
+
+------------------------------------------------------------
+SYSTEM: 1-Aquila
+Region: OUTER_RIM
+Planets: 5
+
+  1-Aquila 1
+    Type:           VOLCANIC
+    Orbit:          INNER (1)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: POOR
+    Features:       [VOLCANIC_MOON, GEOTHERMAL_ACTIVITY]
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             NONE
+      COMMON_METALS            RICH
+      RARE_METALS              ABUNDANT
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            ABUNDANT
+    Specializations:
+      MANUFACTURED_PARTS       1
+      FUEL                     1
+      LUXURY_GOODS             2
+
+  1-Aquila 2
+    Type:           BARREN
+    Orbit:          MIDDLE (2)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: MODEST
+    Features:       [METALLIC_MOON]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    SCARCE
+      BIOMATERIALS             NONE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              ABUNDANT
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     NONE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      ADVANCED_MATERIALS       2
+      ELECTRONIC_COMPONENTS    1
+
+  1-Aquila 3
+    Type:           ALPINE
+    Orbit:          MIDDLE (3)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    ADVANCED
+    Infrastructure: MODEST
+    Features:       []
+    Resources:
+      FOOD                     SCARCE
+      WATER                    AVERAGE
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     2
+      MEDICAL_SUPPLIES         1
+      ELECTRONICS              1
+      CAPITAL_GOODS            2
+      CONSUMER_GOODS           1
+
+  1-Aquila 4
+    Type:           FROZEN
+    Orbit:          OUTER (4)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: MODEST
+    Features:       [ASTEROID_BELT]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    RICH
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              ABUNDANT
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            RICH
+    Specializations:
+      PHARMACEUTICALS          2
+      ELECTRONIC_COMPONENTS    1
+      PETROCHEMICALS           2
+
+  1-Aquila 5
+    Type:           FROZEN
+    Orbit:          OUTER (5)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: MODEST
+    Features:       []
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    RICH
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            SCARCE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      FUEL                     1
+      REFINED_METALS           2
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    2
+    CAPITAL_GOODS            2
+    INDUSTRIAL_MACHINERY     2
+    MEDICAL_SUPPLIES         1
+    FUEL                     2
+    REFINED_METALS           2
+    LUXURY_GOODS             2
+    PETROCHEMICALS           2
+    ADVANCED_MATERIALS       2
+    ELECTRONICS              1
+    CONSUMER_GOODS           1
+    MANUFACTURED_PARTS       1
+    PHARMACEUTICALS          2
+
+------------------------------------------------------------
+SYSTEM: 2-Altair
+Region: CORE
+Planets: 5
+
+  2-Altair 1
+    Type:           BARREN
+    Orbit:          INNER (1)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: GOOD
+    Features:       [ASTEROID_BELT]
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             NONE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      FUEL                     1
+      CONSUMER_GOODS           1
+      PETROCHEMICALS           1
+      ADVANCED_MATERIALS       1
+      ELECTRONIC_COMPONENTS    1
+
+  2-Altair 2
+    Type:           ARID
+    Orbit:          MIDDLE (2)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: GOOD
+    Features:       [SALT_FLATS, POWERFUL_WEATHER_SYSTEMS]
+    Resources:
+      FOOD                     NONE
+      WATER                    RICH
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             RICH
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      PHARMACEUTICALS          2
+      REFINED_METALS           2
+
+  2-Altair 3
+    Type:           CONTINENTAL
+    Orbit:          MIDDLE (3)
+    Population:     BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: MODEST
+    Features:       [DENSE_ATMOSPHERE, RICH_FOSSIL_DEPOSITS]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             RICH
+      COMMON_METALS            SCARCE
+      RARE_METALS              NONE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             RICH
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      MANUFACTURED_PARTS       2
+      PHARMACEUTICALS          1
+      ELECTRONIC_COMPONENTS    2
+      REFINED_METALS           1
+
+  2-Altair 4
+    Type:           CRYOVOLCANIC
+    Orbit:          OUTER (4)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: GOOD
+    Features:       [GEOTHERMAL_ACTIVITY, ASTEROID_BELT, SUBSURFACE_OCEAN]
+    Resources:
+      FOOD                     NONE
+      WATER                    ABUNDANT
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     ABUNDANT
+      RARE_ELEMENTS            RICH
+    Specializations:
+      MANUFACTURED_PARTS       1
+      MEDICAL_SUPPLIES         1
+      ADVANCED_MATERIALS       2
+      LUXURY_GOODS             2
+
+  2-Altair 5
+    Type:           FROZEN
+    Orbit:          OUTER (5)
+    Population:     BILLIONS
+    Development:    AGRARIAN
+    Infrastructure: MODEST
+    Features:       [CRYOVOLCANIC_MOON, RING_SYSTEM]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    ABUNDANT
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            SCARCE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      FUEL                     2
+      PETROCHEMICALS           2
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    3
+    INDUSTRIAL_MACHINERY     1
+    MEDICAL_SUPPLIES         1
+    FUEL                     3
+    REFINED_METALS           3
+    LUXURY_GOODS             2
+    PETROCHEMICALS           3
+    ADVANCED_MATERIALS       3
+    CONSUMER_GOODS           1
+    MANUFACTURED_PARTS       3
+    PHARMACEUTICALS          3
+
+------------------------------------------------------------
+SYSTEM: 3-Andromeda
+Region: CORE
+Planets: 4
+
+  3-Andromeda 1
+    Type:           CONTINENTAL
+    Orbit:          INNER (1)
+    Population:     BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: EXCELLENT
+    Features:       [DENSE_ATMOSPHERE, POWERFUL_WEATHER_SYSTEMS]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    RICH
+      BIOMATERIALS             ABUNDANT
+      COMMON_METALS            AVERAGE
+      RARE_METALS              NONE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      FUEL                     1
+      REFINED_METALS           2
+      PHARMACEUTICALS          1
+      ADVANCED_MATERIALS       2
+      ELECTRONIC_COMPONENTS    1
+
+  3-Andromeda 2
+    Type:           CONTINENTAL
+    Orbit:          MIDDLE (2)
+    Population:     BILLIONS
+    Development:    AGRARIAN
+    Infrastructure: GOOD
+    Features:       [SHALLOW_SEAS, ANCIENT_IMPACT_BASIN]
+    Resources:
+      FOOD                     RICH
+      WATER                    RICH
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      FUEL                     2
+      ELECTRONIC_COMPONENTS    2
+      REFINED_METALS           1
+
+  3-Andromeda 3
+    Type:           BARREN
+    Orbit:          OUTER (3)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: MODEST
+    Features:       [STRONG_GRAVITY, ASTEROID_BELT]
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             NONE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     NONE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      MEDICAL_SUPPLIES         1
+      PHARMACEUTICALS          1
+      ADVANCED_MATERIALS       1
+      LUXURY_GOODS             1
+      PETROCHEMICALS           2
+
+  3-Andromeda 4
+    Type:           FROZEN
+    Orbit:          OUTER (4)
+    Population:     BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: POOR
+    Features:       [ICY_MOON, POWERFUL_WEATHER_SYSTEMS, ASTEROID_BELT]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    ABUNDANT
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            RICH
+    Specializations:
+      MANUFACTURED_PARTS       2
+      ELECTRONICS              1
+      CONSUMER_GOODS           1
+      PETROCHEMICALS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    3
+    INDUSTRIAL_MACHINERY     1
+    MEDICAL_SUPPLIES         1
+    FUEL                     3
+    REFINED_METALS           3
+    LUXURY_GOODS             1
+    PETROCHEMICALS           3
+    ADVANCED_MATERIALS       3
+    ELECTRONICS              1
+    CONSUMER_GOODS           1
+    MANUFACTURED_PARTS       2
+    PHARMACEUTICALS          2
+
+------------------------------------------------------------
+SYSTEM: 4-Antares
+Region: INNER_RIM
+Planets: 3
+
+  4-Antares 1
+    Type:           ALPINE
+    Orbit:          MIDDLE (1)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: EXCELLENT
+    Features:       [TECTONIC_ACTIVITY, ASTEROID_BELT]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      FUEL                     2
+      ELECTRONIC_COMPONENTS    1
+      REFINED_METALS           1
+
+  4-Antares 2
+    Type:           BARREN
+    Orbit:          OUTER (2)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: MODEST
+    Features:       []
+    Resources:
+      FOOD                     SCARCE
+      WATER                    NONE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      PHARMACEUTICALS          1
+      ADVANCED_MATERIALS       1
+      PETROCHEMICALS           1
+
+  4-Antares 3
+    Type:           FROZEN
+    Orbit:          OUTER (3)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    ADVANCED
+    Infrastructure: POOR
+    Features:       [STRONG_GRAVITY]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    AVERAGE
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            SCARCE
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            RICH
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      MEDICAL_SUPPLIES         1
+      ELECTRONICS              1
+      CAPITAL_GOODS            1
+      LUXURY_GOODS             2
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    1
+    CAPITAL_GOODS            1
+    INDUSTRIAL_MACHINERY     1
+    MEDICAL_SUPPLIES         1
+    FUEL                     2
+    REFINED_METALS           1
+    LUXURY_GOODS             2
+    PETROCHEMICALS           1
+    ADVANCED_MATERIALS       1
+    ELECTRONICS              1
+    MANUFACTURED_PARTS       1
+    PHARMACEUTICALS          1
+
+------------------------------------------------------------
+SYSTEM: 5-Arcturus
+Region: OUTER_RIM
+Planets: 3
+
+  5-Arcturus 1
+    Type:           CONTINENTAL
+    Orbit:          MIDDLE (1)
+    Population:     BILLIONS
+    Development:    DEVELOPING
+    Infrastructure: POOR
+    Features:       [DENSE_ATMOSPHERE, TECTONIC_ACTIVITY]
+    Resources:
+      FOOD                     RICH
+      WATER                    AVERAGE
+      BIOMATERIALS             RICH
+      COMMON_METALS            RICH
+      RARE_METALS              NONE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      FUEL                     1
+      ELECTRONIC_COMPONENTS    1
+      PETROCHEMICALS           1
+
+  5-Arcturus 2
+    Type:           FROZEN
+    Orbit:          OUTER (2)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: GOOD
+    Features:       []
+    Resources:
+      FOOD                     SCARCE
+      WATER                    RICH
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      PHARMACEUTICALS          1
+      REFINED_METALS           2
+
+  5-Arcturus 3
+    Type:           BARREN
+    Orbit:          OUTER (3)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: MODEST
+    Features:       [CRYOVOLCANIC_MOON, RING_SYSTEM]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    AVERAGE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      MEDICAL_SUPPLIES         1
+      ADVANCED_MATERIALS       2
+      CONSUMER_GOODS           1
+      PETROCHEMICALS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    1
+    INDUSTRIAL_MACHINERY     1
+    MEDICAL_SUPPLIES         1
+    FUEL                     1
+    REFINED_METALS           2
+    PETROCHEMICALS           2
+    ADVANCED_MATERIALS       2
+    CONSUMER_GOODS           1
+    MANUFACTURED_PARTS       1
+    PHARMACEUTICALS          1
+
+------------------------------------------------------------
+SYSTEM: 6-Aries
+Region: OUTER_RIM
+Planets: 6
+
+  6-Aries 1
+    Type:           ARID
+    Orbit:          INNER (1)
+    Population:     BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: EXCELLENT
+    Features:       [VOLCANIC_MOON, SALT_FLATS, TECTONIC_ACTIVITY]
+    Resources:
+      FOOD                     NONE
+      WATER                    AVERAGE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            RICH
+    Specializations:
+      FUEL                     1
+      PHARMACEUTICALS          2
+      REFINED_METALS           2
+      LUXURY_GOODS             1
+      PETROCHEMICALS           2
+
+  6-Aries 2
+    Type:           ALPINE
+    Orbit:          MIDDLE (2)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: GOOD
+    Features:       [TECTONIC_ACTIVITY, RICH_FOSSIL_DEPOSITS, ASTEROID_BELT]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    AVERAGE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             RICH
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      FUEL                     1
+      ADVANCED_MATERIALS       1
+      PETROCHEMICALS           2
+
+  6-Aries 3
+    Type:           OCEANIC
+    Orbit:          MIDDLE (3)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    AGRARIAN
+    Infrastructure: POOR
+    Features:       [SHALLOW_SEAS]
+    Resources:
+      FOOD                     RICH
+      WATER                    RICH
+      BIOMATERIALS             RICH
+      COMMON_METALS            AVERAGE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      REFINED_METALS           2
+
+  6-Aries 4
+    Type:           CRYOVOLCANIC
+    Orbit:          OUTER (4)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: POOR
+    Features:       [ICY_MOON, GAS_GIANT_ORBIT]
+    Resources:
+      FOOD                     NONE
+      WATER                    ABUNDANT
+      BIOMATERIALS             NONE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             RICH
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      PHARMACEUTICALS          1
+      ADVANCED_MATERIALS       2
+      CONSUMER_GOODS           1
+
+  6-Aries 5
+    Type:           ALPINE
+    Orbit:          OUTER (5)
+    Population:     TENS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: MODEST
+    Features:       []
+    Resources:
+      FOOD                     RICH
+      WATER                    RICH
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            RICH
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      MEDICAL_SUPPLIES         1
+      ELECTRONIC_COMPONENTS    2
+      CONSUMER_GOODS           1
+
+  6-Aries 6
+    Type:           ALPINE
+    Orbit:          OUTER (6)
+    Population:     BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: MODEST
+    Features:       [RING_SYSTEM, GAS_GIANT_ORBIT, ASTEROID_BELT]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      MANUFACTURED_PARTS       2
+      FUEL                     2
+      ELECTRONIC_COMPONENTS    1
+      REFINED_METALS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    3
+    INDUSTRIAL_MACHINERY     1
+    MEDICAL_SUPPLIES         1
+    FUEL                     4
+    REFINED_METALS           5
+    LUXURY_GOODS             1
+    PETROCHEMICALS           4
+    ADVANCED_MATERIALS       3
+    CONSUMER_GOODS           2
+    MANUFACTURED_PARTS       3
+    PHARMACEUTICALS          3
+
+------------------------------------------------------------
+SYSTEM: 7-Auriga
+Region: INNER_RIM
+Planets: 4
+
+  7-Auriga 1
+    Type:           ARID
+    Orbit:          INNER (1)
+    Population:     BILLIONS
+    Development:    ADVANCED
+    Infrastructure: GOOD
+    Features:       [VOLCANIC_ACTIVITY, WEAK_ATMOSPHERE, RICH_FOSSIL_DEPOSITS]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    SCARCE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            RICH
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      MEDICAL_SUPPLIES         2
+      CAPITAL_GOODS            2
+      CONSUMER_GOODS           1
+      LUXURY_GOODS             2
+
+  7-Auriga 2
+    Type:           ALPINE
+    Orbit:          MIDDLE (2)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    ADVANCED
+    Infrastructure: MODEST
+    Features:       [DENSE_ATMOSPHERE, POWERFUL_WEATHER_SYSTEMS]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    RICH
+      BIOMATERIALS             RICH
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      MEDICAL_SUPPLIES         1
+      CAPITAL_GOODS            2
+      CONSUMER_GOODS           1
+      LUXURY_GOODS             2
+
+  7-Auriga 3
+    Type:           FROZEN
+    Orbit:          OUTER (3)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    ADVANCED
+    Infrastructure: MODEST
+    Features:       [CRYOVOLCANIC_MOON, RING_SYSTEM]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    RICH
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            SCARCE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     ABUNDANT
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     2
+      ELECTRONICS              1
+      CAPITAL_GOODS            2
+      LUXURY_GOODS             2
+
+  7-Auriga 4
+    Type:           ALPINE
+    Orbit:          OUTER (4)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    ADVANCED
+    Infrastructure: MODEST
+    Features:       [STRONG_GRAVITY, CRYOVOLCANIC_MOON]
+    Resources:
+      FOOD                     NONE
+      WATER                    RICH
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     ABUNDANT
+      RARE_ELEMENTS            RICH
+    Specializations:
+      ELECTRONICS              2
+      CAPITAL_GOODS            2
+      CONSUMER_GOODS           1
+      LUXURY_GOODS             2
+
+  SYSTEM SPECIALIZATIONS
+    CAPITAL_GOODS            8
+    INDUSTRIAL_MACHINERY     4
+    MEDICAL_SUPPLIES         3
+    LUXURY_GOODS             8
+    ELECTRONICS              3
+    CONSUMER_GOODS           3
+
+------------------------------------------------------------
+SYSTEM: 8-Bellatrix
+Region: OUTER_RIM
+Planets: 2
+
+  8-Bellatrix 1
+    Type:           OCEANIC
+    Orbit:          MIDDLE (1)
+    Population:     BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: GOOD
+    Features:       [METALLIC_MOON]
+    Resources:
+      FOOD                     RICH
+      WATER                    AVERAGE
+      BIOMATERIALS             RICH
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      SCARCE
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      FUEL                     1
+      REFINED_METALS           2
+      MANUFACTURED_PARTS       1
+      ADVANCED_MATERIALS       1
+      ELECTRONIC_COMPONENTS    1
+
+  8-Bellatrix 2
+    Type:           FROZEN
+    Orbit:          OUTER (2)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: MODEST
+    Features:       [CRYOVOLCANIC_MOON, ASTEROID_BELT]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    ABUNDANT
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     ABUNDANT
+      RARE_ELEMENTS            RICH
+    Specializations:
+      FUEL                     1
+      PHARMACEUTICALS          1
+      ADVANCED_MATERIALS       1
+      CONSUMER_GOODS           1
+      PETROCHEMICALS           2
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    1
+    INDUSTRIAL_MACHINERY     1
+    FUEL                     2
+    REFINED_METALS           2
+    PETROCHEMICALS           2
+    ADVANCED_MATERIALS       2
+    CONSUMER_GOODS           1
+    MANUFACTURED_PARTS       1
+    PHARMACEUTICALS          1
+
+------------------------------------------------------------
+SYSTEM: 9-Canopus
+Region: OUTER_RIM
+Planets: 4
+
+  9-Canopus 1
+    Type:           ARID
+    Orbit:          INNER (1)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: EXCELLENT
+    Features:       []
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    SCARCE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      FUEL                     2
+      MEDICAL_SUPPLIES         2
+      PHARMACEUTICALS          2
+      ADVANCED_MATERIALS       1
+
+  9-Canopus 2
+    Type:           BARREN
+    Orbit:          MIDDLE (2)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: GOOD
+    Features:       [HABITABLE_MOON]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    AVERAGE
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            RICH
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      INDUSTRIAL_MACHINERY     2
+      ADVANCED_MATERIALS       1
+      ELECTRONIC_COMPONENTS    1
+      CONSUMER_GOODS           2
+
+  9-Canopus 3
+    Type:           CRYOVOLCANIC
+    Orbit:          OUTER (3)
+    Population:     BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: GOOD
+    Features:       [CRYOVOLCANIC_MOON, GEOTHERMAL_ACTIVITY, SUBSURFACE_OCEAN]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    ABUNDANT
+      BIOMATERIALS             NONE
+      COMMON_METALS            SCARCE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      SCARCE
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     ABUNDANT
+      RARE_ELEMENTS            RICH
+    Specializations:
+      FUEL                     1
+      ELECTRONICS              1
+      REFINED_METALS           2
+      PETROCHEMICALS           1
+      MANUFACTURED_PARTS       1
+      ELECTRONIC_COMPONENTS    1
+
+  9-Canopus 4
+    Type:           FROZEN
+    Orbit:          OUTER (4)
+    Population:     TENS_OF_BILLIONS
+    Development:    AGRARIAN
+    Infrastructure: MODEST
+    Features:       [ICY_MOON]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    ABUNDANT
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            SCARCE
+      RARE_METALS              NONE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      LUXURY_GOODS             2
+      PETROCHEMICALS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    2
+    INDUSTRIAL_MACHINERY     2
+    MEDICAL_SUPPLIES         2
+    FUEL                     3
+    REFINED_METALS           2
+    LUXURY_GOODS             2
+    PETROCHEMICALS           2
+    ADVANCED_MATERIALS       2
+    ELECTRONICS              1
+    CONSUMER_GOODS           2
+    MANUFACTURED_PARTS       2
+    PHARMACEUTICALS          2
+
+------------------------------------------------------------
+SYSTEM: 10-Capella
+Region: CORE
+Planets: 7
+
+  10-Capella 1
+    Type:           ARID
+    Orbit:          INNER (1)
+    Population:     BILLIONS
+    Development:    DEVELOPING
+    Infrastructure: POOR
+    Features:       []
+    Resources:
+      FOOD                     RICH
+      WATER                    SCARCE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      FUEL                     2
+      REFINED_METALS           2
+
+  10-Capella 2
+    Type:           ARID
+    Orbit:          INNER (2)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: GOOD
+    Features:       [WEAK_ATMOSPHERE, VOLCANIC_MOON]
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             NONE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      ADVANCED_MATERIALS       1
+      ELECTRONIC_COMPONENTS    2
+      PETROCHEMICALS           1
+
+  10-Capella 3
+    Type:           CONTINENTAL
+    Orbit:          MIDDLE (3)
+    Population:     BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: POOR
+    Features:       [DENSE_ATMOSPHERE, POWERFUL_WEATHER_SYSTEMS]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    RICH
+      BIOMATERIALS             ABUNDANT
+      COMMON_METALS            RICH
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      FUEL                     1
+      PHARMACEUTICALS          1
+      ELECTRONICS              1
+      LUXURY_GOODS             1
+
+  10-Capella 4
+    Type:           VOLCANIC
+    Orbit:          MIDDLE (4)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: MODEST
+    Features:       []
+    Resources:
+      FOOD                     NONE
+      WATER                    NONE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      MEDICAL_SUPPLIES         1
+      PHARMACEUTICALS          1
+      ELECTRONIC_COMPONENTS    1
+      CONSUMER_GOODS           2
+
+  10-Capella 5
+    Type:           BARREN
+    Orbit:          OUTER (5)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: POOR
+    Features:       [GAS_GIANT_ORBIT]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    NONE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      INDUSTRIAL_MACHINERY     2
+      MANUFACTURED_PARTS       1
+      PETROCHEMICALS           1
+
+  10-Capella 6
+    Type:           BARREN
+    Orbit:          OUTER (6)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: MODEST
+    Features:       []
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             NONE
+      COMMON_METALS            RICH
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     NONE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      ADVANCED_MATERIALS       2
+      PETROCHEMICALS           1
+
+  10-Capella 7
+    Type:           CRYOVOLCANIC
+    Orbit:          OUTER (7)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: POOR
+    Features:       [STRONG_GRAVITY, GAS_GIANT_ORBIT]
+    Resources:
+      FOOD                     NONE
+      WATER                    AVERAGE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            SCARCE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             RICH
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      PHARMACEUTICALS          1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    3
+    INDUSTRIAL_MACHINERY     2
+    MEDICAL_SUPPLIES         1
+    FUEL                     3
+    REFINED_METALS           2
+    LUXURY_GOODS             1
+    PETROCHEMICALS           3
+    ADVANCED_MATERIALS       3
+    ELECTRONICS              1
+    CONSUMER_GOODS           2
+    MANUFACTURED_PARTS       3
+    PHARMACEUTICALS          3
+
+------------------------------------------------------------
+SYSTEM: 11-Cassiopeia
+Region: CORE
+Planets: 5
+
+  11-Cassiopeia 1
+    Type:           VOLCANIC
+    Orbit:          INNER (1)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: MODEST
+    Features:       [WEAK_ATMOSPHERE]
+    Resources:
+      FOOD                     NONE
+      WATER                    NONE
+      BIOMATERIALS             NONE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      FUEL                     1
+      ELECTRONIC_COMPONENTS    1
+      CONSUMER_GOODS           1
+      PETROCHEMICALS           1
+
+  11-Cassiopeia 2
+    Type:           CONTINENTAL
+    Orbit:          MIDDLE (2)
+    Population:     BILLIONS
+    Development:    ADVANCED
+    Infrastructure: MODEST
+    Features:       [STRONG_GRAVITY]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             RICH
+      COMMON_METALS            RICH
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      ELECTRONICS              1
+      CONSUMER_GOODS           1
+      LUXURY_GOODS             2
+      MEDICAL_SUPPLIES         1
+      CAPITAL_GOODS            1
+
+  11-Cassiopeia 3
+    Type:           ARID
+    Orbit:          MIDDLE (3)
+    Population:     BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: POOR
+    Features:       [STRONG_GRAVITY]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    AVERAGE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      MANUFACTURED_PARTS       2
+      PHARMACEUTICALS          1
+      PETROCHEMICALS           2
+
+  11-Cassiopeia 4
+    Type:           BARREN
+    Orbit:          OUTER (4)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: GOOD
+    Features:       [GAS_GIANT_ORBIT]
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      MANUFACTURED_PARTS       1
+      FUEL                     2
+      PHARMACEUTICALS          2
+      ELECTRONIC_COMPONENTS    1
+      REFINED_METALS           1
+
+  11-Cassiopeia 5
+    Type:           CRYOVOLCANIC
+    Orbit:          OUTER (5)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: MODEST
+    Features:       [GEOTHERMAL_ACTIVITY, SUBSURFACE_OCEAN]
+    Resources:
+      FOOD                     NONE
+      WATER                    RICH
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            ABUNDANT
+    Specializations:
+      ADVANCED_MATERIALS       2
+      ELECTRONIC_COMPONENTS    1
+      REFINED_METALS           2
+      PETROCHEMICALS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    3
+    CAPITAL_GOODS            1
+    INDUSTRIAL_MACHINERY     2
+    MEDICAL_SUPPLIES         1
+    FUEL                     3
+    REFINED_METALS           3
+    LUXURY_GOODS             2
+    PETROCHEMICALS           4
+    ADVANCED_MATERIALS       2
+    ELECTRONICS              1
+    CONSUMER_GOODS           2
+    MANUFACTURED_PARTS       3
+    PHARMACEUTICALS          3
+
+------------------------------------------------------------
+SYSTEM: 12-Centauri
+Region: OUTER_RIM
+Planets: 1
+
+  12-Centauri 1
+    Type:           ALPINE
+    Orbit:          OUTER (1)
+    Population:     TENS_OF_BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: MODEST
+    Features:       [TECTONIC_ACTIVITY, RICH_FOSSIL_DEPOSITS]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      FUEL                     1
+      REFINED_METALS           1
+      CONSUMER_GOODS           1
+      PETROCHEMICALS           1
+      MANUFACTURED_PARTS       1
+      PHARMACEUTICALS          1
+
+  SYSTEM SPECIALIZATIONS
+    FUEL                     1
+    REFINED_METALS           1
+    PETROCHEMICALS           1
+    CONSUMER_GOODS           1
+    MANUFACTURED_PARTS       1
+    PHARMACEUTICALS          1
+
+------------------------------------------------------------
+SYSTEM: 13-Cepheus
+Region: OUTER_RIM
+Planets: 4
+
+  13-Cepheus 1
+    Type:           ARID
+    Orbit:          INNER (1)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: MODEST
+    Features:       [TECTONIC_ACTIVITY, RICH_FOSSIL_DEPOSITS]
+    Resources:
+      FOOD                     RICH
+      WATER                    SCARCE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             ABUNDANT
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      ADVANCED_MATERIALS       2
+      REFINED_METALS           1
+
+  13-Cepheus 2
+    Type:           OCEANIC
+    Orbit:          MIDDLE (2)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: MODEST
+    Features:       [DENSE_ATMOSPHERE]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             ABUNDANT
+      COMMON_METALS            AVERAGE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      PHARMACEUTICALS          1
+      ELECTRONIC_COMPONENTS    1
+      PETROCHEMICALS           1
+
+  13-Cepheus 3
+    Type:           FROZEN
+    Orbit:          OUTER (3)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: EXCELLENT
+    Features:       [ANCIENT_IMPACT_BASIN]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            RICH
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      MANUFACTURED_PARTS       1
+      FUEL                     2
+      REFINED_METALS           2
+      CONSUMER_GOODS           1
+
+  13-Cepheus 4
+    Type:           BARREN
+    Orbit:          OUTER (4)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: MODEST
+    Features:       []
+    Resources:
+      FOOD                     SCARCE
+      WATER                    SCARCE
+      BIOMATERIALS             NONE
+      COMMON_METALS            RICH
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     NONE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      MEDICAL_SUPPLIES         1
+      PHARMACEUTICALS          1
+      ELECTRONIC_COMPONENTS    1
+      PETROCHEMICALS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    2
+    INDUSTRIAL_MACHINERY     1
+    MEDICAL_SUPPLIES         1
+    FUEL                     2
+    REFINED_METALS           3
+    PETROCHEMICALS           2
+    ADVANCED_MATERIALS       2
+    CONSUMER_GOODS           1
+    MANUFACTURED_PARTS       2
+    PHARMACEUTICALS          2
+
+------------------------------------------------------------
+SYSTEM: 14-Cetus
+Region: INNER_RIM
+Planets: 4
+
+  14-Cetus 1
+    Type:           BARREN
+    Orbit:          INNER (1)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: MODEST
+    Features:       [ANCIENT_IMPACT_BASIN]
+    Resources:
+      FOOD                     NONE
+      WATER                    NONE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            ABUNDANT
+    Specializations:
+      FUEL                     1
+      ELECTRONIC_COMPONENTS    2
+      REFINED_METALS           2
+      PETROCHEMICALS           1
+
+  14-Cetus 2
+    Type:           ARID
+    Orbit:          MIDDLE (2)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: EXCELLENT
+    Features:       []
+    Resources:
+      FOOD                     SCARCE
+      WATER                    SCARCE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            RICH
+    Specializations:
+      MANUFACTURED_PARTS       1
+      FUEL                     2
+      PHARMACEUTICALS          2
+      ADVANCED_MATERIALS       1
+      PETROCHEMICALS           2
+
+  14-Cetus 3
+    Type:           FROZEN
+    Orbit:          OUTER (3)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    ADVANCED
+    Infrastructure: POOR
+    Features:       [RING_SYSTEM]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    AVERAGE
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      MEDICAL_SUPPLIES         1
+      ELECTRONICS              1
+      CAPITAL_GOODS            1
+      LUXURY_GOODS             2
+
+  14-Cetus 4
+    Type:           BARREN
+    Orbit:          OUTER (4)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: POOR
+    Features:       [STRONG_GRAVITY, ANCIENT_IMPACT_BASIN]
+    Resources:
+      FOOD                     NONE
+      WATER                    NONE
+      BIOMATERIALS             NONE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            ABUNDANT
+    Specializations:
+      MANUFACTURED_PARTS       1
+      ADVANCED_MATERIALS       1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    2
+    CAPITAL_GOODS            1
+    INDUSTRIAL_MACHINERY     1
+    MEDICAL_SUPPLIES         1
+    FUEL                     3
+    REFINED_METALS           2
+    LUXURY_GOODS             2
+    PETROCHEMICALS           3
+    ADVANCED_MATERIALS       2
+    ELECTRONICS              1
+    MANUFACTURED_PARTS       2
+    PHARMACEUTICALS          2
+
+------------------------------------------------------------
+SYSTEM: 15-Cygnus
+Region: OUTER_RIM
+Planets: 3
+
+  15-Cygnus 1
+    Type:           ALPINE
+    Orbit:          MIDDLE (1)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: POOR
+    Features:       [STRONG_GRAVITY]
+    Resources:
+      FOOD                     NONE
+      WATER                    RICH
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      FUEL                     2
+      ELECTRONIC_COMPONENTS    1
+
+  15-Cygnus 2
+    Type:           BARREN
+    Orbit:          OUTER (2)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: EXCELLENT
+    Features:       []
+    Resources:
+      FOOD                     NONE
+      WATER                    NONE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      PHARMACEUTICALS          1
+      ELECTRONIC_COMPONENTS    1
+      REFINED_METALS           1
+      PETROCHEMICALS           2
+
+  15-Cygnus 3
+    Type:           FROZEN
+    Orbit:          OUTER (3)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: MODEST
+    Features:       [CRYOVOLCANIC_MOON, ASTEROID_BELT]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    ABUNDANT
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     ABUNDANT
+      RARE_ELEMENTS            RICH
+    Specializations:
+      MANUFACTURED_PARTS       1
+      PHARMACEUTICALS          1
+      ADVANCED_MATERIALS       2
+      REFINED_METALS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    2
+    FUEL                     2
+    REFINED_METALS           2
+    PETROCHEMICALS           2
+    ADVANCED_MATERIALS       2
+    MANUFACTURED_PARTS       2
+    PHARMACEUTICALS          2
+
+------------------------------------------------------------
+SYSTEM: 16-Deneb
+Region: OUTER_RIM
+Planets: 4
+
+  16-Deneb 1
+    Type:           BARREN
+    Orbit:          INNER (1)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: MODEST
+    Features:       [ANCIENT_IMPACT_BASIN, GEOTHERMAL_ACTIVITY]
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              ABUNDANT
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            ABUNDANT
+    Specializations:
+      MANUFACTURED_PARTS       1
+      ADVANCED_MATERIALS       1
+      PETROCHEMICALS           1
+
+  16-Deneb 2
+    Type:           BARREN
+    Orbit:          MIDDLE (2)
+    Population:     TENS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: POOR
+    Features:       [STRONG_GRAVITY, TECTONIC_ACTIVITY]
+    Resources:
+      FOOD                     NONE
+      WATER                    NONE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     NONE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      ADVANCED_MATERIALS       1
+      LUXURY_GOODS             2
+      PETROCHEMICALS           1
+
+  16-Deneb 3
+    Type:           BARREN
+    Orbit:          OUTER (3)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: GOOD
+    Features:       [GAS_GIANT_ORBIT]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    NONE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      PHARMACEUTICALS          2
+      REFINED_METALS           2
+
+  16-Deneb 4
+    Type:           ALPINE
+    Orbit:          OUTER (4)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: POOR
+    Features:       [STRONG_GRAVITY, ICY_MOON, GEOTHERMAL_ACTIVITY]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    ABUNDANT
+      BIOMATERIALS             RICH
+      COMMON_METALS            AVERAGE
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     ABUNDANT
+      RARE_ELEMENTS            ABUNDANT
+    Specializations:
+      FUEL                     1
+      ELECTRONIC_COMPONENTS    1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    1
+    FUEL                     1
+    REFINED_METALS           2
+    LUXURY_GOODS             2
+    PETROCHEMICALS           2
+    ADVANCED_MATERIALS       2
+    MANUFACTURED_PARTS       1
+    PHARMACEUTICALS          2
+
+------------------------------------------------------------
+SYSTEM: 17-Draco
+Region: INNER_RIM
+Planets: 6
+
+  17-Draco 1
+    Type:           BARREN
+    Orbit:          INNER (1)
+    Population:     TENS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: GOOD
+    Features:       [VOLCANIC_ACTIVITY, HABITABLE_MOON]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      FUEL                     2
+      MEDICAL_SUPPLIES         1
+      ELECTRONIC_COMPONENTS    1
+      REFINED_METALS           1
+
+  17-Draco 2
+    Type:           ALPINE
+    Orbit:          MIDDLE (2)
+    Population:     BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: MODEST
+    Features:       [GEOTHERMAL_ACTIVITY, TECTONIC_ACTIVITY]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             RICH
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            RICH
+    Specializations:
+      MANUFACTURED_PARTS       1
+      FUEL                     2
+      ELECTRONIC_COMPONENTS    1
+      LUXURY_GOODS             2
+
+  17-Draco 3
+    Type:           CONTINENTAL
+    Orbit:          MIDDLE (3)
+    Population:     TENS_OF_BILLIONS
+    Development:    ADVANCED
+    Infrastructure: MODEST
+    Features:       [DENSE_ATMOSPHERE]
+    Resources:
+      FOOD                     RICH
+      WATER                    RICH
+      BIOMATERIALS             RICH
+      COMMON_METALS            AVERAGE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      MEDICAL_SUPPLIES         1
+      ELECTRONICS              2
+      CAPITAL_GOODS            1
+      CONSUMER_GOODS           2
+
+  17-Draco 4
+    Type:           FROZEN
+    Orbit:          OUTER (4)
+    Population:     TENS_OF_BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: MODEST
+    Features:       [GAS_GIANT_ORBIT, METALLIC_MOON]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    RICH
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      FUEL                     1
+      PHARMACEUTICALS          2
+      ADVANCED_MATERIALS       1
+      PETROCHEMICALS           2
+
+  17-Draco 5
+    Type:           FROZEN
+    Orbit:          OUTER (5)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: MODEST
+    Features:       [GAS_GIANT_ORBIT, SUBSURFACE_OCEAN]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    RICH
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             RICH
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      FUEL                     1
+      REFINED_METALS           2
+
+  17-Draco 6
+    Type:           ALPINE
+    Orbit:          OUTER (6)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    ADVANCED
+    Infrastructure: POOR
+    Features:       [CRYOVOLCANIC_MOON, RING_SYSTEM]
+    Resources:
+      FOOD                     RICH
+      WATER                    RICH
+      BIOMATERIALS             RICH
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      MEDICAL_SUPPLIES         1
+      ELECTRONICS              1
+      CAPITAL_GOODS            2
+      CONSUMER_GOODS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    2
+    CAPITAL_GOODS            3
+    INDUSTRIAL_MACHINERY     3
+    MEDICAL_SUPPLIES         3
+    FUEL                     6
+    REFINED_METALS           3
+    LUXURY_GOODS             2
+    PETROCHEMICALS           2
+    ADVANCED_MATERIALS       1
+    ELECTRONICS              3
+    CONSUMER_GOODS           3
+    MANUFACTURED_PARTS       1
+    PHARMACEUTICALS          2
+
+------------------------------------------------------------
+SYSTEM: 18-Eridanus
+Region: OUTER_RIM
+Planets: 4
+
+  18-Eridanus 1
+    Type:           CONTINENTAL
+    Orbit:          INNER (1)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: GOOD
+    Features:       [TECTONIC_ACTIVITY]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      FUEL                     2
+      REFINED_METALS           1
+      PETROCHEMICALS           1
+
+  18-Eridanus 2
+    Type:           CONTINENTAL
+    Orbit:          MIDDLE (2)
+    Population:     BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: POOR
+    Features:       [DENSE_ATMOSPHERE, TECTONIC_ACTIVITY]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             RICH
+      COMMON_METALS            RICH
+      RARE_METALS              NONE
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      MANUFACTURED_PARTS       2
+      ELECTRONIC_COMPONENTS    1
+      PETROCHEMICALS           2
+
+  18-Eridanus 3
+    Type:           ALPINE
+    Orbit:          OUTER (3)
+    Population:     TENS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: EXCELLENT
+    Features:       [WEAK_ATMOSPHERE]
+    Resources:
+      FOOD                     NONE
+      WATER                    AVERAGE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      MEDICAL_SUPPLIES         1
+      PHARMACEUTICALS          1
+      ADVANCED_MATERIALS       2
+      ELECTRONIC_COMPONENTS    2
+
+  18-Eridanus 4
+    Type:           CRYOVOLCANIC
+    Orbit:          OUTER (4)
+    Population:     TENS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: GOOD
+    Features:       [GEOTHERMAL_ACTIVITY, GAS_GIANT_ORBIT, SUBSURFACE_OCEAN]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    ABUNDANT
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            SCARCE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      SCARCE
+      HYDROCARBONS             RICH
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            RICH
+    Specializations:
+      FUEL                     1
+      PHARMACEUTICALS          2
+      REFINED_METALS           2
+      CONSUMER_GOODS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    3
+    INDUSTRIAL_MACHINERY     1
+    MEDICAL_SUPPLIES         1
+    FUEL                     3
+    REFINED_METALS           3
+    PETROCHEMICALS           3
+    ADVANCED_MATERIALS       2
+    CONSUMER_GOODS           1
+    MANUFACTURED_PARTS       2
+    PHARMACEUTICALS          3
+
+------------------------------------------------------------
+SYSTEM: 19-Fornax
+Region: OUTER_RIM
+Planets: 4
+
+  19-Fornax 1
+    Type:           CONTINENTAL
+    Orbit:          INNER (1)
+    Population:     BILLIONS
+    Development:    AGRARIAN
+    Infrastructure: POOR
+    Features:       [GEOTHERMAL_ACTIVITY]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             RICH
+      COMMON_METALS            AVERAGE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     ABUNDANT
+      RARE_ELEMENTS            RICH
+    Specializations:
+      FUEL                     1
+      PHARMACEUTICALS          1
+      ELECTRONIC_COMPONENTS    1
+
+  19-Fornax 2
+    Type:           FROZEN
+    Orbit:          MIDDLE (2)
+    Population:     TENS_OF_BILLIONS
+    Development:    AGRARIAN
+    Infrastructure: GOOD
+    Features:       [HABITABLE_MOON, ANCIENT_IMPACT_BASIN]
+    Resources:
+      FOOD                     RICH
+      WATER                    RICH
+      BIOMATERIALS             RICH
+      COMMON_METALS            SCARCE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            RICH
+    Specializations:
+      FUEL                     2
+      PHARMACEUTICALS          1
+      ADVANCED_MATERIALS       1
+      REFINED_METALS           1
+
+  19-Fornax 3
+    Type:           CRYOVOLCANIC
+    Orbit:          OUTER (3)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: MODEST
+    Features:       [ASTEROID_BELT, SUBSURFACE_OCEAN]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    RICH
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      SCARCE
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      ELECTRONICS              1
+      CONSUMER_GOODS           1
+      LUXURY_GOODS             1
+      PETROCHEMICALS           2
+
+  19-Fornax 4
+    Type:           ALPINE
+    Orbit:          OUTER (4)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: GOOD
+    Features:       [GAS_GIANT_ORBIT]
+    Resources:
+      FOOD                     RICH
+      WATER                    AVERAGE
+      BIOMATERIALS             RICH
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     2
+      MEDICAL_SUPPLIES         2
+      REFINED_METALS           1
+      CONSUMER_GOODS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    1
+    INDUSTRIAL_MACHINERY     2
+    MEDICAL_SUPPLIES         2
+    FUEL                     3
+    REFINED_METALS           2
+    LUXURY_GOODS             1
+    PETROCHEMICALS           2
+    ADVANCED_MATERIALS       1
+    ELECTRONICS              1
+    CONSUMER_GOODS           2
+    MANUFACTURED_PARTS       1
+    PHARMACEUTICALS          2
+
+------------------------------------------------------------
+SYSTEM: 20-Gemini
+Region: OUTER_RIM
+Planets: 4
+
+  20-Gemini 1
+    Type:           BARREN
+    Orbit:          INNER (1)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: GOOD
+    Features:       [VOLCANIC_ACTIVITY, ANCIENT_IMPACT_BASIN]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    NONE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              ABUNDANT
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      FUEL                     2
+      PHARMACEUTICALS          1
+      ELECTRONIC_COMPONENTS    2
+      PETROCHEMICALS           1
+
+  20-Gemini 2
+    Type:           ALPINE
+    Orbit:          MIDDLE (2)
+    Population:     BILLIONS
+    Development:    DEVELOPING
+    Infrastructure: MODEST
+    Features:       []
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             RICH
+      COMMON_METALS            RICH
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      MANUFACTURED_PARTS       2
+      REFINED_METALS           2
+
+  20-Gemini 3
+    Type:           BARREN
+    Orbit:          OUTER (3)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: MODEST
+    Features:       [GAS_GIANT_ORBIT, ASTEROID_BELT]
+    Resources:
+      FOOD                     NONE
+      WATER                    NONE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      PHARMACEUTICALS          1
+      ADVANCED_MATERIALS       2
+
+  20-Gemini 4
+    Type:           CRYOVOLCANIC
+    Orbit:          OUTER (4)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: POOR
+    Features:       [ICY_MOON]
+    Resources:
+      FOOD                     NONE
+      WATER                    ABUNDANT
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            SCARCE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            RICH
+    Specializations:
+      PHARMACEUTICALS          1
+      CONSUMER_GOODS           1
+      PETROCHEMICALS           2
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    2
+    INDUSTRIAL_MACHINERY     1
+    FUEL                     2
+    REFINED_METALS           2
+    PETROCHEMICALS           3
+    ADVANCED_MATERIALS       2
+    CONSUMER_GOODS           1
+    MANUFACTURED_PARTS       3
+    PHARMACEUTICALS          3
+
+------------------------------------------------------------
+SYSTEM: 21-Hydra
+Region: CORE
+Planets: 4
+
+  21-Hydra 1
+    Type:           ARID
+    Orbit:          INNER (1)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: MODEST
+    Features:       [VOLCANIC_MOON]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    SCARCE
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      FUEL                     2
+      PHARMACEUTICALS          2
+      ELECTRONIC_COMPONENTS    1
+      PETROCHEMICALS           1
+
+  21-Hydra 2
+    Type:           CONTINENTAL
+    Orbit:          MIDDLE (2)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: MODEST
+    Features:       [DENSE_FORESTS, DENSE_ATMOSPHERE, POWERFUL_WEATHER_SYSTEMS]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    RICH
+      BIOMATERIALS             ABUNDANT
+      COMMON_METALS            AVERAGE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      MEDICAL_SUPPLIES         1
+      PHARMACEUTICALS          1
+      PETROCHEMICALS           2
+
+  21-Hydra 3
+    Type:           BARREN
+    Orbit:          OUTER (3)
+    Population:     TENS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: MODEST
+    Features:       [CRYOVOLCANIC_MOON]
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             NONE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      MANUFACTURED_PARTS       1
+      ADVANCED_MATERIALS       1
+      REFINED_METALS           1
+      CONSUMER_GOODS           1
+
+  21-Hydra 4
+    Type:           CRYOVOLCANIC
+    Orbit:          OUTER (4)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: MODEST
+    Features:       [CRYOVOLCANIC_MOON, SUBSURFACE_OCEAN]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    ABUNDANT
+      BIOMATERIALS             NONE
+      COMMON_METALS            SCARCE
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             RICH
+      INDUSTRIAL_CHEMICALS     ABUNDANT
+      RARE_ELEMENTS            RICH
+    Specializations:
+      ADVANCED_MATERIALS       1
+      ELECTRONIC_COMPONENTS    1
+      REFINED_METALS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    2
+    INDUSTRIAL_MACHINERY     1
+    MEDICAL_SUPPLIES         1
+    FUEL                     2
+    REFINED_METALS           2
+    PETROCHEMICALS           3
+    ADVANCED_MATERIALS       2
+    CONSUMER_GOODS           1
+    MANUFACTURED_PARTS       2
+    PHARMACEUTICALS          3
+
+------------------------------------------------------------
+SYSTEM: 22-Indus
+Region: OUTER_RIM
+Planets: 5
+
+  22-Indus 1
+    Type:           VOLCANIC
+    Orbit:          INNER (1)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: MODEST
+    Features:       [GEOTHERMAL_ACTIVITY, TECTONIC_ACTIVITY]
+    Resources:
+      FOOD                     NONE
+      WATER                    NONE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            ABUNDANT
+    Specializations:
+      FUEL                     1
+      REFINED_METALS           1
+      PETROCHEMICALS           1
+      MANUFACTURED_PARTS       1
+      PHARMACEUTICALS          1
+      ELECTRONIC_COMPONENTS    1
+
+  22-Indus 2
+    Type:           CONTINENTAL
+    Orbit:          MIDDLE (2)
+    Population:     TENS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: MODEST
+    Features:       [HABITABLE_MOON, SHALLOW_SEAS]
+    Resources:
+      FOOD                     ABUNDANT
+      WATER                    ABUNDANT
+      BIOMATERIALS             RICH
+      COMMON_METALS            SCARCE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             RICH
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      MANUFACTURED_PARTS       1
+      ADVANCED_MATERIALS       1
+      REFINED_METALS           1
+      CONSUMER_GOODS           1
+
+  22-Indus 3
+    Type:           FROZEN
+    Orbit:          MIDDLE (3)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: GOOD
+    Features:       [STRONG_GRAVITY, ASTEROID_BELT]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    RICH
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              ABUNDANT
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      FUEL                     2
+      ELECTRONIC_COMPONENTS    1
+      LUXURY_GOODS             1
+      PETROCHEMICALS           2
+
+  22-Indus 4
+    Type:           BARREN
+    Orbit:          OUTER (4)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: POOR
+    Features:       []
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             NONE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      ELECTRONIC_COMPONENTS    1
+      PETROCHEMICALS           1
+
+  22-Indus 5
+    Type:           CRYOVOLCANIC
+    Orbit:          OUTER (5)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: EXCELLENT
+    Features:       [GAS_GIANT_ORBIT]
+    Resources:
+      FOOD                     NONE
+      WATER                    RICH
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            SCARCE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      SCARCE
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      FUEL                     2
+      PHARMACEUTICALS          2
+      ADVANCED_MATERIALS       2
+      REFINED_METALS           1
+      PETROCHEMICALS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    3
+    INDUSTRIAL_MACHINERY     1
+    FUEL                     5
+    REFINED_METALS           3
+    LUXURY_GOODS             1
+    PETROCHEMICALS           5
+    ADVANCED_MATERIALS       3
+    CONSUMER_GOODS           1
+    MANUFACTURED_PARTS       3
+    PHARMACEUTICALS          3
+
+------------------------------------------------------------
+SYSTEM: 23-Leo
+Region: INNER_RIM
+Planets: 3
+
+  23-Leo 1
+    Type:           CONTINENTAL
+    Orbit:          MIDDLE (1)
+    Population:     TENS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: POOR
+    Features:       [HABITABLE_MOON, DENSE_FORESTS, ASTEROID_BELT]
+    Resources:
+      FOOD                     RICH
+      WATER                    RICH
+      BIOMATERIALS             ABUNDANT
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      PHARMACEUTICALS          1
+      ADVANCED_MATERIALS       1
+      PETROCHEMICALS           2
+
+  23-Leo 2
+    Type:           BARREN
+    Orbit:          OUTER (2)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: EXCELLENT
+    Features:       [CRYOVOLCANIC_MOON, ANCIENT_IMPACT_BASIN]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    SCARCE
+      BIOMATERIALS             NONE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      FUEL                     2
+      PHARMACEUTICALS          1
+      ADVANCED_MATERIALS       2
+      ELECTRONIC_COMPONENTS    2
+      PETROCHEMICALS           1
+
+  23-Leo 3
+    Type:           ALPINE
+    Orbit:          OUTER (3)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: EXCELLENT
+    Features:       [RICH_FOSSIL_DEPOSITS]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             RICH
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      MANUFACTURED_PARTS       2
+      ELECTRONIC_COMPONENTS    1
+      REFINED_METALS           2
+      CONSUMER_GOODS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    3
+    INDUSTRIAL_MACHINERY     1
+    FUEL                     2
+    REFINED_METALS           2
+    PETROCHEMICALS           3
+    ADVANCED_MATERIALS       3
+    CONSUMER_GOODS           1
+    MANUFACTURED_PARTS       2
+    PHARMACEUTICALS          2
+
+------------------------------------------------------------
+SYSTEM: 24-Libra
+Region: OUTER_RIM
+Planets: 4
+
+  24-Libra 1
+    Type:           VOLCANIC
+    Orbit:          INNER (1)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: POOR
+    Features:       [VOLCANIC_MOON, TECTONIC_ACTIVITY]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    NONE
+      BIOMATERIALS             NONE
+      COMMON_METALS            RICH
+      RARE_METALS              ABUNDANT
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      FUEL                     2
+      MEDICAL_SUPPLIES         1
+
+  24-Libra 2
+    Type:           CONTINENTAL
+    Orbit:          MIDDLE (2)
+    Population:     BILLIONS
+    Development:    ADVANCED
+    Infrastructure: MODEST
+    Features:       [HABITABLE_MOON, DENSE_ATMOSPHERE]
+    Resources:
+      FOOD                     ABUNDANT
+      WATER                    ABUNDANT
+      BIOMATERIALS             ABUNDANT
+      COMMON_METALS            SCARCE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      ELECTRONICS              1
+      CONSUMER_GOODS           2
+      LUXURY_GOODS             1
+      MEDICAL_SUPPLIES         1
+      CAPITAL_GOODS            1
+
+  24-Libra 3
+    Type:           BARREN
+    Orbit:          OUTER (3)
+    Population:     BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: POOR
+    Features:       [VOLCANIC_MOON, GAS_GIANT_ORBIT]
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             NONE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      MANUFACTURED_PARTS       2
+      ELECTRONIC_COMPONENTS    1
+      PETROCHEMICALS           2
+
+  24-Libra 4
+    Type:           BARREN
+    Orbit:          OUTER (4)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: GOOD
+    Features:       [STRONG_GRAVITY]
+    Resources:
+      FOOD                     NONE
+      WATER                    NONE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      PHARMACEUTICALS          1
+      ADVANCED_MATERIALS       1
+      REFINED_METALS           2
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    1
+    CAPITAL_GOODS            1
+    INDUSTRIAL_MACHINERY     2
+    MEDICAL_SUPPLIES         2
+    FUEL                     2
+    REFINED_METALS           2
+    LUXURY_GOODS             1
+    PETROCHEMICALS           2
+    ADVANCED_MATERIALS       1
+    ELECTRONICS              1
+    CONSUMER_GOODS           2
+    MANUFACTURED_PARTS       2
+    PHARMACEUTICALS          1
+
+------------------------------------------------------------
+SYSTEM: 25-Lyra
+Region: OUTER_RIM
+Planets: 5
+
+  25-Lyra 1
+    Type:           BARREN
+    Orbit:          INNER (1)
+    Population:     TENS_OF_BILLIONS
+    Development:    DEVELOPING
+    Infrastructure: GOOD
+    Features:       [HABITABLE_MOON, ANCIENT_IMPACT_BASIN]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    SCARCE
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      FUEL                     1
+      MEDICAL_SUPPLIES         2
+      REFINED_METALS           1
+      CONSUMER_GOODS           1
+
+  25-Lyra 2
+    Type:           ALPINE
+    Orbit:          MIDDLE (2)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    ADVANCED
+    Infrastructure: POOR
+    Features:       [WEAK_ATMOSPHERE, RICH_FOSSIL_DEPOSITS, METALLIC_MOON]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    AVERAGE
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      ELECTRONICS              2
+      CAPITAL_GOODS            1
+      CONSUMER_GOODS           1
+      LUXURY_GOODS             1
+
+  25-Lyra 3
+    Type:           FROZEN
+    Orbit:          MIDDLE (3)
+    Population:     TENS_OF_BILLIONS
+    Development:    AGRARIAN
+    Infrastructure: GOOD
+    Features:       [ASTEROID_BELT, METALLIC_MOON]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    RICH
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      FUEL                     1
+      PHARMACEUTICALS          2
+      ELECTRONIC_COMPONENTS    1
+      PETROCHEMICALS           1
+
+  25-Lyra 4
+    Type:           BARREN
+    Orbit:          OUTER (4)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: POOR
+    Features:       [ICY_MOON]
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      PETROCHEMICALS           1
+
+  25-Lyra 5
+    Type:           BARREN
+    Orbit:          OUTER (5)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: GOOD
+    Features:       [ANCIENT_IMPACT_BASIN, ASTEROID_BELT, METALLIC_MOON]
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             NONE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              ABUNDANT
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      FUEL                     1
+      ADVANCED_MATERIALS       1
+      REFINED_METALS           1
+      PETROCHEMICALS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    1
+    CAPITAL_GOODS            1
+    INDUSTRIAL_MACHINERY     2
+    MEDICAL_SUPPLIES         2
+    FUEL                     3
+    REFINED_METALS           2
+    LUXURY_GOODS             1
+    PETROCHEMICALS           3
+    ADVANCED_MATERIALS       1
+    ELECTRONICS              2
+    CONSUMER_GOODS           2
+    MANUFACTURED_PARTS       1
+    PHARMACEUTICALS          2
+
+------------------------------------------------------------
+SYSTEM: 26-Mira
+Region: INNER_RIM
+Planets: 4
+
+  26-Mira 1
+    Type:           VOLCANIC
+    Orbit:          INNER (1)
+    Population:     TENS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: MODEST
+    Features:       [GEOTHERMAL_ACTIVITY]
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            ABUNDANT
+    Specializations:
+      INDUSTRIAL_MACHINERY     2
+      FUEL                     1
+      MEDICAL_SUPPLIES         1
+      ELECTRONIC_COMPONENTS    1
+
+  26-Mira 2
+    Type:           ALPINE
+    Orbit:          MIDDLE (2)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    ADVANCED
+    Infrastructure: GOOD
+    Features:       [DENSE_ATMOSPHERE, TECTONIC_ACTIVITY]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      ABUNDANT
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      ELECTRONICS              1
+      CONSUMER_GOODS           2
+      LUXURY_GOODS             2
+      MEDICAL_SUPPLIES         1
+      CAPITAL_GOODS            1
+
+  26-Mira 3
+    Type:           ALPINE
+    Orbit:          OUTER (3)
+    Population:     TENS_OF_BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: MODEST
+    Features:       [GEOTHERMAL_ACTIVITY]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    AVERAGE
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      FUEL                     2
+      PHARMACEUTICALS          1
+      ADVANCED_MATERIALS       1
+      PETROCHEMICALS           1
+
+  26-Mira 4
+    Type:           FROZEN
+    Orbit:          OUTER (4)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: POOR
+    Features:       [STRONG_GRAVITY, WEAK_ATMOSPHERE]
+    Resources:
+      FOOD                     NONE
+      WATER                    AVERAGE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      PHARMACEUTICALS          1
+      REFINED_METALS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    1
+    CAPITAL_GOODS            1
+    INDUSTRIAL_MACHINERY     3
+    MEDICAL_SUPPLIES         2
+    FUEL                     3
+    REFINED_METALS           1
+    LUXURY_GOODS             2
+    PETROCHEMICALS           1
+    ADVANCED_MATERIALS       1
+    ELECTRONICS              1
+    CONSUMER_GOODS           2
+    MANUFACTURED_PARTS       1
+    PHARMACEUTICALS          2
+
+------------------------------------------------------------
+SYSTEM: 27-Musca
+Region: OUTER_RIM
+Planets: 3
+
+  27-Musca 1
+    Type:           OCEANIC
+    Orbit:          MIDDLE (1)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: MODEST
+    Features:       [SHALLOW_SEAS, METALLIC_MOON]
+    Resources:
+      FOOD                     ABUNDANT
+      WATER                    ABUNDANT
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      ELECTRONIC_COMPONENTS    2
+      REFINED_METALS           1
+      PETROCHEMICALS           2
+
+  27-Musca 2
+    Type:           BARREN
+    Orbit:          OUTER (2)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: POOR
+    Features:       [STRONG_GRAVITY, ASTEROID_BELT, METALLIC_MOON]
+    Resources:
+      FOOD                     NONE
+      WATER                    NONE
+      BIOMATERIALS             NONE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     NONE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      MANUFACTURED_PARTS       1
+      FUEL                     1
+
+  27-Musca 3
+    Type:           ALPINE
+    Orbit:          OUTER (3)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    AGRARIAN
+    Infrastructure: MODEST
+    Features:       [WEAK_ATMOSPHERE]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    AVERAGE
+      BIOMATERIALS             NONE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      FUEL                     1
+      PHARMACEUTICALS          1
+      ADVANCED_MATERIALS       2
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    2
+    FUEL                     2
+    REFINED_METALS           1
+    PETROCHEMICALS           2
+    ADVANCED_MATERIALS       2
+    MANUFACTURED_PARTS       1
+    PHARMACEUTICALS          1
+
+------------------------------------------------------------
+SYSTEM: 28-Norma
+Region: CORE
+Planets: 3
+
+  28-Norma 1
+    Type:           CONTINENTAL
+    Orbit:          MIDDLE (1)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    AGRARIAN
+    Infrastructure: POOR
+    Features:       [STRONG_GRAVITY, POWERFUL_WEATHER_SYSTEMS, RICH_FOSSIL_DEPOSITS]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    ABUNDANT
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             RICH
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      ADVANCED_MATERIALS       1
+      LUXURY_GOODS             2
+
+  28-Norma 2
+    Type:           BARREN
+    Orbit:          OUTER (2)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: GOOD
+    Features:       [CRYOVOLCANIC_MOON, ANCIENT_IMPACT_BASIN]
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            ABUNDANT
+    Specializations:
+      PHARMACEUTICALS          1
+      REFINED_METALS           2
+      PETROCHEMICALS           1
+
+  28-Norma 3
+    Type:           BARREN
+    Orbit:          OUTER (3)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: GOOD
+    Features:       [ASTEROID_BELT]
+    Resources:
+      FOOD                     NONE
+      WATER                    SCARCE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      MANUFACTURED_PARTS       2
+      FUEL                     2
+      ELECTRONIC_COMPONENTS    2
+      PETROCHEMICALS           1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    2
+    FUEL                     2
+    REFINED_METALS           2
+    LUXURY_GOODS             2
+    PETROCHEMICALS           2
+    ADVANCED_MATERIALS       1
+    MANUFACTURED_PARTS       2
+    PHARMACEUTICALS          1
+
+------------------------------------------------------------
+SYSTEM: 29-Orion
+Region: INNER_RIM
+Planets: 5
+
+  29-Orion 1
+    Type:           BARREN
+    Orbit:          INNER (1)
+    Population:     TENS_OF_MILLIONS
+    Development:    COLONIAL
+    Infrastructure: MODEST
+    Features:       [VOLCANIC_ACTIVITY]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    NONE
+      BIOMATERIALS             NONE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      ADVANCED_MATERIALS       2
+      ELECTRONIC_COMPONENTS    1
+
+  29-Orion 2
+    Type:           BARREN
+    Orbit:          MIDDLE (2)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: GOOD
+    Features:       [ANCIENT_IMPACT_BASIN, ASTEROID_BELT, METALLIC_MOON]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    SCARCE
+      BIOMATERIALS             NONE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              ABUNDANT
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            ABUNDANT
+    Specializations:
+      MANUFACTURED_PARTS       2
+      FUEL                     1
+      PHARMACEUTICALS          1
+      ELECTRONIC_COMPONENTS    1
+      PETROCHEMICALS           2
+
+  29-Orion 3
+    Type:           BARREN
+    Orbit:          MIDDLE (3)
+    Population:     TENS_OF_MILLIONS
+    Development:    DEVELOPING
+    Infrastructure: EXCELLENT
+    Features:       [ASTEROID_BELT]
+    Resources:
+      FOOD                     SCARCE
+      WATER                    SCARCE
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            ABUNDANT
+      RARE_METALS              RICH
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             NONE
+      INDUSTRIAL_CHEMICALS     SCARCE
+      RARE_ELEMENTS            RICH
+    Specializations:
+      PHARMACEUTICALS          2
+      ELECTRONIC_COMPONENTS    1
+      REFINED_METALS           1
+      CONSUMER_GOODS           1
+      PETROCHEMICALS           2
+
+  29-Orion 4
+    Type:           CRYOVOLCANIC
+    Orbit:          OUTER (4)
+    Population:     HUNDREDS_OF_MILLIONS
+    Development:    ADVANCED
+    Infrastructure: POOR
+    Features:       [STRONG_GRAVITY, SUBSURFACE_OCEAN]
+    Resources:
+      FOOD                     NONE
+      WATER                    ABUNDANT
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            SCARCE
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      SCARCE
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      MEDICAL_SUPPLIES         1
+      ELECTRONICS              1
+      CAPITAL_GOODS            2
+      LUXURY_GOODS             1
+
+  29-Orion 5
+    Type:           FROZEN
+    Orbit:          OUTER (5)
+    Population:     BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: GOOD
+    Features:       [CRYOVOLCANIC_MOON, ANCIENT_IMPACT_BASIN]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    ABUNDANT
+      BIOMATERIALS             SCARCE
+      COMMON_METALS            RICH
+      RARE_METALS              AVERAGE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     ABUNDANT
+      RARE_ELEMENTS            RICH
+    Specializations:
+      MANUFACTURED_PARTS       1
+      FUEL                     2
+      ADVANCED_MATERIALS       2
+      REFINED_METALS           2
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    3
+    CAPITAL_GOODS            2
+    INDUSTRIAL_MACHINERY     1
+    MEDICAL_SUPPLIES         1
+    FUEL                     3
+    REFINED_METALS           3
+    LUXURY_GOODS             1
+    PETROCHEMICALS           4
+    ADVANCED_MATERIALS       4
+    ELECTRONICS              1
+    CONSUMER_GOODS           1
+    MANUFACTURED_PARTS       3
+    PHARMACEUTICALS          3
+
+------------------------------------------------------------
+SYSTEM: 30-Pegasus
+Region: CORE
+Planets: 2
+
+  30-Pegasus 1
+    Type:           OCEANIC
+    Orbit:          MIDDLE (1)
+    Population:     BILLIONS
+    Development:    DEVELOPING
+    Infrastructure: GOOD
+    Features:       [SHALLOW_SEAS]
+    Resources:
+      FOOD                     RICH
+      WATER                    ABUNDANT
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              NONE
+      INDUSTRIAL_MINERALS      AVERAGE
+      HYDROCARBONS             AVERAGE
+      INDUSTRIAL_CHEMICALS     AVERAGE
+      RARE_ELEMENTS            SCARCE
+    Specializations:
+      INDUSTRIAL_MACHINERY     1
+      FUEL                     1
+      LUXURY_GOODS             1
+      PETROCHEMICALS           1
+      MEDICAL_SUPPLIES         1
+      ADVANCED_MATERIALS       1
+
+  30-Pegasus 2
+    Type:           FROZEN
+    Orbit:          OUTER (2)
+    Population:     BILLIONS
+    Development:    INDUSTRIAL
+    Infrastructure: MODEST
+    Features:       [ICY_MOON]
+    Resources:
+      FOOD                     AVERAGE
+      WATER                    RICH
+      BIOMATERIALS             AVERAGE
+      COMMON_METALS            AVERAGE
+      RARE_METALS              SCARCE
+      INDUSTRIAL_MINERALS      RICH
+      HYDROCARBONS             SCARCE
+      INDUSTRIAL_CHEMICALS     RICH
+      RARE_ELEMENTS            AVERAGE
+    Specializations:
+      ELECTRONICS              1
+      REFINED_METALS           1
+      CONSUMER_GOODS           1
+      MANUFACTURED_PARTS       1
+      PHARMACEUTICALS          1
+      ELECTRONIC_COMPONENTS    1
+
+  SYSTEM SPECIALIZATIONS
+    ELECTRONIC_COMPONENTS    1
+    INDUSTRIAL_MACHINERY     1
+    MEDICAL_SUPPLIES         1
+    FUEL                     1
+    REFINED_METALS           1
+    LUXURY_GOODS             1
+    PETROCHEMICALS           1
+    ADVANCED_MATERIALS       1
+    ELECTRONICS              1
+    CONSUMER_GOODS           1
+    MANUFACTURED_PARTS       1
+    PHARMACEUTICALS          1
+
+

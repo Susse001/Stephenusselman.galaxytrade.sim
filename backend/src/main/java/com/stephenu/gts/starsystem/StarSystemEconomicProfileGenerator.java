@@ -85,6 +85,11 @@ public class StarSystemEconomicProfileGenerator {
                 commodities
         );
 
+        addManufacturingConsumption(
+            profile,
+            commodities
+        );
+
         return profile;
     }
 
@@ -155,7 +160,7 @@ public class StarSystemEconomicProfileGenerator {
                     (commodity, value) ->
                             manufacturing.merge(
                                     commodity,
-                                    value * 0.20,
+                                    value * 0.30,
                                     Double::sum
                             )
             );
@@ -241,15 +246,70 @@ public class StarSystemEconomicProfileGenerator {
     }
 
     /**
+     * Adds the inputs required by actual manufacturing to system
+     * consumption.
+     *
+     * Manufacturing consumption is calculated from actual production,
+     * rather than manufacturing potential, so unused capacity does not
+     * consume resources.
+     */
+    private void addManufacturingConsumption(
+        StarSystemEconomicProfile profile,
+        Map<CommodityType, Commodity> commodities) {
+
+        Map<CommodityType, Double> manufacturing =
+                profile.getManufacturing();
+
+        Map<CommodityType, Double> consumption =
+                profile.getConsumption();
+
+        for (Map.Entry<CommodityType, Double> entry :
+                manufacturing.entrySet()) {
+
+            Commodity commodity =
+                    commodities.get(entry.getKey());
+
+            if (commodity == null ||
+                    commodity.getProductionRecipe() == null) {
+                continue;
+            }
+
+            ProductionRecipe recipe =
+                    commodity.getProductionRecipe();
+
+            double actualProduction =
+                    entry.getValue();
+
+            double productionMultiplier =
+                    actualProduction /
+                            recipe.getOutputAmount();
+
+            /*
+            * Consume direct intermediate inputs.
+            */
+            for (Map.Entry<Commodity, Double> input :
+                    recipe.getInputs().entrySet()) {
+
+                consumption.merge(
+                        input.getKey().getType(),
+                        input.getValue()
+                                * productionMultiplier,
+                        Double::sum
+                );
+            }
+        }
+    }
+
+    /**
      * Converts specialization count into manufacturing utilization.
      */
     private double calculateUtilization(
             int specializationCount) {
 
         return switch (specializationCount) {
-            case 0 -> 0.20;
-            case 1 -> 0.40;
-            default -> 0.80;
+            case 0 -> 0.30;
+            case 1 -> 0.60;
+            default -> 0.90;
         };
     }
 

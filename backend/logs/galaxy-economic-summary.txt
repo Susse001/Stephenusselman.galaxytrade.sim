@@ -50,3 +50,29 @@ CAPITAL_GOODS            Production:    173.2 | Consumption:    358.7 | Net:   -
 CONSUMER_GOODS           Production:   1047.2 | Consumption:   2360.4 | Net:  -1313.2 | Inventory:    34187.0
 LUXURY_GOODS             Production:    148.8 | Consumption:    241.0 | Net:    -92.1 | Inventory:     3767.0
 ==============================================
+
+========== GALAXY ECONOMIC SUMMARY ==========
+Tick: 1
+FOOD                     Production:   9835.2 | Consumption:   8504.4 | Net:   1330.8 | Inventory:   169500.0
+WATER                    Production:  15447.8 | Consumption:   7508.0 | Net:   7939.8 | Inventory:   245413.0
+BIOMATERIALS             Production:   4352.3 | Consumption:    825.6 | Net:   3526.7 | Inventory:    71646.0
+COMMON_METALS            Production:  12529.2 | Consumption:   1032.0 | Net:  11497.2 | Inventory:   200898.0
+RARE_METALS              Production:   3107.5 | Consumption:    481.6 | Net:   2625.9 | Inventory:    49762.0
+INDUSTRIAL_MINERALS      Production:   6822.9 | Consumption:    713.8 | Net:   6109.1 | Inventory:   111866.0
+HYDROCARBONS             Production:   3334.4 | Consumption:    619.2 | Net:   2715.2 | Inventory:    54604.0
+INDUSTRIAL_CHEMICALS     Production:   6651.7 | Consumption:    520.1 | Net:   6131.6 | Inventory:   106488.0
+RARE_ELEMENTS            Production:   2619.7 | Consumption:    206.4 | Net:   2413.3 | Inventory:    39375.0
+REFINED_METALS           Production:   1809.9 | Consumption:    825.6 | Net:    984.3 | Inventory:    28542.0
+PETROCHEMICALS           Production:   1604.2 | Consumption:    688.0 | Net:    916.2 | Inventory:    25343.0
+ADVANCED_MATERIALS       Production:   1213.3 | Consumption:    344.0 | Net:    869.3 | Inventory:    19706.0
+MANUFACTURED_PARTS       Production:   1596.0 | Consumption:    594.4 | Net:   1001.6 | Inventory:    24346.0
+ELECTRONIC_COMPONENTS    Production:   1342.4 | Consumption:    371.5 | Net:    970.9 | Inventory:    20749.0
+PHARMACEUTICALS          Production:   1493.2 | Consumption:    724.0 | Net:    769.2 | Inventory:    22101.0
+FUEL                     Production:   1639.2 | Consumption:   1098.8 | Net:    540.5 | Inventory:    26772.0
+ELECTRONICS              Production:    876.0 | Consumption:    759.4 | Net:    116.6 | Inventory:    14775.0
+MEDICAL_SUPPLIES         Production:    907.4 | Consumption:    810.5 | Net:     96.9 | Inventory:    15005.0
+INDUSTRIAL_MACHINERY     Production:    895.7 | Consumption:    782.4 | Net:    113.3 | Inventory:    15312.0
+CAPITAL_GOODS            Production:    416.2 | Consumption:    303.5 | Net:    112.7 | Inventory:     7039.0
+CONSUMER_GOODS           Production:   2032.0 | Consumption:   2088.9 | Net:    -56.9 | Inventory:    36940.0
+LUXURY_GOODS             Production:    304.5 | Consumption:    208.7 | Net:     95.9 | Inventory:     4966.0
+==============================================

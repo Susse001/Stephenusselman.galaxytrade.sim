@@ -87,6 +87,7 @@ public class CommodityDataLoader implements CommandLineRunner {
         for (Commodity commodity : commodities) {
             commodity.calculateTier1GoodTotals();
         }
+        commodityRepository.saveAll(commodities);
     }
 
     /**
