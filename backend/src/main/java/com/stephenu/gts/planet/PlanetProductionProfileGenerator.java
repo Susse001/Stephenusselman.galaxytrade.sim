@@ -29,17 +29,17 @@ public class PlanetProductionProfileGenerator {
     private static final Map<CommodityType, Double> BASE_EXTRACTION =
         Map.of(
 
-                    CommodityType.FOOD, 170.0,
-                    CommodityType.WATER, 150.0,
-                    CommodityType.BIOMATERIALS, 65.0,
+                    CommodityType.FOOD, 180.0,
+                    CommodityType.WATER, 145.0,
+                    CommodityType.BIOMATERIALS, 60.0,
 
-                    CommodityType.COMMON_METALS, 95.0,
-                    CommodityType.RARE_METALS, 32.0,
-                    CommodityType.INDUSTRIAL_MINERALS, 50.0,
+                    CommodityType.COMMON_METALS, 75.0,
+                    CommodityType.RARE_METALS, 30.0,
+                    CommodityType.INDUSTRIAL_MINERALS, 36.0,
 
-                    CommodityType.HYDROCARBONS, 80.0,
-                    CommodityType.INDUSTRIAL_CHEMICALS, 60.0,
-                    CommodityType.RARE_ELEMENTS, 24.0
+                    CommodityType.HYDROCARBONS, 110.0,
+                    CommodityType.INDUSTRIAL_CHEMICALS, 52.0,
+                    CommodityType.RARE_ELEMENTS, 22.0
             );
 
     private static final Map<ResourceLevel, Double> RESOURCE_MULTIPLIERS =
@@ -137,20 +137,20 @@ public class PlanetProductionProfileGenerator {
          Map.ofEntries(
 
                 // Tier 2
-                Map.entry(CommodityType.REFINED_METALS, 42.0),
-                Map.entry(CommodityType.PETROCHEMICALS, 35.0),
-                Map.entry(CommodityType.ADVANCED_MATERIALS, 30.0),
-                Map.entry(CommodityType.MANUFACTURED_PARTS, 38.0),
-                Map.entry(CommodityType.ELECTRONIC_COMPONENTS, 32.0),
-                Map.entry(CommodityType.PHARMACEUTICALS, 35.0),
-                Map.entry(CommodityType.FUEL, 34.0),
+                Map.entry(CommodityType.REFINED_METALS, 120.0),
+                Map.entry(CommodityType.PETROCHEMICALS, 80.0),
+                Map.entry(CommodityType.ADVANCED_MATERIALS, 72.0),
+                Map.entry(CommodityType.MANUFACTURED_PARTS, 65.0),
+                Map.entry(CommodityType.ELECTRONIC_COMPONENTS, 54.0),
+                Map.entry(CommodityType.PHARMACEUTICALS, 60.0),
+                Map.entry(CommodityType.FUEL, 52.0),
 
                 // Tier 3
-                Map.entry(CommodityType.CONSUMER_GOODS, 60.0),
-                Map.entry(CommodityType.MEDICAL_SUPPLIES, 28.0),
+                Map.entry(CommodityType.CONSUMER_GOODS, 55.0),
+                Map.entry(CommodityType.MEDICAL_SUPPLIES, 27.0),
                 Map.entry(CommodityType.INDUSTRIAL_MACHINERY, 26.0),
-                Map.entry(CommodityType.ELECTRONICS, 30.0),
-                Map.entry(CommodityType.CAPITAL_GOODS, 14.0),
+                Map.entry(CommodityType.ELECTRONICS, 25.0),
+                Map.entry(CommodityType.CAPITAL_GOODS, 11.0),
                 Map.entry(CommodityType.LUXURY_GOODS, 8.0)
         );
 

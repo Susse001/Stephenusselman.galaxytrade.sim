@@ -269,13 +269,16 @@ public class StarSystemEconomicProfileGenerator {
             Commodity commodity =
                     commodities.get(entry.getKey());
 
-            if (commodity == null ||
-                    commodity.getProductionRecipe() == null) {
-                continue;
+            if (commodity == null || commodity.getTier() == 1) {
+                    continue;
             }
 
             ProductionRecipe recipe =
                     commodity.getProductionRecipe();
+
+            if (recipe.getOutputAmount() == null) {
+                continue;
+            }
 
             double actualProduction =
                     entry.getValue();

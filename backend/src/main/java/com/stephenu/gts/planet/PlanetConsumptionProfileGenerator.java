@@ -32,30 +32,30 @@ public class PlanetConsumptionProfileGenerator {
         Map<CommodityType, Double> consumption =
                 new EnumMap<>(CommodityType.class);
 
-        consumption.put(CommodityType.FOOD, 120.0);
-        consumption.put(CommodityType.WATER, 100.0);
+        consumption.put(CommodityType.FOOD, 110.0);
+        consumption.put(CommodityType.WATER, 115.0);
 
         consumption.put(CommodityType.BIOMATERIALS, 12.0);
-        consumption.put(CommodityType.COMMON_METALS, 15.0);
+        consumption.put(CommodityType.COMMON_METALS, 18.0);
         consumption.put(CommodityType.RARE_METALS, 7.0);
         consumption.put(CommodityType.INDUSTRIAL_MINERALS, 10.0);
-        consumption.put(CommodityType.HYDROCARBONS, 9.0);
+        consumption.put(CommodityType.HYDROCARBONS, 8.0);
         consumption.put(CommodityType.INDUSTRIAL_CHEMICALS, 7.0);
         consumption.put(CommodityType.RARE_ELEMENTS, 3.0);
 
-        consumption.put(CommodityType.REFINED_METALS, 12.0);
-        consumption.put(CommodityType.PETROCHEMICALS, 10.0);
-        consumption.put(CommodityType.ADVANCED_MATERIALS, 5.0);
-        consumption.put(CommodityType.MANUFACTURED_PARTS, 8.0);
-        consumption.put(CommodityType.ELECTRONIC_COMPONENTS, 5.0);
-        consumption.put(CommodityType.PHARMACEUTICALS, 10.0);
-        consumption.put(CommodityType.FUEL, 15.0);
+        consumption.put(CommodityType.REFINED_METALS, 11.0);
+        consumption.put(CommodityType.PETROCHEMICALS, 9.0);
+        consumption.put(CommodityType.ADVANCED_MATERIALS, 6.0);
+        consumption.put(CommodityType.MANUFACTURED_PARTS, 10.0);
+        consumption.put(CommodityType.ELECTRONIC_COMPONENTS, 7.0);
+        consumption.put(CommodityType.PHARMACEUTICALS, 11.0);
+        consumption.put(CommodityType.FUEL, 18.0);
 
         consumption.put(CommodityType.CONSUMER_GOODS, 30.0);
-        consumption.put(CommodityType.MEDICAL_SUPPLIES, 12.0);
+        consumption.put(CommodityType.MEDICAL_SUPPLIES, 14.0);
         consumption.put(CommodityType.INDUSTRIAL_MACHINERY, 10.0);
         consumption.put(CommodityType.ELECTRONICS, 12.0);
-        consumption.put(CommodityType.CAPITAL_GOODS, 5.0);
+        consumption.put(CommodityType.CAPITAL_GOODS, 6.0);
         consumption.put(CommodityType.LUXURY_GOODS, 3.0);
 
         return consumption;
